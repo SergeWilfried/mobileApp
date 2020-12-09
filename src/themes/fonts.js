@@ -26,8 +26,7 @@ const weight = {
   bold: '700',
 };
 
-const style = {
-};
+const style = {};
 
 export default {
   type,
