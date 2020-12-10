@@ -17,6 +17,7 @@ const colors = {
   // font
   baseFont: '#4E4E4E',
   secondaryFont: '#373A4D',
+  linkFont: '#263BBA',
 };
 
 export default colors;

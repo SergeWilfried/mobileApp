@@ -5,6 +5,7 @@ const type = {
 const letterSpacing = {
   small: 0,
   regular: 0.5,
+  large: 3,
 };
 
 const size = {

@@ -1,17 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Text from 'components/Text';
+import images from 'themes/images';
 
 import styles from './AuthHeader.styles';
 
 function AuthHeader({
-  header, title, subtitle,
+  withLogo, title, subtitle,
 }) {
   return (
     <View style={styles.container}>
-      {header}
+      {withLogo && (
+        <Image source={images.duniaLogo} />
+      )}
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
@@ -19,13 +22,13 @@ function AuthHeader({
 }
 
 AuthHeader.propTypes = {
-  header: PropTypes.element,
+  withLogo: PropTypes.bool,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
 };
 
 AuthHeader.defaultProps = {
-  header: null,
+  withLogo: false,
   subtitle: '',
 };
 
