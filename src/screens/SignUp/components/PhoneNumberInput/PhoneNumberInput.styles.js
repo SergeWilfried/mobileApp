@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 
@@ -17,6 +17,9 @@ export default StyleSheet.create({
     fontSize: fonts.size.small,
     marginBottom: 7,
   },
+  codeText: {
+    marginBottom: Platform.OS === 'android' ? 2 : 0,
+  },
   phoneText: {
     letterSpacing: fonts.letterSpacing.large,
   },
@@ -31,6 +34,8 @@ export default StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.inputStandartBorder,
     borderWidth: StyleSheet.hairlineWidth,
+    height: 45,
+    width: '100%',
   },
   inputContainerError: {
     borderColor: colors.errorBorder,
@@ -46,7 +51,6 @@ export default StyleSheet.create({
     backgroundColor: colors.screenBackground,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-    paddingBottom: 13,
-    paddingTop: 11,
+    paddingVertical: 0,
   },
 });

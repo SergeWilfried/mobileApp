@@ -64,9 +64,10 @@ function SignUp({ navigation }) {
             {' '}
             <Text style={styles.link} onPress={onLogIn}>Log in</Text>
           </Text>
-          <Button onPress={onContinue}>
-            Continue
-          </Button>
+          <Button
+            title="Continue"
+            onPress={onContinue}
+          />
         </View>
       </View>
     </SafeAreaView>

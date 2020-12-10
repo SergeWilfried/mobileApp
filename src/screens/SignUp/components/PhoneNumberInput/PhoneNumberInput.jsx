@@ -28,7 +28,7 @@ function PhoneNumberInput({
         onChangeFormattedText={onChangeFormattedPhone}
         renderDropdownImage={<DownArrow />}
         containerStyle={[styles.inputContainer, error && styles.inputContainerError]}
-        codeTextStyle={styles.text}
+        codeTextStyle={[styles.text, styles.codeText]}
         textInputStyle={[styles.text, styles.phoneText]}
         textContainerStyle={styles.textInputContainer}
         countryPickerButtonStyle={styles.countryInputContainer}

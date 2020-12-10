@@ -25,6 +25,6 @@ export default StyleSheet.create({
     color: colors.screenBackground,
   },
   defaultTitle: {
-    paddingVertical: 21,
+    paddingVertical: 18,
   },
 });

@@ -6,7 +6,9 @@ import Text from 'components/Text';
 
 import styles from './Button.styles';
 
-function Button({ type, onPress, disabled, children, textClassName }) {
+function Button({
+  type, onPress, disabled, title, textClassName,
+}) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -26,7 +28,7 @@ function Button({ type, onPress, disabled, children, textClassName }) {
           textClassName,
         ]}
       >
-        {children}
+        {title}
       </Text>
     </TouchableOpacity>
   );
@@ -36,7 +38,7 @@ Button.propTypes = {
   onPress: PropTypes.func.isRequired,
   type: PropTypes.oneOf(['default', 'link']),
   disabled: PropTypes.bool,
-  children: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   textClassName: Text.propTypes.style,
 };
 
