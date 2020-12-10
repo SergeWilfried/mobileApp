@@ -7,8 +7,7 @@ const colors = {
 
   // font
   baseFont: '#4E4E4E',
-
-  // border
+  secondaryFont: '#373A4D',
 };
 
 export default colors;

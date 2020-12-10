@@ -2,19 +2,27 @@ const type = {
   base: 'Roboto',
 };
 
+const letterSpacing = {
+  small: 0,
+  regular: 0.5,
+};
+
 const size = {
-  title: 24,
-  subtitle: 20,
-  medium: 18,
-  regular: 16,
+  extraSmall: 12,
   small: 14,
-  caption: 12,
+  regular: 16,
+  medium: 18,
+  large: 20,
+  extraLarge: 24,
+};
+
+const lineHeight = {
+  regular: 24,
 };
 
 const weight = {
   light: '300',
   regular: '400',
-  medium: '500',
   bold: '700',
 };
 
@@ -26,4 +34,6 @@ export default {
   size,
   weight,
   style,
+  lineHeight,
+  letterSpacing,
 };
