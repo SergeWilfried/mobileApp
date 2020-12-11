@@ -1,4 +1,5 @@
 const EMAIL_REGEXP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEXP = /^[a-zA-Z\d&?$@](?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[&?$@])[a-zA-Z\d&?$@]{8,}$/;
 
 const emailValidator = (value) => {
   const errors = [];
@@ -26,6 +27,14 @@ const confirmationCodeValidator = (value) => {
   return errors;
 };
 
+const passwordValidator = (value) => {
+  const errors = {};
+  if (!PASSWORD_REGEXP.test(value)) {
+    errors.password = 'Please enter correct password and repeat password';
+  }
+  return null;
+};
+
 export const validate = (value, key) => {
   switch (key) {
     case 'email':
@@ -34,6 +43,8 @@ export const validate = (value, key) => {
       return phoneNumberValidator(value);
     case 'confirmationCode':
       return confirmationCodeValidator(value);
+    case 'password':
+      return passwordValidator(value);
     default:
       return [];
   }

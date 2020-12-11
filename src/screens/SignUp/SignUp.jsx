@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { View, SafeAreaView } from 'react-native';
 
+import AuthHeaderLayout from 'components/HeaderAuthLayout';
 import DismissKeyboard from 'components/DismissKeyboard';
 import Text from 'components/Text';
 import Button from 'components/Button';
 import AuthHeader from 'components/AuthHeader';
-import AuthHeaderLayout from 'components/HeaderAuthLayout';
 import PhoneNumberInput from 'components/PhoneNumberInput';
 
 import usePhoneNumber from 'hooks/usePhoneNumber';

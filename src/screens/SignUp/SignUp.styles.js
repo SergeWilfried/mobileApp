@@ -23,6 +23,15 @@ export default StyleSheet.create({
   link: {
     color: colors.linkFont,
   },
+  mainContent: {
+    flex: 1,
+    width: '100%',
+  },
+  footer: {
+    marginTop: 'auto',
+    width: '100%',
+    marginBottom: 33,
+  },
   phoneContainer: {
     marginTop: 50,
   },

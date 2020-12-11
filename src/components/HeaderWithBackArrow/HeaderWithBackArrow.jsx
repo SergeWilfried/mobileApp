@@ -25,6 +25,7 @@ HeaderWithBackArrow.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  backIconStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
   backIconStyle: ViewPropTypes.style,
 };
