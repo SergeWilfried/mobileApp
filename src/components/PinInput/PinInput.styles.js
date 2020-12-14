@@ -9,6 +9,11 @@ export default StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.theme,
   },
+  cellStyleError: {
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'red',
+  },
   cellStyleFocused: {
     borderWidth: 2,
   },

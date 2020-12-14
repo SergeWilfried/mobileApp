@@ -28,11 +28,15 @@ function SignUp({ navigation }) {
     phoneError,
     phoneNumberInputRef,
     onContinue,
-  } = usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber);
+  } = usePhoneNumber(
+    handleSubmit,
+    formattedPhoneNumber,
+    setFormattedPhoneNumber,
+  );
 
   const onLogIn = useCallback(() => {
-
-  }, []);
+    navigation.navigate('SignIn');
+  }, [navigation]);
 
   return (
     <DismissKeyboard>

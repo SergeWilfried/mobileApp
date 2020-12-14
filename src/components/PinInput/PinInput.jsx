@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PinCodeInput from 'react-native-smooth-pincode-input';
 
@@ -9,39 +9,52 @@ function PinInput({
   cellSpacing,
   cellSize,
   onFulfill,
+  restrictToNumbers,
+  pinCode,
+  onPinChange,
+  hasErrors,
+  autoFocus,
 }) {
-  const [pinCode, setPinCode] = useState('');
-
-  const handleChange = useCallback((value) => {
-    setPinCode(value.replace(/\D+/, ''));
-  }, []);
-
   return (
     <PinCodeInput
-      cellStyle={styles.cellStyle}
+      cellStyle={[
+        styles.cellStyle,
+        hasErrors && styles.cellStyleError,
+      ]}
       textStyle={styles.cellTextStyle}
       cellStyleFocused={styles.cellStyleFocused}
       keyboardType={keyboardType}
       cellSpacing={cellSpacing}
       cellSize={cellSize}
       value={pinCode}
-      onTextChange={handleChange}
+      onTextChange={onPinChange}
       onFulfill={onFulfill}
+      restrictToNumbers={restrictToNumbers}
+      autoFocus={autoFocus}
     />
   );
 }
 
 PinInput.propTypes = {
+  onPinChange: PropTypes.func.isRequired,
+  onFulfill: PropTypes.func.isRequired,
   cellSize: PropTypes.number,
   cellSpacing: PropTypes.number,
   keyboardType: PropTypes.oneOf(['number-pad', 'numeric']),
-  onFulfill: PropTypes.func.isRequired,
+  restrictToNumbers: PropTypes.bool,
+  pinCode: PropTypes.string,
+  hasErrors: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 PinInput.defaultProps = {
   cellSize: 50,
   cellSpacing: 36,
   keyboardType: 'number-pad',
+  restrictToNumbers: true,
+  pinCode: '',
+  hasErrors: false,
+  autoFocus: true,
 };
 
 export default PinInput;
