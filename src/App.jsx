@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Provider } from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
+import { Platform, StatusBar } from 'react-native'
+import SplashScreen from 'react-native-splash-screen'
 
 import AppNavigation from './navigation';
 
@@ -14,9 +15,12 @@ function App() {
   }, []);
 
   return (
-    <Provider store={store}>
+ <Fragment>
+   {Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
+      <Provider store={store}>
       <AppNavigation />
     </Provider>
+ </Fragment>
   );
 }
 
