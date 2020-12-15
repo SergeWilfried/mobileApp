@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* duniapayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* duniapayTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* duniapayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* duniapayTests.m */; };
 		2F1388EEE305A1577F3E92EC /* libPods-duniapay-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB077AA511FD47C3C336CA7 /* libPods-duniapay-tvOSTests.a */; };
 		4634DBE9405D0338F236EEF7 /* libPods-duniapay-duniapayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023C2F18ADA4578E2006D491 /* libPods-duniapay-duniapayTests.a */; };
 		4AD39AF50D8C2F9C73CCBE59 /* libPods-duniapay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 060DF85698665EA36652B1A6 /* libPods-duniapay.a */; };
+		4B007D402588EF5A00E28A73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		4B007D412588EF5A00E28A73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		776D37DD25801A9400A30EBD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D825801A8F00A30EBD /* Roboto-Bold.ttf */; };
 		776D37E225801A9700A30EBD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D225801A7C00A30EBD /* Roboto-Light.ttf */; };
 		776D37E825801A9900A30EBD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D325801A8500A30EBD /* Roboto-Medium.ttf */; };
@@ -362,7 +362,7 @@
 				776D37E925801A9900A30EBD /* Roboto-Regular.ttf in Resources */,
 				776D37E825801A9900A30EBD /* Roboto-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4B007D412588EF5A00E28A73 /* Images.xcassets in Resources */,
 				776D37E225801A9700A30EBD /* Roboto-Light.ttf in Resources */,
 				776D37DD25801A9400A30EBD /* Roboto-Bold.ttf in Resources */,
 			);
@@ -372,7 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				4B007D402588EF5A00E28A73 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
