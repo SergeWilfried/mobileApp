@@ -7,7 +7,7 @@ import AuthHeader from 'components/AuthHeader';
 import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import Button from 'components/Button';
 import PhoneNumberInput from 'components/PhoneNumberInput';
-import AuthHeaderLayout from 'components/HeaderAuthLayout';
+import AuthHeaderLayout from 'components/AuthHeaderLayout';
 
 import usePhoneNumber from 'hooks/usePhoneNumber';
 

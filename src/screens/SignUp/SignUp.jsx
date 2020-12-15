@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { View, SafeAreaView } from 'react-native';
 
-import AuthHeaderLayout from 'components/HeaderAuthLayout';
+import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import DismissKeyboard from 'components/DismissKeyboard';
 import Text from 'components/Text';
 import Button from 'components/Button';

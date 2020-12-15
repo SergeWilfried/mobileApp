@@ -18,7 +18,7 @@ const size = {
 };
 
 const lineHeight = {
-  small: 13.7,
+  small: 16,
   regular: 24,
 };
 

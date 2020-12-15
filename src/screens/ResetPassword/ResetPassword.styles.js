@@ -14,10 +14,12 @@ export default StyleSheet.create({
   screen: {
     ...styles.authScreenStyle,
   },
-  passwordRules: {
-    fontSize: fonts.size.extraSmall,
+  passwordRulesWrapper: {
     marginTop: 10,
     marginBottom: 20,
+  },
+  passwordRule: {
+    fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.small,
   },
   wrapperInput: {

@@ -18,7 +18,7 @@ export default StyleSheet.create({
     marginTop: '5%',
   },
   subtitle: {
-    marginTop: 11,
+    marginTop: '2%',
     textAlign: 'center',
     lineHeight: styles.lineHeight.regular,
     letterSpacing: styles.letterSpacing.regular,

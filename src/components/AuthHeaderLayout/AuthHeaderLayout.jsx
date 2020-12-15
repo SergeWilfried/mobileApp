@@ -2,9 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import styles from './HeaderAuthLayout.styles';
+import styles from './AuthHeaderLayout.styles';
 
-function HeaderAuthLayout({ children }) {
+function AuthHeaderLayout({ children }) {
   return (
     <View style={styles.wrapper}>
       {children}
@@ -12,11 +12,11 @@ function HeaderAuthLayout({ children }) {
   );
 }
 
-HeaderAuthLayout.propTypes = {
+AuthHeaderLayout.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
 };
 
-export default HeaderAuthLayout;
+export default AuthHeaderLayout;
