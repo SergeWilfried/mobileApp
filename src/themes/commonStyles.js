@@ -9,4 +9,10 @@ const heroTitle = {
   letterSpacing: styles.letterSpacing.regular, // 0.5
 };
 
-export default { heroTitle };
+const authScreenStyle = {
+  paddingHorizontal: 23,
+  flex: 1,
+  backgroundColor: colors.screenBackground,
+};
+
+export default { heroTitle, authScreenStyle };

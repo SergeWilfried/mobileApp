@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
+
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
+import styles from 'themes/commonStyles';
 
 export default StyleSheet.create({
   screen: {
@@ -8,11 +10,8 @@ export default StyleSheet.create({
     backgroundColor: colors.screenBackground,
   },
   screenContent: {
-    flex: 1,
-    justifyContent: 'space-between',
+    ...styles.authScreenStyle,
     alignItems: 'center',
-    paddingBottom: 33,
-    paddingHorizontal: 23,
   },
   title: {
     color: colors.titleFont,
@@ -29,6 +28,15 @@ export default StyleSheet.create({
   },
   topSection: {
     alignItems: 'center',
+  },
+  mainContent: {
+    flex: 1,
+    width: '100%',
+  },
+  footer: {
+    marginTop: 'auto',
+    width: '100%',
+    marginBottom: 33,
   },
   footerText: {
     letterSpacing: fonts.letterSpacing.regular,
