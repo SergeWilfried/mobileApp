@@ -15,6 +15,13 @@ import PasswordIcon from './components/PasswordIcon';
 
 import styles from './Input.styles';
 
+const getBorderStyle = (focused, errorMessage, value) => {
+  if (focused) return styles.inputFocused;
+  if (errorMessage) return styles.inputError;
+  if (!errorMessage && value) return styles.inputCorrect;
+  return null;
+};
+
 function Input({
   value,
   onChangeText,
@@ -54,16 +61,12 @@ function Input({
 
   return (
     <View style={styles.inputWrapper}>
-      {!!label && (
-        <Text style={[styles.label, labelStyle]}>{label}</Text>
-      )}
-      <View
-        style={[
-          styles.inputContainer,
-          focused && styles.inputFocused,
-          inputWrapperStyle,
-          errorMessage && styles.errorInput,
-        ]}
+      {!!label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
+      <View style={[
+        styles.inputContainer,
+        inputWrapperStyle,
+        getBorderStyle(focused, errorMessage, value),
+      ]}
       >
         <TextInput
           style={[styles.input, inputStyle]}
@@ -90,9 +93,11 @@ function Input({
         )}
       </View>
       {!!errorMessage && (
-        <View style={styles.errorContainer}>
+        <View style={styles.containerError}>
           <Warning style={styles.warning} />
-          <Text style={styles.errorText}>{errorMessage}</Text>
+          <Text style={styles.textError}>
+            {errorMessage}
+          </Text>
         </View>
       )}
     </View>

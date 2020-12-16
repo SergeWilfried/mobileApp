@@ -20,22 +20,25 @@ export default StyleSheet.create({
   },
   label: {
     marginBottom: 7,
-    color: colors.labelInput,
+    color: colors.inputLabel,
+  },
+  inputCorrect: {
+    borderColor: colors.inputCorrect,
   },
   inputFocused: {
-    borderColor: colors.focusedInput,
+    borderColor: colors.inputFocused,
   },
-  errorInput: {
-    borderColor: colors.errorBorder,
+  inputError: {
+    borderColor: colors.inputErrorBorder,
   },
-  errorContainer: {
+  containerError: {
     width: '90%',
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
   },
-  errorText: {
-    color: colors.errorText,
+  textError: {
+    color: colors.inputErrorText,
   },
   warning: {
     marginRight: 8,

@@ -13,7 +13,7 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.regular,
   },
   label: {
-    color: colors.labelInput,
+    color: colors.inputLabelInput,
     fontSize: fonts.size.small,
     marginBottom: 7,
   },
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   error: {
     position: 'absolute',
-    color: colors.errorText,
+    color: colors.inputErrorText,
     fontSize: fonts.size.small,
     left: 0,
     bottom: -20,
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     width: '100%',
   },
   inputContainerError: {
-    borderColor: colors.errorBorder,
+    borderColor: colors.inputErrorBorder,
   },
   countryInputContainer: {
     backgroundColor: colors.screenBackground,
