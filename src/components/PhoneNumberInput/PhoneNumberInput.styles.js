@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
   inputContainer: {
     borderRadius: 10,
-    borderColor: colors.inputStandartBorder,
+    borderColor: colors.inputStandardBorder,
     borderWidth: StyleSheet.hairlineWidth,
     height: 45,
     width: '100%',
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     backgroundColor: colors.screenBackground,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
-    borderColor: colors.inputStandartBorder,
+    borderColor: colors.inputStandardBorder,
     borderRightWidth: StyleSheet.hairlineWidth,
   },
   textInputContainer: {

@@ -8,7 +8,7 @@ export default StyleSheet.create({
   inputContainer: {
     height: 45,
     borderWidth: 1,
-    borderColor: colors.inputStandartBorder,
+    borderColor: colors.inputStandardBorder,
     borderRadius: 10,
     backgroundColor: colors.white,
     justifyContent: 'center',

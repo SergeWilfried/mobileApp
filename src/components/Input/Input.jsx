@@ -1,6 +1,10 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import {
-  TextInput, Text, View, Keyboard, ViewPropTypes,
+  TextInput,
+  Text,
+  View,
+  Keyboard,
+  ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -25,20 +29,23 @@ function Input({
   label,
   autoFocus,
   maxLength,
+  autoCapitalize,
 }) {
   const [focused, setFocused] = useState(false);
 
   const [isEyeOpen, setEye] = useState(false);
 
-  const isPassword = useMemo(() => textContentType === 'password', [textContentType]);
+  const isPassword = useMemo(() => textContentType === 'password', [
+    textContentType,
+  ]);
 
   const handleFocus = useCallback(() => {
     setFocused(true);
   }, [setFocused]);
 
-  const handleBlur = useCallback(() => {
+  const handleBlur = useCallback((e) => {
     setFocused(false);
-    onBlur();
+    onBlur(e);
   }, [onBlur, setFocused]);
 
   const onEyeClick = useCallback(() => {
@@ -47,12 +54,16 @@ function Input({
 
   return (
     <View style={styles.inputWrapper}>
-      {!!label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-      <View style={[
-        styles.inputContainer,
-        focused && styles.inputFocused,
-        inputWrapperStyle,
-        errorMessage && styles.errorInput]}
+      {!!label && (
+        <Text style={[styles.label, labelStyle]}>{label}</Text>
+      )}
+      <View
+        style={[
+          styles.inputContainer,
+          focused && styles.inputFocused,
+          inputWrapperStyle,
+          errorMessage && styles.errorInput,
+        ]}
       >
         <TextInput
           style={[styles.input, inputStyle]}
@@ -69,15 +80,19 @@ function Input({
           secureTextEntry={isPassword && !isEyeOpen}
           autoFocus={autoFocus}
           maxLength={maxLength}
+          autoCapitalize={autoCapitalize}
         />
-        {isPassword && <PasswordIcon onEyeClick={onEyeClick} isEyeOpen={isEyeOpen} />}
+        {isPassword && (
+          <PasswordIcon
+            onEyeClick={onEyeClick}
+            isEyeOpen={isEyeOpen}
+          />
+        )}
       </View>
       {!!errorMessage && (
         <View style={styles.errorContainer}>
           <Warning style={styles.warning} />
-          <Text style={styles.errorText}>
-            {errorMessage}
-          </Text>
+          <Text style={styles.errorText}>{errorMessage}</Text>
         </View>
       )}
     </View>
@@ -113,6 +128,12 @@ Input.propTypes = {
   labelStyle: ViewPropTypes.style,
   autoFocus: PropTypes.bool,
   maxLength: PropTypes.number,
+  autoCapitalize: PropTypes.oneOf([
+    'none',
+    'characters',
+    'sentences',
+    'words',
+  ]),
 };
 
 Input.defaultProps = {
@@ -129,6 +150,7 @@ Input.defaultProps = {
   placeholder: '',
   autoFocus: false,
   maxLength: undefined,
+  autoCapitalize: 'none',
 };
 
 export default Input;

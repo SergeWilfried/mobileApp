@@ -1,3 +1,5 @@
+import { normalize } from 'helpers/utils';
+
 const type = {
   base: 'Roboto',
 };
@@ -10,16 +12,16 @@ const letterSpacing = {
 
 const size = {
   extraSmall: 12,
-  small: 14,
-  regular: 16,
-  medium: 18,
-  large: 20,
-  extraLarge: 24,
+  small: normalize(14),
+  regular: normalize(16),
+  medium: normalize(18),
+  large: normalize(20),
+  extraLarge: normalize(24),
 };
 
 const lineHeight = {
-  small: 16,
-  regular: 24,
+  small: normalize(16),
+  regular: normalize(24),
 };
 
 const weight = {

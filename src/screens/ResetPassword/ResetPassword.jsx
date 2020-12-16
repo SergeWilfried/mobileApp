@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
+import { useFormik } from 'formik';
 
 import AuthHeader from 'components/AuthHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
@@ -9,60 +10,51 @@ import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Text from 'components/Text';
-
-import { validatePassword } from 'helpers/validate';
+import { ResetPasswordSchema } from 'helpers/schemas';
 import { PASSWORD } from 'helpers/constants';
 
 import styles from './ResetPassword.styles';
 
-const validate = (password1, password2) => password1 === password2
-  && validatePassword(password1);
-
+const initialValues = {
+  password: '',
+  repeatPassword: '',
+};
 
 function ResetPassword({ navigation }) {
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-
-  const [isValidPassword, setValidPassword] = useState(false);
-
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-  const [passwordRepeatErrorMessage, setPasswordRepeatErrorMessage] = useState('');
-
+  const {
+    values,
+    setFieldTouched,
+    setFieldValue,
+    isValid,
+    errors,
+    touched,
+    handleBlur,
+    handleSubmit,
+  } = useFormik({
+    onSubmit: () => {},
+    validateOnMount: true,
+    validationSchema: ResetPasswordSchema,
+    initialValues,
+  });
   const onBackNavigation = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
-  const handlePasswordBlur = useCallback(() => {
-    if (!validatePassword(password)) {
-      setPasswordErrorMessage('Enter correct password due to rules');
-    } else {
-      setPasswordErrorMessage('');
-    }
-  }, [setPasswordErrorMessage, password]);
+  const handleChangePassword = useCallback(
+    (value) => {
+      setFieldValue('password', value);
+      setFieldTouched('password', false);
+    },
+    [setFieldValue, setFieldTouched],
+  );
 
-  const handleRepeatPasswordBlur = useCallback(() => {
-    if (password !== repeatPassword) {
-      setPasswordRepeatErrorMessage('Please correct repeat password');
-    } else {
-      setPasswordRepeatErrorMessage('');
-    }
-  }, [password, repeatPassword, setPasswordRepeatErrorMessage]);
-
-  const onResetPassword = useCallback(() => {
-    setValidPassword(validate(password, repeatPassword));
-  }, [password, repeatPassword, setValidPassword]);
-
-  const handleChangePassword = useCallback((str) => {
-    setPasswordErrorMessage('');
-    setPassword(str);
-    setValidPassword(validate(str, repeatPassword));
-  }, [repeatPassword, setPassword, setValidPassword]);
-
-  const handleChangeRepeatPassword = useCallback((str) => {
-    setPasswordRepeatErrorMessage('');
-    setRepeatPassword(str);
-    setValidPassword(validate(password, str));
-  }, [setRepeatPassword, password, setValidPassword]);
+  const handleChangeRepeatPassword = useCallback(
+    (value) => {
+      setFieldValue('repeatPassword', value);
+      setFieldTouched('repeatPassword', false);
+    },
+    [setFieldValue, setFieldTouched],
+  );
 
   return (
     <DismissKeyboard>
@@ -80,11 +72,11 @@ function ResetPassword({ navigation }) {
           <View style={styles.wrapperInput}>
             <Input
               label="New password"
-              value={password}
+              value={values.password}
               onChangeText={handleChangePassword}
               textContentType="password"
-              errorMessage={passwordErrorMessage}
-              onBlur={handlePasswordBlur}
+              errorMessage={touched.password ? errors.password : ''}
+              onBlur={handleBlur('password')}
             />
             <View style={styles.passwordRulesWrapper}>
               <Text style={styles.passwordRule}>
@@ -103,15 +95,21 @@ function ResetPassword({ navigation }) {
             </View>
             <Input
               label="Repeat new password"
-              value={repeatPassword}
+              value={values.repeatPassword}
               onChangeText={handleChangeRepeatPassword}
               textContentType="password"
-              onBlur={handleRepeatPasswordBlur}
-              errorMessage={passwordRepeatErrorMessage}
+              onBlur={handleBlur('repeatPassword')}
+              errorMessage={
+                touched.repeatPassword ? errors.repeatPassword : ''
+              }
             />
           </View>
           <View style={styles.wrapperButton}>
-            <Button disabled={!isValidPassword} title="Reset Password" onPress={onResetPassword} />
+            <Button
+              disabled={!isValid}
+              title="Reset Password"
+              onPress={handleSubmit}
+            />
           </View>
         </View>
       </SafeAreaView>

@@ -15,10 +15,10 @@ export default StyleSheet.create({
     ...commonStyles.heroTitle,
     color: colors.secondaryFont,
     textAlign: 'center',
-    marginTop: '5%',
+    marginTop: 20,
   },
   subtitle: {
-    marginTop: '2%',
+    marginTop: 11,
     textAlign: 'center',
     lineHeight: styles.lineHeight.regular,
     letterSpacing: styles.letterSpacing.regular,

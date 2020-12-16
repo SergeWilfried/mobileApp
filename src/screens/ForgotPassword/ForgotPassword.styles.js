@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import styles from 'themes/commonStyles';
 import colors from 'themes/colors';
+import { normalize } from 'helpers/utils';
 
 export default StyleSheet.create({
   screenWrapper: {
@@ -15,7 +16,7 @@ export default StyleSheet.create({
     marginTop: 31,
   },
   buttonContinueWrapper: {
-    marginBottom: 33,
+    marginBottom: normalize(33),
     marginTop: 'auto',
   },
 });

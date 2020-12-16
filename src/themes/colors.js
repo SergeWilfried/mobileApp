@@ -3,7 +3,7 @@ const colors = {
   white: '#FFFFFF',
 
   // input
-  inputStandartBorder: 'rgba(155,155,155, 0.6)',
+  inputStandardBorder: 'rgba(155,155,155, 0.6)',
   inputPlaceholder: '#9B9B9B',
   labelInput: 'rgba(78,78,78, 0.8)',
   focusedInput: '#4AC866',

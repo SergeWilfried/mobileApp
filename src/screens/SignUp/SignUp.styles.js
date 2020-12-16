@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 import styles from 'themes/commonStyles';
+import { normalize } from 'helpers/utils';
 
 export default StyleSheet.create({
   screen: {
@@ -30,7 +31,8 @@ export default StyleSheet.create({
   footer: {
     marginTop: 'auto',
     width: '100%',
-    marginBottom: 33,
+    marginBottom: normalize(33),
+
   },
   phoneContainer: {
     marginTop: 50,

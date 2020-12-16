@@ -19,6 +19,14 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.regular,
     lineHeight: fonts.lineHeight.regular,
   },
+  social: {
+    backgroundColor: colors.white,
+    width: 40,
+    height: 40,
+    borderColor: '#02034a1a',
+    borderWidth: 1,
+    borderRadius: 12,
+  },
   title: {
     fontSize: fonts.size.medium,
     fontWeight: fonts.weight.bold,
