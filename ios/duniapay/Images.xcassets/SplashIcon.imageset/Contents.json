@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "DuniaPay Logo.png",
+      "filename" : "logo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DuniaPay Logo (1).png",
+      "filename" : "logo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DuniaPay Logo (2).png",
+      "filename" : "logo@3x",
       "idiom" : "universal",
       "scale" : "3x"
     }
