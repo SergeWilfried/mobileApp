@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -14,6 +14,8 @@ import usePhoneNumber from 'hooks/usePhoneNumber';
 import styles from './ForgotPassword.styles';
 
 function ForgotPassword({ navigation }) {
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState();
+
   const handleSubmit = useCallback(() => {
     navigation.navigate('InviteCode');
   }, [navigation]);
@@ -28,7 +30,7 @@ function ForgotPassword({ navigation }) {
     onChangeFormattedPhone,
     phoneError,
     phoneNumberInputRef,
-  } = usePhoneNumber(handleSubmit);
+  } = usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber);
 
   return (
     <DismissKeyboard>

@@ -18,6 +18,11 @@ const colors = {
   baseFont: '#4E4E4E',
   secondaryFont: '#373A4D',
   linkFont: '#263BBA',
+
+  // progressBar
+  labelProgressBar: 'rgba(2, 3, 74, 0.3)',
+  barBackground: '#EBEBEB',
+  progressBackground: '#5067EB',
 };
 
 export default colors;

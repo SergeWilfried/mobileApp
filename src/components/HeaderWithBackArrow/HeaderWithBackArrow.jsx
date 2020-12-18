@@ -27,7 +27,6 @@ HeaderWithBackArrow.propTypes = {
   ]),
   backIconStyle: ViewPropTypes.style,
   style: ViewPropTypes.style,
-  backIconStyle: ViewPropTypes.style,
 };
 
 HeaderWithBackArrow.defaultProps = {

@@ -23,6 +23,8 @@ function Input({
   labelStyle,
   inputStyle,
   label,
+  autoFocus,
+  maxLength,
 }) {
   const [focused, setFocused] = useState(false);
 
@@ -65,6 +67,8 @@ function Input({
           onSubmitEditing={Keyboard.dismiss}
           keyboardType={keyboardType}
           secureTextEntry={isPassword && !isEyeOpen}
+          autoFocus={autoFocus}
+          maxLength={maxLength}
         />
         {isPassword && <PasswordIcon onEyeClick={onEyeClick} isEyeOpen={isEyeOpen} />}
       </View>
@@ -98,6 +102,7 @@ Input.propTypes = {
   textContentType: PropTypes.oneOf([
     'name',
     'none',
+    'oneTimeCode',
     'telephoneNumber',
     'emailAddress',
     'password',
@@ -106,6 +111,8 @@ Input.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   labelStyle: ViewPropTypes.style,
+  autoFocus: PropTypes.bool,
+  maxLength: PropTypes.number,
 };
 
 Input.defaultProps = {
@@ -120,6 +127,8 @@ Input.defaultProps = {
   label: '',
   value: '',
   placeholder: '',
+  autoFocus: false,
+  maxLength: undefined,
 };
 
 export default Input;

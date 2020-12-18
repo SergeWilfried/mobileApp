@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, SafeAreaView } from 'react-native';
 
@@ -14,9 +14,13 @@ import usePhoneNumber from 'hooks/usePhoneNumber';
 import styles from './SignUp.styles';
 
 function SignUp({ navigation }) {
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState();
+
   const handleSubmit = useCallback(() => {
-    navigation.navigate('InviteCode');
-  }, [navigation]);
+    navigation.navigate('InviteCode', {
+      phoneNumber: formattedPhoneNumber,
+    });
+  }, [navigation, formattedPhoneNumber]);
 
   const {
     onChangePhone,
@@ -24,7 +28,7 @@ function SignUp({ navigation }) {
     phoneError,
     phoneNumberInputRef,
     onContinue,
-  } = usePhoneNumber(handleSubmit);
+  } = usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber);
 
   const onLogIn = useCallback(() => {
 

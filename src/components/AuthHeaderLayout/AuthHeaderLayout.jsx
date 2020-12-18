@@ -1,12 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import styles from './AuthHeaderLayout.styles';
 
-function AuthHeaderLayout({ children }) {
+function AuthHeaderLayout({ style, children }) {
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, style]}>
       {children}
     </View>
   );
@@ -17,6 +17,11 @@ AuthHeaderLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  style: ViewPropTypes.style,
+};
+
+AuthHeaderLayout.defaultProps = {
+  style: null,
 };
 
 export default AuthHeaderLayout;

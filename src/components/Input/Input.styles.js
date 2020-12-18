@@ -4,7 +4,6 @@ import colors from 'themes/colors';
 
 export default StyleSheet.create({
   inputWrapper: {
-    width: '100%',
   },
   inputContainer: {
     height: 45,
@@ -20,7 +19,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
   },
   label: {
-    marginBottom: 10,
+    marginBottom: 7,
     color: colors.labelInput,
   },
   inputFocused: {

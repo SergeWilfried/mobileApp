@@ -1,8 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 
-function usePhoneNumber(handleSubmit) {
+function usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber) {
   const [phoneNumber, setPhoneNumber] = useState();
-  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState();
   const [phoneError, setPhoneError] = useState();
   const phoneNumberInputRef = useRef();
 
@@ -30,7 +29,6 @@ function usePhoneNumber(handleSubmit) {
     onContinue,
     onChangeFormattedPhone,
     phoneError,
-    formattedPhoneNumber,
     phoneNumber,
     phoneNumberInputRef,
   };

@@ -38,15 +38,6 @@ export default StyleSheet.create({
   topSection: {
     alignItems: 'center',
   },
-  mainContent: {
-    flex: 1,
-    width: '100%',
-  },
-  footer: {
-    marginTop: 'auto',
-    width: '100%',
-    marginBottom: 33,
-  },
   footerText: {
     letterSpacing: fonts.letterSpacing.regular,
     marginBottom: 15,
