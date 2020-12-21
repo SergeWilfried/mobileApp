@@ -14,6 +14,8 @@ import OnBoardingStepTwo from 'screens/OnBoardingStepTwo';
 import OnBoardingStepThree from 'screens/OnBoardingStepThree';
 import OnBoardingStepFour from 'screens/OnBoardingStepFour';
 import PinCodeEnter from 'components/PinCodeEnter';
+import Congratulations from 'screens/Congratulations';
+import VerifyEmail from 'screens/VerifyEmail';
 
 const AuthStack = createStackNavigator();
 
@@ -58,6 +60,14 @@ function AuthScreens() {
       <AuthStack.Screen
         name="OnBoardingStepFour"
         component={OnBoardingStepFour}
+      />
+      <AuthStack.Screen
+        name="Congratulations"
+        component={Congratulations}
+      />
+      <AuthStack.Screen
+        name="VerifyEmail"
+        component={VerifyEmail}
       />
     </AuthStack.Navigator>
   );
