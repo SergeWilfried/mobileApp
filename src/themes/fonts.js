@@ -2,6 +2,7 @@ import { normalize } from 'helpers/utils';
 
 const type = {
   base: 'Roboto',
+  title: 'Poppins-Regular',
 };
 
 const letterSpacing = {
@@ -22,6 +23,7 @@ const size = {
 const lineHeight = {
   small: normalize(16),
   regular: normalize(24),
+  large: 30,
 };
 
 const weight = {

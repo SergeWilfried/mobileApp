@@ -14,6 +14,8 @@ function Button({
   style,
   textStyle,
   icon: Icon,
+  textClassName,
+  buttonStyle,
 }) {
   return (
     <TouchableOpacity
@@ -24,6 +26,7 @@ function Button({
         styles.button,
         type === 'link' && styles.link,
         type === 'social' && styles.social,
+        buttonStyle,
         disabled && styles.disabled,
         style,
       ]}
@@ -35,6 +38,7 @@ function Button({
             styles.title,
             type === 'default' && styles.defaultTitle,
             type === 'link' && styles.link,
+            textClassName,
             textStyle,
           ]}
         >
@@ -53,6 +57,8 @@ Button.propTypes = {
   textStyle: Text.propTypes.style,
   icon: PropTypes.elementType,
   style: ViewPropTypes.style,
+  textClassName: Text.propTypes.style,
+  buttonStyle: Text.propTypes.style,
 };
 
 Button.defaultProps = {
@@ -62,6 +68,8 @@ Button.defaultProps = {
   textStyle: null,
   style: null,
   icon: null,
+  textClassName: null,
+  buttonStyle: null,
 };
 
 export default Button;

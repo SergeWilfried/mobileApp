@@ -18,6 +18,10 @@
 		4AD39AF50D8C2F9C73CCBE59 /* libPods-duniapay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 060DF85698665EA36652B1A6 /* libPods-duniapay.a */; };
 		4B007D402588EF5A00E28A73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		4B007D412588EF5A00E28A73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		4B04D5D625879CD900A335BD /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B04D5D225879CD800A335BD /* Poppins-Medium.ttf */; };
+		4B04D5D725879CD900A335BD /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B04D5D325879CD900A335BD /* Poppins-Bold.ttf */; };
+		4B04D5D825879CD900A335BD /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B04D5D425879CD900A335BD /* Poppins-Light.ttf */; };
+		4B04D5D925879CD900A335BD /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B04D5D525879CD900A335BD /* Poppins-Regular.ttf */; };
 		776D37DD25801A9400A30EBD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D825801A8F00A30EBD /* Roboto-Bold.ttf */; };
 		776D37E225801A9700A30EBD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D225801A7C00A30EBD /* Roboto-Light.ttf */; };
 		776D37E825801A9900A30EBD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D325801A8500A30EBD /* Roboto-Medium.ttf */; };
@@ -60,6 +64,10 @@
 		22D6DDF5F0AEA0F508939F28 /* Pods-duniapay-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duniapay-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-duniapay-tvOSTests/Pods-duniapay-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* duniapay-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "duniapay-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* duniapay-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "duniapay-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B04D5D225879CD800A335BD /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		4B04D5D325879CD900A335BD /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		4B04D5D425879CD900A335BD /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		4B04D5D525879CD900A335BD /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		579127871CC7738EBB83FBAD /* Pods-duniapay-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duniapay-tvOS.release.xcconfig"; path = "Target Support Files/Pods-duniapay-tvOS/Pods-duniapay-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		66FDC0C681B1A757D11D2898 /* Pods-duniapay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-duniapay.release.xcconfig"; path = "Target Support Files/Pods-duniapay/Pods-duniapay.release.xcconfig"; sourceTree = "<group>"; };
 		776D37D225801A7C00A30EBD /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
@@ -160,6 +168,10 @@
 		776D37D125801A2500A30EBD /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4B04D5D325879CD900A335BD /* Poppins-Bold.ttf */,
+				4B04D5D425879CD900A335BD /* Poppins-Light.ttf */,
+				4B04D5D225879CD800A335BD /* Poppins-Medium.ttf */,
+				4B04D5D525879CD900A335BD /* Poppins-Regular.ttf */,
 				776D37D825801A8F00A30EBD /* Roboto-Bold.ttf */,
 				776D37D225801A7C00A30EBD /* Roboto-Light.ttf */,
 				776D37D325801A8500A30EBD /* Roboto-Medium.ttf */,
@@ -361,11 +373,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				776D37E925801A9900A30EBD /* Roboto-Regular.ttf in Resources */,
+				4B04D5D825879CD900A335BD /* Poppins-Light.ttf in Resources */,
+				4B04D5D625879CD900A335BD /* Poppins-Medium.ttf in Resources */,
 				776D37E825801A9900A30EBD /* Roboto-Medium.ttf in Resources */,
+				4B04D5D725879CD900A335BD /* Poppins-Bold.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				4B007D412588EF5A00E28A73 /* Images.xcassets in Resources */,
 				776D37E225801A9700A30EBD /* Roboto-Light.ttf in Resources */,
 				776D37DD25801A9400A30EBD /* Roboto-Bold.ttf in Resources */,
+				4B04D5D925879CD900A335BD /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

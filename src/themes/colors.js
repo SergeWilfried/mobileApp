@@ -1,5 +1,6 @@
 const colors = {
   theme: '#263BBA',
+  passiveTheme: '#6D81EB',
   white: '#FFFFFF',
 
   // input
