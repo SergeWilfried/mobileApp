@@ -25,6 +25,9 @@ const colors = {
   labelProgressBar: 'rgba(2, 3, 74, 0.3)',
   barBackground: '#EBEBEB',
   progressBackground: '#5067EB',
+
+  // loader
+  loaderOverlay: 'rgba(255,255,255,0.75)',
 };
 
 export default colors;

@@ -14,6 +14,8 @@ import org.devio.rn.splashscreen.SplashScreen;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.airbnb.android.react.lottie.LottiePackage;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -30,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
             new SplashScreenReactPackage();
+            packages.add(new LottiePackage());
           return packages;
         }
 
