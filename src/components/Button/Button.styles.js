@@ -13,12 +13,6 @@ export default StyleSheet.create({
   disabled: {
     opacity: 0.5,
   },
-  link: {
-    backgroundColor: 'transparent',
-    fontSize: fonts.size.regular,
-    fontWeight: fonts.weight.regular,
-    lineHeight: fonts.lineHeight.regular,
-  },
   social: {
     backgroundColor: colors.white,
     width: 40,

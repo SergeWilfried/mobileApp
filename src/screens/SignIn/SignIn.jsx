@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import AuthHeader from 'components/AuthHeader';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import DismissKeyboard from 'components/DismissKeyboard';
 import Input from 'components/Input';
 import Text from 'components/Text';
@@ -85,9 +86,8 @@ function SignIn({ navigation }) {
           </View>
           <View style={styles.forgotWrapper}>
             <Text style={styles.forgotText}>Forgot password? </Text>
-            <Button
+            <ButtonLink
               textStyle={styles.forgotLink}
-              type="link"
               title="Reset it"
               onPress={navigateToResetPassword}
             />

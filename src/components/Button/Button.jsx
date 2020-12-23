@@ -12,9 +12,7 @@ function Button({
   disabled,
   title,
   style,
-  textStyle,
   icon: Icon,
-  textClassName,
   buttonStyle,
 }) {
   return (
@@ -24,7 +22,6 @@ function Button({
       disabled={disabled}
       style={[
         styles.button,
-        type === 'link' && styles.link,
         type === 'social' && styles.social,
         buttonStyle,
         disabled && styles.disabled,
@@ -36,10 +33,7 @@ function Button({
         <Text
           style={[
             styles.title,
-            type === 'default' && styles.defaultTitle,
-            type === 'link' && styles.link,
-            textClassName,
-            textStyle,
+            styles.defaultTitle,
           ]}
         >
           {title}
@@ -51,13 +45,11 @@ function Button({
 
 Button.propTypes = {
   onPress: PropTypes.func.isRequired,
-  type: PropTypes.oneOf(['default', 'link', 'social']),
+  type: PropTypes.oneOf(['default', 'social']),
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  textStyle: Text.propTypes.style,
   icon: PropTypes.elementType,
   style: ViewPropTypes.style,
-  textClassName: Text.propTypes.style,
   buttonStyle: Text.propTypes.style,
 };
 
@@ -65,10 +57,8 @@ Button.defaultProps = {
   disabled: false,
   type: 'default',
   title: null,
-  textStyle: null,
   style: null,
   icon: null,
-  textClassName: null,
   buttonStyle: null,
 };
 

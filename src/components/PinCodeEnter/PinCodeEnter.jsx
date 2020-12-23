@@ -4,7 +4,7 @@ import { SafeAreaView, View } from 'react-native';
 
 import PinCode from 'components/PinCode';
 import Text from 'components/Text';
-import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import { getPassword } from 'helpers/keychain.helper';
 
 import styles from './PinCodeEnter.styles';
@@ -54,10 +54,9 @@ function PinCodeEnter({ navigation }) {
         />
         <View style={styles.footer}>
           <Text style={styles.forgotText}>Forgot pin?</Text>
-          <Button
-            type="link"
+          <ButtonLink
             title="Log in with password"
-            textClassName={styles.link}
+            textStyle={styles.link}
             onPress={navigateToLogin}
           />
         </View>

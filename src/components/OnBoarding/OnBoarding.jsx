@@ -7,6 +7,7 @@ import * as userActions from 'resources/user/user.actions';
 
 import Text from 'components/Text';
 import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import ProgressIndicator from './components/ProgressIndicator';
 
 import OnBoardingImage from 'assets/images/onBoarding.png';
@@ -34,13 +35,12 @@ function OnBoarding({
     <SafeAreaView style={styles.screen}>
       <View style={styles.linkWrapper}>
         {Boolean(linkName) && (
-        <Button
-          onPress={handleSkip}
-          type="link"
-          textClassName={styles.linkText}
-          buttonStyle={styles.link}
-          title={linkName}
-        />
+          <ButtonLink
+            onPress={handleSkip}
+            textStyle={styles.linkText}
+            buttonStyle={styles.link}
+            title={linkName}
+          />
         )}
       </View>
       <View style={styles.container}>
