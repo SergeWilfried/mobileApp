@@ -3,9 +3,10 @@ import {
   USER_CURRENT,
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
+  SET_PIN_CODE,
 } from './user.constants';
 
-export default (state = { userData: {} }, action) => {
+export default (state = { userData: {}, pinCode: null }, action) => {
   switch (action.type) {
     case USER_AUTHENTICATED:
       return {
@@ -31,6 +32,12 @@ export default (state = { userData: {} }, action) => {
       return {
         ...state,
         authenticated: false,
+      };
+
+    case SET_PIN_CODE:
+      return {
+        ...state,
+        pinCode: action.pinCode,
       };
     default:
       return state;

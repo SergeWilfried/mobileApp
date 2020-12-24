@@ -16,6 +16,7 @@ function OnBoardingStepOne({ navigation }) {
       linkName="Skip"
       onContinuePress={onContinuePress}
       currentStep={2}
+      navigation={navigation}
     />
   );
 }

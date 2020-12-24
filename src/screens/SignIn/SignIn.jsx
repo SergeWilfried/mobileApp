@@ -1,19 +1,16 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useFormik } from 'formik';
 
 import AuthHeader from 'components/AuthHeader';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
-import DismissKeyboard from 'components/DismissKeyboard';
 import Input from 'components/Input';
 import Text from 'components/Text';
+import SocialButtons from 'components/SocialButtons';
 import { SignInSchema } from 'helpers/schemas';
-
-import GoogleIcon from 'assets/icons/google.svg';
-import FacebookIcon from 'assets/icons/facebook.svg';
 
 import styles from './SignIn.styles';
 
@@ -52,74 +49,52 @@ function SignIn({ navigation }) {
     navigation.navigate('ForgotPassword');
   }, [navigation]);
 
-  const handleGoogleSignIn = useCallback(() => {}, []);
-  const handleFacebookSignIn = useCallback(() => {}, []);
-
   return (
-    <DismissKeyboard>
-      <SafeAreaView style={styles.screenWrapper}>
-        <View style={styles.screen}>
-          <AuthHeaderLayout>
-            <AuthHeader
-              withLogo
-              title="Welcome Back!"
-              subtitle="Enter your email address and password to sign in"
-            />
-          </AuthHeaderLayout>
-          <View style={styles.wrapperInput}>
-            <Input
-              label="Email address"
-              value={values.email}
-              onChangeText={handleEmailChange}
-              onBlur={handleBlur('email')}
-              errorMessage={touched.email ? errors.email : ''}
-            />
-            <Input
-              labelStyle={styles.passwordInput}
-              label="Password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              textContentType="password"
-              onBlur={handleBlur('password')}
-              errorMessage={touched.password ? errors.password : ''}
-            />
-          </View>
-          <View style={styles.forgotWrapper}>
-            <Text style={styles.forgotText}>Forgot password? </Text>
-            <ButtonLink
-              textStyle={styles.forgotLink}
-              title="Reset it"
-              onPress={navigateToResetPassword}
-            />
-          </View>
-          <View style={styles.wrapperButton}>
-            <View style={styles.socialWrapper}>
-              <Text style={styles.socialText}>
-                or sign in with your social account
-              </Text>
-              <View style={styles.socialButtonsWrapper}>
-                <Button
-                  style={styles.socialButton}
-                  icon={GoogleIcon}
-                  type="social"
-                  onPress={handleGoogleSignIn}
-                />
-                <Button
-                  icon={FacebookIcon}
-                  type="social"
-                  onPress={handleFacebookSignIn}
-                />
-              </View>
-            </View>
-            <Button
-              disabled={!isValid}
-              title="Sign in"
-              onPress={handleSubmit}
-            />
-          </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.screen}>
+        <AuthHeaderLayout>
+          <AuthHeader
+            withLogo
+            title="Welcome Back!"
+            subtitle="Enter your email address and password to sign in"
+          />
+        </AuthHeaderLayout>
+        <View style={styles.wrapperInput}>
+          <Input
+            label="Email address"
+            value={values.email}
+            onChangeText={handleEmailChange}
+            onBlur={handleBlur('email')}
+            errorMessage={touched.email ? errors.email : ''}
+          />
+          <Input
+            labelStyle={styles.passwordInput}
+            label="Password"
+            value={values.password}
+            onChangeText={handleChange('password')}
+            textContentType="password"
+            onBlur={handleBlur('password')}
+            errorMessage={touched.password ? errors.password : ''}
+          />
         </View>
-      </SafeAreaView>
-    </DismissKeyboard>
+        <View style={styles.forgotWrapper}>
+          <Text style={styles.forgotText}>Forgot password? </Text>
+          <ButtonLink
+            textStyle={styles.forgotLink}
+            title="Reset it"
+            onPress={navigateToResetPassword}
+          />
+        </View>
+        <View style={styles.wrapperButton}>
+          <SocialButtons title="or sign in with your social account" />
+          <Button
+            disabled={!isValid}
+            title="Sign in"
+            onPress={handleSubmit}
+          />
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 

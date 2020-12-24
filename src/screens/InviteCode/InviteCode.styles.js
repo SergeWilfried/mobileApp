@@ -17,6 +17,8 @@ export default StyleSheet.create({
     paddingTop: '15%',
   },
   header: {
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingLeft: 30,
   },
   imagesContainer: {

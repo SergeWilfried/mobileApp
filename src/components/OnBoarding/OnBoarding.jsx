@@ -1,16 +1,14 @@
 import React, { useCallback } from 'react';
-import { Image, View, SafeAreaView } from 'react-native';
+import { Image, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-
-import * as userActions from 'resources/user/user.actions';
 
 import Text from 'components/Text';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
-import ProgressIndicator from './components/ProgressIndicator';
 
 import OnBoardingImage from 'assets/images/onBoarding.png';
+
+import ProgressIndicator from './components/ProgressIndicator';
 
 import styles from './OnBoarding.styles';
 
@@ -22,17 +20,16 @@ function OnBoarding({
   onContinuePress,
   handleSkipOnBoarding,
   currentStep,
+  navigation,
 }) {
-  const dispatch = useDispatch();
-
   const handleSkip = useCallback(() => {
     handleSkipOnBoarding();
-    dispatch(userActions.setUserAuthenticated());
-  }, [dispatch, handleSkipOnBoarding]);
+    navigation.navigate('SignUp');
+  }, [handleSkipOnBoarding, navigation]);
 
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <View style={styles.linkWrapper}>
         {Boolean(linkName) && (
           <ButtonLink
@@ -52,7 +49,7 @@ function OnBoarding({
           <Button onPress={onContinuePress} title={buttonName} buttonStyle={styles.button} />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -64,12 +61,16 @@ OnBoarding.propTypes = {
   linkName: PropTypes.string,
   currentStep: PropTypes.number,
   handleSkipOnBoarding: PropTypes.func,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }),
 };
 
 OnBoarding.defaultProps = {
   linkName: '',
   currentStep: 1,
   handleSkipOnBoarding: () => {},
+  navigation: {},
 };
 
 export default OnBoarding;

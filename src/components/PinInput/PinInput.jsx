@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import PinCodeInput from 'react-native-smooth-pincode-input';
+import { View as AnimatableView } from 'react-native-animatable';
 
 import styles from './PinInput.styles';
 
-function PinInput({
+const PinInput = forwardRef(({
   keyboardType,
   cellSpacing,
   cellSize,
@@ -14,26 +15,28 @@ function PinInput({
   onPinChange,
   hasErrors,
   autoFocus,
-}) {
+}, ref) => {
   return (
-    <PinCodeInput
-      cellStyle={[
-        styles.cellStyle,
-        hasErrors && styles.cellStyleError,
-      ]}
-      textStyle={styles.cellTextStyle}
-      cellStyleFocused={styles.cellStyleFocused}
-      keyboardType={keyboardType}
-      cellSpacing={cellSpacing}
-      cellSize={cellSize}
-      value={pinCode}
-      onTextChange={onPinChange}
-      onFulfill={onFulfill}
-      restrictToNumbers={restrictToNumbers}
-      autoFocus={autoFocus}
-    />
+    <AnimatableView ref={ref}>
+      <PinCodeInput
+        cellStyle={[
+          styles.cellStyle,
+          hasErrors && styles.cellStyleError,
+        ]}
+        textStyle={styles.cellTextStyle}
+        cellStyleFocused={styles.cellStyleFocused}
+        keyboardType={keyboardType}
+        cellSpacing={cellSpacing}
+        cellSize={cellSize}
+        value={pinCode}
+        onTextChange={onPinChange}
+        onFulfill={onFulfill}
+        restrictToNumbers={restrictToNumbers}
+        autoFocus={autoFocus}
+      />
+    </AnimatableView>
   );
-}
+});
 
 PinInput.propTypes = {
   onPinChange: PropTypes.func.isRequired,

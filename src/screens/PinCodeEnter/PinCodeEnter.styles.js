@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 import colors from 'themes/colors';
 
 export default StyleSheet.create({
-  screenWrapper: {
+  container: {
     flex: 1,
     backgroundColor: colors.screenBackground,
   },
-  container: {
-    flex: 1,
+  pinCodeWrapper: {
+    marginTop: 60,
   },
   link: {
     color: colors.theme,

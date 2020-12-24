@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, View } from 'react-native';
+import { View } from 'react-native';
 
 import PinCode from 'components/PinCode';
 import Text from 'components/Text';
 import ButtonLink from 'components/ButtonLink';
+import Button from 'components/Button';
+import AuthHeaderLayout from 'components/AuthHeaderLayout';
+import AuthHeader from 'components/AuthHeader';
 import { getPassword } from 'helpers/keychain.helper';
 
 import styles from './PinCodeEnter.styles';
@@ -43,8 +46,15 @@ function PinCodeEnter({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.screenWrapper}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <AuthHeaderLayout>
+        <AuthHeader
+          title="Welcome back!"
+          subtitle="Enter your PIN to sign in"
+          withLogo
+        />
+      </AuthHeaderLayout>
+      <View style={styles.pinCodeWrapper}>
         <PinCode
           title="Welcome back!"
           subtitle="Enter your PIN to sign in"
@@ -52,16 +62,16 @@ function PinCodeEnter({ navigation }) {
           validatePinCode={validatePinCode}
           withLogo
         />
-        <View style={styles.footer}>
-          <Text style={styles.forgotText}>Forgot pin?</Text>
-          <ButtonLink
-            title="Log in with password"
-            textStyle={styles.link}
-            onPress={navigateToLogin}
-          />
-        </View>
       </View>
-    </SafeAreaView>
+      <View style={styles.footer}>
+        <Text style={styles.forgotText}>Forgot pin?</Text>
+        <ButtonLink
+          title="Log in with password"
+          textStyle={styles.link}
+          onPress={navigateToLogin}
+        />
+      </View>
+    </View>
   );
 }
 

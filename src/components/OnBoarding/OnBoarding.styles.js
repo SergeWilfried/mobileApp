@@ -8,6 +8,7 @@ import fonts from 'themes/fonts';
 export default StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: colors.screenBackground,
   },
   linkWrapper: {
     marginTop: normalize(41),

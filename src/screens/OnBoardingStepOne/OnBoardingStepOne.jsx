@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import OnBoarding from 'components/OnBoarding';
 
 function OnBoardingStepOne({ navigation }) {
-
   const onContinuePress = useCallback(() => {
     navigation.navigate('OnBoardingStepTwo');
   }, [navigation]);
@@ -16,6 +15,7 @@ function OnBoardingStepOne({ navigation }) {
       buttonName="Continue"
       linkName="Skip"
       onContinuePress={onContinuePress}
+      navigation={navigation}
     />
   );
 }

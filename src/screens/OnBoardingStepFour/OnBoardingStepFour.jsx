@@ -1,15 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-
-import * as userActions from 'resources/user/user.actions';
+import PropTypes from 'prop-types';
 
 import OnBoarding from 'components/OnBoarding';
 
-function OnBoardingStepFour() {
-  const dispatch = useDispatch();
-
+function OnBoardingStepFour({ navigation }) {
   const onContinuePress = async () => {
-    await dispatch(userActions.setUserAuthenticated());
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -22,5 +18,13 @@ function OnBoardingStepFour() {
     />
   );
 }
+
+OnBoardingStepFour.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
 
 export default OnBoardingStepFour;

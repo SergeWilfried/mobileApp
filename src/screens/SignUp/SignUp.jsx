@@ -1,9 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
-import DismissKeyboard from 'components/DismissKeyboard';
 import Text from 'components/Text';
 import Button from 'components/Button';
 import AuthHeader from 'components/AuthHeader';
@@ -39,41 +38,37 @@ function SignUp({ navigation }) {
   }, [navigation]);
 
   return (
-    <DismissKeyboard>
-      <SafeAreaView style={styles.screen}>
-        <View style={styles.screenContent}>
-          <View style={styles.mainContent}>
-            <AuthHeaderLayout>
-              <AuthHeader
-                withLogo
-                title="Welcome to DuniaPay!"
-                subtitle="To get started, verify your phone number"
-              />
-            </AuthHeaderLayout>
-            <View style={styles.phoneContainer}>
-              <PhoneNumberInput
-                inputRef={phoneNumberInputRef}
-                onChangePhone={onChangePhone}
-                onChangeFormattedPhone={onChangeFormattedPhone}
-                error={phoneError}
-              />
-            </View>
-          </View>
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              Already a member?
-              {' '}
-              <Text style={styles.link} onPress={onLogIn}>Log in</Text>
-            </Text>
-            <Button
-              title="Continue"
-              disabled={!!phoneError}
-              onPress={onContinue}
-            />
-          </View>
+    <View style={styles.screenContent}>
+      <View style={styles.mainContent}>
+        <AuthHeaderLayout>
+          <AuthHeader
+            withLogo
+            title="Welcome to DuniaPay!"
+            subtitle="To get started, verify your phone number"
+          />
+        </AuthHeaderLayout>
+        <View style={styles.phoneContainer}>
+          <PhoneNumberInput
+            inputRef={phoneNumberInputRef}
+            onChangePhone={onChangePhone}
+            onChangeFormattedPhone={onChangeFormattedPhone}
+            error={phoneError}
+          />
         </View>
-      </SafeAreaView>
-    </DismissKeyboard>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Already a member?
+          {' '}
+          <Text style={styles.link} onPress={onLogIn}>Log in</Text>
+        </Text>
+        <Button
+          title="Continue"
+          disabled={!!phoneError}
+          onPress={onContinue}
+        />
+      </View>
+    </View>
   );
 }
 

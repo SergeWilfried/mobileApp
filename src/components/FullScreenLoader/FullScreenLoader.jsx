@@ -4,6 +4,7 @@ import AnimatedLoader from 'react-native-animated-loader';
 
 import colors from 'themes/colors';
 import loader from 'assets/animations/loader.json';
+
 import styles from './FullScreenLoader.styles';
 
 
