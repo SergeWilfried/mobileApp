@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { getPassword } from 'helpers/keychain.helper';
+import { setPinCode } from 'resources/user/user.actions';
 
 import AppNavigation from './navigation';
 
 import configureStore from './resources/store';
-import { setPinCode } from 'resources/user/user.actions';
 
 const { store } = configureStore();
 

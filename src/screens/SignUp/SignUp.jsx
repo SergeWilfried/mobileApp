@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
@@ -8,30 +8,26 @@ import Button from 'components/Button';
 import AuthHeader from 'components/AuthHeader';
 import PhoneNumberInput from 'components/PhoneNumberInput';
 
+import * as userApi from 'resources/user/user.api';
 import usePhoneNumber from 'hooks/usePhoneNumber';
 
 import styles from './SignUp.styles';
 
 function SignUp({ navigation }) {
-  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState();
-
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async (phoneNumber) => {
+    await userApi.sendCode(phoneNumber);
     navigation.navigate('InviteCode', {
-      phoneNumber: formattedPhoneNumber,
+      phoneNumber,
     });
-  }, [navigation, formattedPhoneNumber]);
+  }, [navigation]);
 
   const {
     onChangePhone,
     onChangeFormattedPhone,
-    phoneError,
     phoneNumberInputRef,
     onContinue,
-  } = usePhoneNumber(
-    handleSubmit,
-    formattedPhoneNumber,
-    setFormattedPhoneNumber,
-  );
+    phoneError,
+  } = usePhoneNumber(handleSubmit);
 
   const onLogIn = useCallback(() => {
     navigation.navigate('SignIn');

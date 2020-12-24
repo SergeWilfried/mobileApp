@@ -4,7 +4,6 @@ import { setToken, removeToken } from 'helpers/storage';
 import {
   USER_AUTHENTICATED,
   USER_CURRENT,
-  USER_SIGNED_UP,
   USER_LOGGED_OUT,
   SET_PIN_CODE,
 } from './user.constants';
@@ -15,9 +14,9 @@ export const setUserAuthenticated = () => (dispatch) => {
   dispatch({ type: USER_AUTHENTICATED });
 };
 
-export const signUp = ({ email }) => async (dispatch) => {
-  const userData = await api.signUp({ email });
-  dispatch({ type: USER_SIGNED_UP, userData });
+export const signUp = (user) => async () => {
+  const userData = await api.signUp(user);
+
   if (userData.user) {
     config.token = userData.accessToken;
     await setToken(userData.accessToken);
