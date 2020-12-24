@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 
 import AuthHeader from 'components/AuthHeader';
-import DismissKeyboard from 'components/DismissKeyboard';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import Button from 'components/Button';
@@ -57,63 +56,59 @@ function ResetPassword({ navigation }) {
   );
 
   return (
-    <DismissKeyboard>
-      <SafeAreaView style={styles.screenWrapper}>
-        <View style={styles.screen}>
-          <AuthHeaderLayout>
-            <HeaderWithBackArrow onBackNavigation={onBackNavigation}>
-              <AuthHeader
-                withLogo
-                title="Reset Password"
-                subtitle="Enter your new secure password to proceed with the rest"
-              />
-            </HeaderWithBackArrow>
-          </AuthHeaderLayout>
-          <View style={styles.wrapperInput}>
-            <Input
-              label="New password"
-              value={values.password}
-              onChangeText={handleChangePassword}
-              textContentType="password"
-              errorMessage={touched.password ? errors.password : ''}
-              onBlur={handleBlur('password')}
-            />
-            <View style={styles.passwordRulesWrapper}>
-              <Text style={styles.passwordRule}>
-                1. At least
-                {' '}
-                {PASSWORD.length}
-                {' '}
-                characters long
-              </Text>
-              <Text style={styles.passwordRule}>
-                2. Include at least one special characters (@ $ & %)
-              </Text>
-              <Text style={styles.passwordRule}>
-                3. Include at least one uppercase letter
-              </Text>
-            </View>
-            <Input
-              label="Repeat new password"
-              value={values.repeatPassword}
-              onChangeText={handleChangeRepeatPassword}
-              textContentType="password"
-              onBlur={handleBlur('repeatPassword')}
-              errorMessage={
+    <View style={styles.screen}>
+      <AuthHeaderLayout>
+        <HeaderWithBackArrow onBackNavigation={onBackNavigation}>
+          <AuthHeader
+            withLogo
+            title="Reset Password"
+            subtitle="Enter your new secure password to proceed with the rest"
+          />
+        </HeaderWithBackArrow>
+      </AuthHeaderLayout>
+      <View style={styles.wrapperInput}>
+        <Input
+          label="New password"
+          value={values.password}
+          onChangeText={handleChangePassword}
+          textContentType="password"
+          errorMessage={touched.password ? errors.password : ''}
+          onBlur={handleBlur('password')}
+        />
+        <View style={styles.passwordRulesWrapper}>
+          <Text style={styles.passwordRule}>
+            1. At least
+            {' '}
+            {PASSWORD.length}
+            {' '}
+            characters long
+          </Text>
+          <Text style={styles.passwordRule}>
+            2. Include at least one special characters (@ $ & %)
+          </Text>
+          <Text style={styles.passwordRule}>
+            3. Include at least one uppercase letter
+          </Text>
+        </View>
+        <Input
+          label="Repeat new password"
+          value={values.repeatPassword}
+          onChangeText={handleChangeRepeatPassword}
+          textContentType="password"
+          onBlur={handleBlur('repeatPassword')}
+          errorMessage={
                 touched.repeatPassword ? errors.repeatPassword : ''
               }
-            />
-          </View>
-          <View style={styles.wrapperButton}>
-            <Button
-              disabled={!isValid}
-              title="Reset Password"
-              onPress={handleSubmit}
-            />
-          </View>
-        </View>
-      </SafeAreaView>
-    </DismissKeyboard>
+        />
+      </View>
+      <View style={styles.wrapperButton}>
+        <Button
+          disabled={!isValid}
+          title="Reset Password"
+          onPress={handleSubmit}
+        />
+      </View>
+    </View>
   );
 }
 

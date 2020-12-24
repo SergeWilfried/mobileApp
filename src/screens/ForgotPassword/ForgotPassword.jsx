@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import DismissKeyboard from 'components/DismissKeyboard';
 import AuthHeader from 'components/AuthHeader';
 import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import Button from 'components/Button';
@@ -33,36 +32,32 @@ function ForgotPassword({ navigation }) {
   } = usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber);
 
   return (
-    <DismissKeyboard>
-      <SafeAreaView style={styles.screenWrapper}>
-        <View style={styles.screen}>
-          <AuthHeaderLayout>
-            <HeaderWithBackArrow onBackNavigation={onBackNavigation}>
-              <AuthHeader
-                withLogo
-                title="Forgot Password"
-                subtitle="Enter your phone number to proceed with the rest"
-              />
-            </HeaderWithBackArrow>
-          </AuthHeaderLayout>
-          <View style={styles.inputWrapper}>
-            <PhoneNumberInput
-              inputRef={phoneNumberInputRef}
-              onChangePhone={onChangePhone}
-              onChangeFormattedPhone={onChangeFormattedPhone}
-              error={phoneError}
-            />
-          </View>
-          <View style={styles.buttonContinueWrapper}>
-            <Button
-              title="Continue"
-              disabled={!!phoneError}
-              onPress={onContinue}
-            />
-          </View>
-        </View>
-      </SafeAreaView>
-    </DismissKeyboard>
+    <View style={styles.screen}>
+      <AuthHeaderLayout>
+        <HeaderWithBackArrow onBackNavigation={onBackNavigation}>
+          <AuthHeader
+            withLogo
+            title="Forgot Password"
+            subtitle="Enter your phone number to proceed with the rest"
+          />
+        </HeaderWithBackArrow>
+      </AuthHeaderLayout>
+      <View style={styles.inputWrapper}>
+        <PhoneNumberInput
+          inputRef={phoneNumberInputRef}
+          onChangePhone={onChangePhone}
+          onChangeFormattedPhone={onChangeFormattedPhone}
+          error={phoneError}
+        />
+      </View>
+      <View style={styles.buttonContinueWrapper}>
+        <Button
+          title="Continue"
+          disabled={!!phoneError}
+          onPress={onContinue}
+        />
+      </View>
+    </View>
   );
 }
 

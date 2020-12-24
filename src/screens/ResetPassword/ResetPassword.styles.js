@@ -1,16 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 import fonts from 'themes/fonts';
-import colors from 'themes/colors';
 import styles from 'themes/commonStyles';
 
 const { height } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  screenWrapper: {
-    flex: 1,
-    backgroundColor: colors.screenBackground,
-  },
   screen: {
     ...styles.authScreenStyle,
   },

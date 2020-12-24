@@ -6,6 +6,7 @@ import {
   USER_CURRENT,
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
+  SET_PIN_CODE,
 } from './user.constants';
 
 import * as api from './user.api';
@@ -34,3 +35,8 @@ export const logOut = () => async (dispatch) => {
   await removeToken();
   dispatch({ type: USER_LOGGED_OUT });
 };
+
+export const setPinCode = (pinCode) => ({
+  type: SET_PIN_CODE,
+  pinCode,
+});

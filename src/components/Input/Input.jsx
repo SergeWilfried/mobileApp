@@ -69,7 +69,7 @@ function Input({
       ]}
       >
         <TextInput
-          style={[styles.input, inputStyle]}
+          style={[isPassword ? [styles.input, styles.inputWithIcon] : styles.input, inputStyle]}
           placeholder={placeholder}
           placeholderTextColor={colors.inputPlaceholder}
           onChangeText={onChangeText}

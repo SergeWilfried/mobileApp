@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 import fonts from 'themes/fonts';
+import colors from 'themes/colors';
 
 export default StyleSheet.create({
   screen: {
-    flex: 1,
-    marginBottom: 33,
+    flexGrow: 1,
+    backgroundColor: colors.screenBackground,
   },
   container: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexGrow: 1,
   },
   title: {
     fontSize: fonts.size.large,
@@ -30,5 +31,6 @@ export default StyleSheet.create({
     width: '100%',
     paddingHorizontal: 23,
     marginTop: 'auto',
+    paddingBottom: 33,
   },
 });

@@ -16,7 +16,10 @@ export default StyleSheet.create({
   },
   input: {
     width: '100%',
-    paddingLeft: 10,
+    paddingHorizontal: 10,
+  },
+  inputWithIcon: {
+    paddingRight: 40,
   },
   label: {
     marginBottom: 7,

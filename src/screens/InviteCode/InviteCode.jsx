@@ -1,11 +1,10 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, SafeAreaView, Image, PermissionsAndroid, Platform, Alert,
+  View, Image, PermissionsAndroid, Platform,
 } from 'react-native';
 import SmsListener from 'react-native-android-sms-listener';
 
-import DismissKeyboard from 'components/DismissKeyboard';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
@@ -24,12 +23,7 @@ function InviteCode({ navigation, route }) {
   const [code, setCode] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const onBackNavigation = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
-
-  // const { phoneNumber } = route.params;
-  const phoneNumber = '+12059003536';
+  const { phoneNumber } = route.params;
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
@@ -43,6 +37,10 @@ function InviteCode({ navigation, route }) {
       );
     })();
   }, []);
+
+  const onBackNavigation = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
 
   const onCodeChange = useCallback((text) => {
     setCode(text.replace(/\D*/g, ''));
@@ -60,8 +58,8 @@ function InviteCode({ navigation, route }) {
     }
 
     setErrorMessage();
-    Alert.alert('OK');
-  }, [code, setErrorMessage]);
+    navigation.navigate('CreateAccount', { phoneNumber });
+  }, [code, navigation, phoneNumber, setErrorMessage]);
 
   useEffect(() => {
     const codeRegex = /Your one time code is: ([\d]{6})/;
@@ -79,48 +77,44 @@ function InviteCode({ navigation, route }) {
   }, [onContinue]);
 
   return (
-    <DismissKeyboard>
-      <SafeAreaView style={styles.screen}>
-        <View style={styles.screenContent}>
-          <View>
-            <AuthHeaderLayout style={styles.authHeaderLayout}>
-              <HeaderWithBackArrow style={styles.header} onBackNavigation={onBackNavigation}>
-                <ProgressBar
-                  currentStep={1}
-                  totalSteps={3}
-                />
-              </HeaderWithBackArrow>
-              <AuthHeader
-                title="Enter your invite code"
-                subtitle={`Copy the invite SMS we sent to ${phoneNumber} and come back to this screen`}
-              />
-            </AuthHeaderLayout>
-            <View style={styles.imagesContainer}>
-              <Image source={images.duniaLogo} />
-              <SwapIcon style={styles.swapIcon} />
-              <MessageIcon />
-            </View>
-            <Input
-              label="Code"
-              value={code}
-              onChangeText={onCodeChange}
-              textContentType="oneTimeCode"
-              autoFocus
-              maxLength={6}
-              placeholder="******"
-              keyboardType="numeric"
-              errorMessage={errorMessage}
+    <View style={styles.screenContent}>
+      <View>
+        <AuthHeaderLayout style={styles.authHeaderLayout}>
+          <HeaderWithBackArrow style={styles.header} onBackNavigation={onBackNavigation}>
+            <ProgressBar
+              currentStep={1}
+              totalSteps={3}
             />
-          </View>
-          <View style={styles.continueButtonWrapper}>
-            <Button
-              title="Continue"
-              onPress={onContinue}
-            />
-          </View>
+          </HeaderWithBackArrow>
+          <AuthHeader
+            title="Enter your invite code"
+            subtitle={`Copy the invite SMS we sent to ${phoneNumber} and come back to this screen`}
+          />
+        </AuthHeaderLayout>
+        <View style={styles.imagesContainer}>
+          <Image source={images.duniaLogo} />
+          <SwapIcon style={styles.swapIcon} />
+          <MessageIcon />
         </View>
-      </SafeAreaView>
-    </DismissKeyboard>
+        <Input
+          label="Code"
+          value={code}
+          onChangeText={onCodeChange}
+          textContentType="oneTimeCode"
+          autoFocus
+          maxLength={6}
+          placeholder="******"
+          keyboardType="numeric"
+          errorMessage={errorMessage}
+        />
+      </View>
+      <View style={styles.continueButtonWrapper}>
+        <Button
+          title="Continue"
+          onPress={onContinue}
+        />
+      </View>
+    </View>
   );
 }
 
@@ -129,7 +123,11 @@ InviteCode.propTypes = {
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
   }).isRequired,
-  route: PropTypes.shape({}).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      phoneNumber: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default InviteCode;

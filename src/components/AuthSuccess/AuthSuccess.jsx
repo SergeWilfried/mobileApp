@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, SafeAreaView } from 'react-native';
+import { Image, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from 'components/Text';
 import Button from 'components/Button';
@@ -15,7 +15,7 @@ function AuthSuccess({
   onContinuePress,
 }) {
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <View style={styles.container}>
         <Image source={authSuccessImage} />
         <Text style={styles.title}>{title}</Text>
@@ -24,7 +24,7 @@ function AuthSuccess({
       <View style={styles.buttonWrapper}>
         <Button onPress={onContinuePress} title={buttonName} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
