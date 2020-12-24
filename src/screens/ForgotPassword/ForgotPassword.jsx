@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -13,10 +13,11 @@ import usePhoneNumber from 'hooks/usePhoneNumber';
 import styles from './ForgotPassword.styles';
 
 function ForgotPassword({ navigation }) {
-  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState();
-
-  const handleSubmit = useCallback(() => {
-    navigation.navigate('InviteCode');
+  const handleSubmit = useCallback((phoneNumber) => {
+    navigation.navigate(
+      'InviteCode',
+      { phoneNumber },
+    );
   }, [navigation]);
 
   const onBackNavigation = useCallback(() => {
@@ -25,11 +26,11 @@ function ForgotPassword({ navigation }) {
 
   const {
     onChangePhone,
-    onContinue,
     onChangeFormattedPhone,
-    phoneError,
     phoneNumberInputRef,
-  } = usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber);
+    onContinue,
+    phoneError,
+  } = usePhoneNumber(handleSubmit);
 
   return (
     <View style={styles.screen}>

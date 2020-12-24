@@ -9,7 +9,7 @@ import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import AuthHeader from 'components/AuthHeader';
 import FullScreenLoader from 'components/FullScreenLoader';
 import { setPassword } from 'helpers/keychain.helper';
-import { setUserAuthenticated } from 'resources/user/user.actions';
+import * as usersApi from 'resources/user/user.actions';
 
 import styles from './PinCodeChoose.styles';
 
@@ -37,11 +37,23 @@ function PinCodeChoose({ navigation, route }) {
   }, []);
 
   const handleConfirmation = useCallback(async (pinValue) => {
-    setSubmitting(true);
-    await setPassword(pinValue);
-    setSubmitting(false);
-    dispatch(setUserAuthenticated());
-  }, [dispatch]);
+    const { user } = route.params;
+    try {
+      setSubmitting(true);
+      const userData = await dispatch(usersApi.signUp(user));
+      await setPassword(pinValue);
+      setSubmitting(false);
+
+      navigation.reset({
+        index: 0,
+        routes: [
+          { name: 'Congratulations', params: { userData } },
+        ],
+      });
+    } catch (e) {
+      navigation.navigate('SignUp');
+    }
+  }, [dispatch, route, navigation]);
 
   const validateConfirmation = useCallback(
     (pinValue) => {
@@ -86,10 +98,16 @@ function PinCodeChoose({ navigation, route }) {
 PinCodeChoose.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
   }).isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
-      phoneNumber: PropTypes.string.isRequired,
+      user: PropTypes.shape({
+        email: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+        verificationToken: PropTypes.string.isRequired,
+        username: PropTypes.string.isRequired,
+      }).isRequired,
     }).isRequired,
   }).isRequired,
 };

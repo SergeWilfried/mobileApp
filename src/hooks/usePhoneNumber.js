@@ -1,8 +1,10 @@
 import { useState, useCallback, useRef } from 'react';
+import { ApiError } from 'helpers/api';
 
-function usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNumber) {
+function usePhoneNumber(handleSubmit) {
   const [phoneNumber, setPhoneNumber] = useState();
-  const [phoneError, setPhoneError] = useState();
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
+  const [phoneError, setPhoneError] = useState(null);
   const phoneNumberInputRef = useRef();
 
   const onChangePhone = useCallback((text) => {
@@ -15,14 +17,21 @@ function usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNum
     setFormattedPhoneNumber(text);
   }, [setPhoneError, setFormattedPhoneNumber]);
 
-  const onContinue = useCallback(() => {
+  const onContinue = useCallback(async () => {
     const isValidPhone = phoneNumberInputRef.current?.isValidNumber(phoneNumber);
     if (!isValidPhone) {
       setPhoneError('Phone number is invalid');
-    } else {
-      handleSubmit();
+      return;
     }
-  }, [phoneNumber, handleSubmit]);
+
+    try {
+      await handleSubmit(formattedPhoneNumber);
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setPhoneError(error.data.phoneNumber);
+      }
+    }
+  }, [phoneNumber, handleSubmit, formattedPhoneNumber]);
 
   return {
     onChangePhone,
@@ -30,7 +39,9 @@ function usePhoneNumber(handleSubmit, formattedPhoneNumber, setFormattedPhoneNum
     onChangeFormattedPhone,
     phoneError,
     phoneNumber,
+    formattedPhoneNumber,
     phoneNumberInputRef,
+    setPhoneError,
   };
 }
 

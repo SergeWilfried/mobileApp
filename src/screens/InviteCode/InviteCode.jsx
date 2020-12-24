@@ -11,6 +11,7 @@ import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import AuthHeader from 'components/AuthHeader';
 import ProgressBar from 'components/ProgressBar';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
+import * as userApi from 'resources/user/user.api';
 
 import SwapIcon from 'assets/icons/swap.svg';
 import MessageIcon from 'assets/icons/message.svg';
@@ -46,7 +47,7 @@ function InviteCode({ navigation, route }) {
     setCode(text.replace(/\D*/g, ''));
   }, [setCode]);
 
-  const onContinue = useCallback(() => {
+  const onContinue = useCallback(async () => {
     if (!code) {
       setErrorMessage('Confirmation code is required');
       return;
@@ -58,7 +59,19 @@ function InviteCode({ navigation, route }) {
     }
 
     setErrorMessage();
-    navigation.navigate('CreateAccount', { phoneNumber });
+    try {
+      const { verificationToken } = await userApi.verifyCode({ phoneNumber, code });
+      navigation.reset({
+        index: 0,
+        routes: [
+          { name: 'SignUp' },
+          { name: 'CreateAccount', params: { verificationToken } },
+        ],
+      });
+    } catch (error) {
+      const { data: { code: codeError } } = error;
+      setErrorMessage(codeError);
+    }
   }, [code, navigation, phoneNumber, setErrorMessage]);
 
   useEffect(() => {
@@ -122,6 +135,7 @@ InviteCode.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
   }).isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({

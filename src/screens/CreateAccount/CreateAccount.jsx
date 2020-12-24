@@ -12,6 +12,8 @@ import SocialButtons from 'components/SocialButtons';
 import ProgressBar from 'components/ProgressBar';
 import { PASSWORD } from 'helpers/constants';
 import { SignUpSchema } from 'helpers/schemas';
+import { checkEmail } from 'resources/user/user.api';
+import { ApiError } from 'helpers/api';
 
 import styles from './CreateAccount.styles';
 
@@ -22,7 +24,16 @@ const initialValues = {
 };
 
 function CreateAccount({ navigation, route }) {
-  const { phoneNumber } = route.params;
+  const { verificationToken } = route.params;
+
+  const onSubmit = useCallback((userData) => {
+    navigation.navigate(
+      'PinCodeChoose',
+      {
+        user: { ...userData, verificationToken },
+      },
+    );
+  }, [navigation, verificationToken]);
 
   const {
     values,
@@ -34,10 +45,9 @@ function CreateAccount({ navigation, route }) {
     handleSubmit,
     setFieldValue,
     setFieldTouched,
+    setFieldError,
   } = useFormik({
-    onSubmit: (userData) => {
-      navigation.navigate('PinCodeChoose', { user: { ...userData, phoneNumber } });
-    },
+    onSubmit,
     initialValues,
     validateOnMount: true,
     validationSchema: SignUpSchema,
@@ -47,6 +57,18 @@ function CreateAccount({ navigation, route }) {
     setFieldTouched('email', false);
     setFieldValue('email', value);
   }, [setFieldValue, setFieldTouched]);
+
+  const handleEmailBlur = useCallback(async () => {
+    try {
+      await checkEmail(values.email);
+      setFieldTouched('email', true);
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setFieldError('email', error.data.email);
+        setFieldTouched('email', true, false);
+      }
+    }
+  }, [values, setFieldTouched, setFieldError]);
 
   const handlePasswordChange = useCallback((value) => {
     setFieldTouched('password', false);
@@ -68,7 +90,7 @@ function CreateAccount({ navigation, route }) {
             label="Email address"
             value={values.email}
             onChangeText={handleEmailChange}
-            onBlur={handleBlur('email')}
+            onBlur={handleEmailBlur}
             errorMessage={touched.email ? errors.email : ''}
           />
           <Input
@@ -120,6 +142,11 @@ function CreateAccount({ navigation, route }) {
 CreateAccount.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      verificationToken: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
