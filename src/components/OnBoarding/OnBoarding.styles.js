@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   linkWrapper: {
     marginTop: normalize(41),
-    marginBottom: normalize(31),
+    marginBottom: normalize(41),
   },
   linkText: {
     color: colors.baseFont,
