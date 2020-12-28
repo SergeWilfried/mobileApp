@@ -4,7 +4,6 @@ import {
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
   SET_PIN_CODE,
-  USER_SIGNED_IN,
 } from './user.constants';
 
 export default (state = { userData: {}, pinCode: null }, action) => {
@@ -12,12 +11,6 @@ export default (state = { userData: {}, pinCode: null }, action) => {
     case USER_AUTHENTICATED:
       return {
         ...state,
-        authenticated: true,
-      };
-    case USER_SIGNED_IN:
-      return {
-        ...state,
-        accessToken: action.userData.accessToken,
         authenticated: true,
       };
     case USER_CURRENT:
@@ -40,7 +33,6 @@ export default (state = { userData: {}, pinCode: null }, action) => {
         ...state,
         authenticated: false,
       };
-
     case SET_PIN_CODE:
       return {
         ...state,

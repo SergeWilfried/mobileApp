@@ -4,6 +4,7 @@ import { ScrollView, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
+import * as constants from 'helpers/constants';
 import AuthHeader from 'components/AuthHeader';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import Button from 'components/Button';
@@ -96,9 +97,7 @@ function SignIn({ navigation }) {
             inputWrapperStyle={errors.credentials && styles.inputOutOfFocused}
           />
           {errors.credentials && (
-          <Text style={styles.textError}>
-            {errors.credentials}
-          </Text>
+            <Text style={styles.textError}>{errors.credentials}</Text>
           )}
         </View>
         <View style={styles.forgotWrapper}>
@@ -110,7 +109,10 @@ function SignIn({ navigation }) {
           />
         </View>
         <View style={styles.wrapperButton}>
-          <SocialButtons title="or sign in with your social account" />
+          <SocialButtons
+            title="or sign in with your social account"
+            type={constants.AUTH.SIGN_IN}
+          />
           <Button disabled={!isValid} title="Sign in" onPress={handleSubmit} />
         </View>
       </View>

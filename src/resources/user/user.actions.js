@@ -6,7 +6,6 @@ import {
   USER_CURRENT,
   USER_LOGGED_OUT,
   SET_PIN_CODE,
-  USER_SIGNED_IN,
 } from './user.constants';
 
 import * as api from './user.api';
@@ -17,7 +16,7 @@ const setUser = async (userData, dispatch) => {
     config.token = userData.accessToken;
     await setToken('token', userData.accessToken);
   }
-  dispatch({ type: USER_SIGNED_IN, userData });
+  dispatch({ type: USER_AUTHENTICATED });
   return userData;
 };
 
@@ -55,3 +54,15 @@ export const setPinCode = (pinCode) => ({
   type: SET_PIN_CODE,
   pinCode,
 });
+
+export const signUpFacebook = (tokens) => async (dispatch) => {
+  const userData = await api.signUpFacebook(tokens);
+
+  return setUser(userData, dispatch);
+};
+
+export const signInFacebook = (facebookAccessToken) => async (dispatch) => {
+  const userData = await api.signInFacebook(facebookAccessToken);
+
+  return setUser(userData, dispatch);
+};

@@ -6,3 +6,8 @@ export const PASSWORD = {
 export const EMAIL = {
   regExp: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 };
+
+export const AUTH = {
+  SIGN_UP:'signup',
+  SIGN_IN:"signin"
+}

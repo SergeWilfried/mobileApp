@@ -14,12 +14,15 @@ import usePhoneNumber from 'hooks/usePhoneNumber';
 import styles from './SignUp.styles';
 
 function SignUp({ navigation }) {
-  const handleSubmit = useCallback(async (phoneNumber) => {
-    await userApi.sendCode(phoneNumber);
-    navigation.navigate('InviteCode', {
-      phoneNumber,
-    });
-  }, [navigation]);
+  const handleSubmit = useCallback(
+    async (phoneNumber) => {
+      await userApi.sendCode(phoneNumber);
+      navigation.navigate('InviteCode', {
+        phoneNumber,
+      });
+    },
+    [navigation],
+  );
 
   const {
     onChangePhone,
@@ -54,15 +57,12 @@ function SignUp({ navigation }) {
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Already a member?
-          {' '}
-          <Text style={styles.link} onPress={onLogIn}>Log in</Text>
+          Already a member?{' '}
+          <Text style={styles.link} onPress={onLogIn}>
+            Log in
+          </Text>
         </Text>
-        <Button
-          title="Continue"
-          disabled={!!phoneError}
-          onPress={onContinue}
-        />
+        <Button title="Continue" disabled={!!phoneError} onPress={onContinue} />
       </View>
     </View>
   );

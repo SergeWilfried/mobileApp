@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
 import { useFormik } from 'formik';
 
+import * as constants from 'helpers/constants';
 import AuthHeader from 'components/AuthHeader';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import Button from 'components/Button';
@@ -26,14 +27,14 @@ const initialValues = {
 function CreateAccount({ navigation, route }) {
   const { verificationToken } = route.params;
 
-  const onSubmit = useCallback((userData) => {
-    navigation.navigate(
-      'PinCodeChoose',
-      {
+  const onSubmit = useCallback(
+    (userData) => {
+      navigation.navigate('PinCodeChoose', {
         user: { ...userData, verificationToken },
-      },
-    );
-  }, [navigation, verificationToken]);
+      });
+    },
+    [navigation, verificationToken],
+  );
 
   const {
     values,
@@ -53,10 +54,13 @@ function CreateAccount({ navigation, route }) {
     validationSchema: SignUpSchema,
   });
 
-  const handleEmailChange = useCallback((value) => {
-    setFieldTouched('email', false);
-    setFieldValue('email', value);
-  }, [setFieldValue, setFieldTouched]);
+  const handleEmailChange = useCallback(
+    (value) => {
+      setFieldTouched('email', false);
+      setFieldValue('email', value);
+    },
+    [setFieldValue, setFieldTouched],
+  );
 
   const handleEmailBlur = useCallback(async () => {
     try {
@@ -70,10 +74,13 @@ function CreateAccount({ navigation, route }) {
     }
   }, [values, setFieldTouched, setFieldError]);
 
-  const handlePasswordChange = useCallback((value) => {
-    setFieldTouched('password', false);
-    setFieldValue('password', value);
-  }, [setFieldValue, setFieldTouched]);
+  const handlePasswordChange = useCallback(
+    (value) => {
+      setFieldTouched('password', false);
+      setFieldValue('password', value);
+    },
+    [setFieldValue, setFieldTouched],
+  );
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -112,11 +119,7 @@ function CreateAccount({ navigation, route }) {
           />
           <View style={styles.passwordRulesWrapper}>
             <Text style={styles.passwordRule}>
-              1. At least
-              {' '}
-              {PASSWORD.length}
-              {' '}
-              characters long
+              1. At least {PASSWORD.length} characters long
             </Text>
             <Text style={styles.passwordRule}>
               2. Include at least one special characters (@ $ & %)
@@ -127,7 +130,11 @@ function CreateAccount({ navigation, route }) {
           </View>
         </View>
         <View style={styles.wrapperButton}>
-          <SocialButtons title="or sign up with your social account" />
+          <SocialButtons
+            verificationToken={verificationToken}
+            title="or sign up with your social account"
+            type={constants.AUTH.SIGN_UP}
+          />
           <Button disabled={!isValid} title="Sign up" onPress={handleSubmit} />
         </View>
       </View>
