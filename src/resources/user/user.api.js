@@ -17,3 +17,11 @@ export const verifyCode = (data) => {
 export const checkEmail = (email) => {
   return apiClient.post('accounts/check-email', { email });
 };
+
+export const forgotPassword = (phoneNumber) => {
+  return apiClient.post('/accounts/forgot-password', { phoneNumber });
+};
+
+export const resetPassword = (data) => {
+  return apiClient.patch('/accounts/reset-password', data);
+};

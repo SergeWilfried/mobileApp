@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 
@@ -9,8 +10,11 @@ import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Text from 'components/Text';
+import FullScreenLoader from 'components/FullScreenLoader';
 import { ResetPasswordSchema } from 'helpers/schemas';
 import { PASSWORD } from 'helpers/constants';
+import * as userApi from 'resources/user/user.api';
+import * as userActions from 'resources/user/user.actions';
 
 import styles from './ResetPassword.styles';
 
@@ -19,7 +23,12 @@ const initialValues = {
   repeatPassword: '',
 };
 
-function ResetPassword({ navigation }) {
+function ResetPassword({ navigation, route }) {
+  const [isLoading, setLoading] = useState(false);
+  const { verificationToken } = route.params;
+
+  const dispatch = useDispatch();
+
   const {
     values,
     setFieldTouched,
@@ -30,7 +39,16 @@ function ResetPassword({ navigation }) {
     handleBlur,
     handleSubmit,
   } = useFormik({
-    onSubmit: () => {},
+    onSubmit: async (data) => {
+      setLoading(true);
+      await userApi.resetPassword({
+        password: data.password,
+        verificationToken,
+      });
+      setLoading(false);
+
+      dispatch(userActions.setUserAuthenticated());
+    },
     validateOnMount: true,
     validationSchema: ResetPasswordSchema,
     initialValues,
@@ -57,6 +75,7 @@ function ResetPassword({ navigation }) {
 
   return (
     <View style={styles.screen}>
+      {isLoading && <FullScreenLoader />}
       <AuthHeaderLayout>
         <HeaderWithBackArrow onBackNavigation={onBackNavigation}>
           <AuthHeader
@@ -116,6 +135,11 @@ ResetPassword.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
+  }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      verificationToken: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

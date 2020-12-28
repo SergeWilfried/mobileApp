@@ -19,7 +19,7 @@ export default StyleSheet.create({
     flexGrow: 1,
   },
   authHeaderLayout: {
-    paddingTop: 30,
+    paddingTop: '15%',
   },
   wrapperInput: {
     marginTop: height < 600 ? 0 : normalize(40),

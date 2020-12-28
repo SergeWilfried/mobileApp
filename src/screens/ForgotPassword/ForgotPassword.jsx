@@ -9,13 +9,15 @@ import PhoneNumberInput from 'components/PhoneNumberInput';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 
 import usePhoneNumber from 'hooks/usePhoneNumber';
+import * as userApi from 'resources/user/user.api';
 
 import styles from './ForgotPassword.styles';
 
 function ForgotPassword({ navigation }) {
-  const handleSubmit = useCallback((phoneNumber) => {
+  const handleSubmit = useCallback(async (phoneNumber) => {
+    await userApi.forgotPassword(phoneNumber);
     navigation.navigate(
-      'InviteCode',
+      'ResetCode',
       { phoneNumber },
     );
   }, [navigation]);

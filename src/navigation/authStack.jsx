@@ -20,6 +20,7 @@ import VerifyEmail from 'screens/VerifyEmail';
 import CreateAccount from 'screens/CreateAccount';
 import PinCodeChoose from 'screens/PinCodeChoose';
 import PinCodeEnter from 'screens/PinCodeEnter';
+import ResetCode from 'screens/ResetCode';
 
 import styles from './navigation.styles';
 
@@ -65,6 +66,7 @@ function AuthScreens() {
           <AuthStack.Screen name="OnBoarding" component={OnBoardingScreens} />
           <AuthStack.Screen name="SignUp" component={SignUp} />
           <AuthStack.Screen name="InviteCode" component={InviteCode} />
+          <AuthStack.Screen name="ResetCode" component={ResetCode} />
           <AuthStack.Screen name="CreateAccount" component={CreateAccount} />
           <AuthStack.Screen name="PinCodeChoose" component={PinCodeChoose} />
           <AuthStack.Screen name="PinCodeEnter" component={PinCodeEnter} />

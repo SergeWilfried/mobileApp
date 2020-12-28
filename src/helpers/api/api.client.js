@@ -84,6 +84,7 @@ const httpRequest = method => async (url, data) => {
 export const getRequest = httpRequest('get');
 export const postRequest = httpRequest('post');
 export const putRequest = httpRequest('put');
+export const patchRequest = httpRequest('patch');
 export const deleteRequest = httpRequest('delete');
 
 const apiClient = {
@@ -91,6 +92,7 @@ const apiClient = {
   post: postRequest,
   put: putRequest,
   delete: deleteRequest,
+  patch: patchRequest,
 };
 
 export default apiClient;

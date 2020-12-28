@@ -2,15 +2,14 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
-import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import AuthHeader from 'components/AuthHeader';
-import ProgressBar from 'components/ProgressBar';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
+import HeaderWithBackArrow from 'components/HeaderWithBackArrow';
 import VerifyCode from 'components/VerifyCode';
 
-import styles from './InviteCode.styles';
+import styles from './ResetCode.styles';
 
-function InviteCode({ navigation, route }) {
+function ResetCode({ navigation, route }) {
   const { phoneNumber } = route.params;
 
   const onBackNavigation = useCallback(() => {
@@ -21,8 +20,8 @@ function InviteCode({ navigation, route }) {
     navigation.reset({
       index: 0,
       routes: [
-        { name: 'SignUp' },
-        { name: 'CreateAccount', params: { verificationToken } },
+        { name: 'ForgotPassword' },
+        { name: 'ResetPassword', params: { verificationToken } },
       ],
     });
   }, [navigation]);
@@ -30,15 +29,11 @@ function InviteCode({ navigation, route }) {
   return (
     <View style={styles.screenContent}>
       <AuthHeaderLayout style={styles.authHeaderLayout}>
-        <HeaderWithBackArrow style={styles.header} onBackNavigation={onBackNavigation}>
-          <ProgressBar
-            currentStep={1}
-            totalSteps={3}
-          />
-        </HeaderWithBackArrow>
+        <HeaderWithBackArrow style={styles.header} onBackNavigation={onBackNavigation} />
         <AuthHeader
-          title="Enter your invite code"
-          subtitle={`Copy the invite SMS we sent to ${phoneNumber} and come back to this screen`}
+          title="Enter your reset code"
+          subtitle={`Copy the SMS we sent to ${phoneNumber} and come back to this screen`}
+          withLogo
         />
       </AuthHeaderLayout>
       <VerifyCode phoneNumber={phoneNumber} handleSubmit={onContinue} />
@@ -46,9 +41,8 @@ function InviteCode({ navigation, route }) {
   );
 }
 
-InviteCode.propTypes = {
+ResetCode.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
   }).isRequired,
@@ -59,4 +53,4 @@ InviteCode.propTypes = {
   }).isRequired,
 };
 
-export default InviteCode;
+export default ResetCode;

@@ -2,11 +2,12 @@ import { StyleSheet } from 'react-native';
 
 import { normalize } from 'helpers/utils';
 
-import styles from 'themes/commonStyles';
+import colors from 'themes/colors';
 
 export default StyleSheet.create({
-  screenContent: {
-    ...styles.authScreenStyle,
+  screen: {
+    flex: 1,
+    backgroundColor: colors.screenBackground,
   },
   authHeaderLayout: {
     paddingTop: '15%',
