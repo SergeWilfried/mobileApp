@@ -24,6 +24,7 @@ const httpRequest = method => async (url, data) => {
   if (urlWithSlash[0] !== '/') {
     urlWithSlash = `/${urlWithSlash}`;
   }
+
   const options = {
     headers: {
       Authorization: `Bearer ${config.token}`,

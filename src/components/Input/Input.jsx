@@ -64,8 +64,8 @@ function Input({
       {!!label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       <View style={[
         styles.inputContainer,
-        inputWrapperStyle,
         getBorderStyle(focused, errorMessage, value),
+        inputWrapperStyle,
       ]}
       >
         <TextInput

@@ -128,11 +128,7 @@ function CreateAccount({ navigation, route }) {
         </View>
         <View style={styles.wrapperButton}>
           <SocialButtons title="or sign up with your social account" />
-          <Button
-            disabled={!isValid}
-            title="Sign up"
-            onPress={handleSubmit}
-          />
+          <Button disabled={!isValid} title="Sign up" onPress={handleSubmit} />
         </View>
       </View>
     </ScrollView>
