@@ -6,9 +6,20 @@ import {
   USER_CURRENT,
   USER_LOGGED_OUT,
   SET_PIN_CODE,
+  USER_SIGNED_IN,
 } from './user.constants';
 
 import * as api from './user.api';
+
+const setUser = async (userData, dispatch) => {
+  if (!userData) return null;
+  if (userData.accessToken) {
+    config.token = userData.accessToken;
+    await setToken('token', userData.accessToken);
+  }
+  dispatch({ type: USER_SIGNED_IN, userData });
+  return userData;
+};
 
 export const setUserAuthenticated = () => (dispatch) => {
   dispatch({ type: USER_AUTHENTICATED });
@@ -22,6 +33,11 @@ export const signUp = (user) => async () => {
     await setToken(userData.accessToken);
   }
   return userData;
+};
+
+export const signIn = ({ email, password }) => async (dispatch) => {
+  const userData = await api.signIn({ email, password });
+  return setUser(userData, dispatch);
 };
 
 export const getCurrentUser = () => async (dispatch) => {

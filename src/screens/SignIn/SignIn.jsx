@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 
 import AuthHeader from 'components/AuthHeader';
@@ -11,6 +12,9 @@ import Input from 'components/Input';
 import Text from 'components/Text';
 import SocialButtons from 'components/SocialButtons';
 import { SignInSchema } from 'helpers/schemas';
+import ApiError from 'helpers/api/api.error';
+
+import * as userActions from 'resources/user/user.actions';
 
 import styles from './SignIn.styles';
 
@@ -20,6 +24,8 @@ const initialValues = {
 };
 
 function SignIn({ navigation }) {
+  const dispatch = useDispatch();
+
   const {
     values,
     handleBlur,
@@ -30,13 +36,25 @@ function SignIn({ navigation }) {
     handleSubmit,
     setFieldValue,
     setFieldTouched,
+    setFieldError,
   } = useFormik({
-    onSubmit: () => {},
+    onSubmit: async () => {
+      try {
+        await dispatch(userActions.signIn(values));
+      } catch (e) {
+        if (e instanceof ApiError) {
+          if (e.data?.credentials) {
+            setFieldError('credentials', e.data.credentials);
+          }
+        } else {
+          throw e;
+        }
+      }
+    },
     initialValues,
     validateOnMount: true,
     validationSchema: SignInSchema,
   });
-
   const handleEmailChange = useCallback(
     (value) => {
       setFieldTouched('email', false);
@@ -48,7 +66,6 @@ function SignIn({ navigation }) {
   const navigateToResetPassword = useCallback(() => {
     navigation.navigate('ForgotPassword');
   }, [navigation]);
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.screen}>
@@ -66,6 +83,7 @@ function SignIn({ navigation }) {
             onChangeText={handleEmailChange}
             onBlur={handleBlur('email')}
             errorMessage={touched.email ? errors.email : ''}
+            inputWrapperStyle={errors.credentials && styles.inputOutOfFocused}
           />
           <Input
             labelStyle={styles.passwordInput}
@@ -75,7 +93,13 @@ function SignIn({ navigation }) {
             textContentType="password"
             onBlur={handleBlur('password')}
             errorMessage={touched.password ? errors.password : ''}
+            inputWrapperStyle={errors.credentials && styles.inputOutOfFocused}
           />
+          {errors.credentials && (
+          <Text style={styles.textError}>
+            {errors.credentials}
+          </Text>
+          )}
         </View>
         <View style={styles.forgotWrapper}>
           <Text style={styles.forgotText}>Forgot password? </Text>
@@ -87,11 +111,7 @@ function SignIn({ navigation }) {
         </View>
         <View style={styles.wrapperButton}>
           <SocialButtons title="or sign in with your social account" />
-          <Button
-            disabled={!isValid}
-            title="Sign in"
-            onPress={handleSubmit}
-          />
+          <Button disabled={!isValid} title="Sign in" onPress={handleSubmit} />
         </View>
       </View>
     </ScrollView>

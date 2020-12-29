@@ -17,6 +17,7 @@ export default StyleSheet.create({
   },
   container: {
     flexGrow: 1,
+    backgroundColor: colors.screenBackground,
   },
   authHeaderLayout: {
     paddingTop: '15%',

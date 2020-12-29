@@ -3,6 +3,9 @@ import { apiClient } from 'helpers/api';
 export const signUp = (userData) => apiClient
   .post('accounts/signup', userData);
 
+export const signIn = ({ email, password }) => apiClient
+  .post('accounts/signin', { email, password });
+
 export const getCurrentUser = () => apiClient
   .get('users/current');
 

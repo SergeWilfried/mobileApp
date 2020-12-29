@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import AuthSuccess from 'components/AuthSuccess';
 import * as userActions from 'resources/user/user.actions';
+
+import AuthSuccess from 'components/AuthSuccess';
 
 function Congratulations() {
   const dispatch = useDispatch();
@@ -20,5 +22,11 @@ function Congratulations() {
     />
   );
 }
+
+Congratulations.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Congratulations;

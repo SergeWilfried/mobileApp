@@ -9,12 +9,16 @@ const { height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
+    backgroundColor: colors.screenBackground,
   },
   screen: {
     ...styles.authScreenStyle,
   },
   wrapperInput: {
     marginTop: height < 600 ? 0 : normalize(40),
+  },
+  inputOutOfFocused: {
+    borderColor: colors.inputStandardBorder,
   },
   wrapperButton: {
     marginTop: 'auto',
@@ -34,5 +38,9 @@ export default StyleSheet.create({
   },
   passwordInput: {
     marginTop: 11,
+  },
+  textError: {
+    paddingTop: 12,
+    color: colors.inputErrorText,
   },
 });
