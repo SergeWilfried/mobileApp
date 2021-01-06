@@ -25,7 +25,7 @@ export default StyleSheet.create({
   inputText: {
     color: colors.theme,
     fontWeight: fonts.weight.bold,
-    fontSize: fonts.size.extraExtraLarge,
+    fontSize: fonts.size.extraExtraExtraLarge,
   },
   currency: {
     marginRight: 25,

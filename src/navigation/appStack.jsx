@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native';
 
 import * as constants from 'helpers/constants';
 
+import Homepage from 'screens/Homepage';
 import Wallet from 'screens/Wallet';
 import DepositMoney from 'screens/DepositMoney';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
@@ -35,6 +36,11 @@ function DepositScreens() {
         header: (props) => <MainHeader {...props} />,
       }}
     >
+      <DepositStack.Screen
+        name="Homepage"
+        component={Homepage}
+        options={{ header: () => null }}
+      />
       <DepositStack.Screen
         name="DepositMoney"
         component={DepositMoney}

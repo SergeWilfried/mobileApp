@@ -16,14 +16,22 @@ const colors = {
 
   // background
   authScreenBackground: '#FFFFFF',
-  headerBackground: '#263BBA',
   mainScreenBackground: '#F2F4F7',
+  iconBackground: '#6178FF',
+  headerBackground: '#F2F3F7',
+  increaseLimitContainerBackground: '#F0F4FF',
+
+  // border
+  profileBorder: '#6C7FEA',
+  transactionBorder: '#E4E4E4',
 
   // font
   baseFont: '#4E4E4E',
   secondaryFont: '#373A4D',
   linkFont: '#263BBA',
   inActiveTabBarFont: '#99b4ff',
+  textFont: '#101010',
+  tabBarfont: '#99b4ff',
 
   // progressBar
   labelProgressBar: 'rgba(2, 3, 74, 0.3)',
@@ -35,6 +43,9 @@ const colors = {
 
   // Facebook/Google Button color
   socialBorder: '#02034a1a',
+
+  // shadow
+  shadow: '#000000',
 };
 
 export default colors;

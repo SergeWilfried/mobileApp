@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 export const PASSWORD = {
   length: 8,
   regExp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[&%$@])[a-zA-Z\d&%$@]{8,}$/,
@@ -22,4 +24,9 @@ export const NAVBAR_ICONS = {
   SEND: 'Send',
   AIRTIME: 'Airtime',
   MORE: 'More',
+};
+
+export const HOMEPAGE_HEADER = {
+  FULL_HEIGHT: 248,
+  SMALL_HEIGHT: Platform.OS === 'android' ? 50 : 76,
 };
