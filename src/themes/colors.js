@@ -18,6 +18,7 @@ const colors = {
   authScreenBackground: '#FFFFFF',
   headerBackground: '#263BBA',
   mainScreenBackground: '#F2F4F7',
+  iconBackground: '#6178FF',
 
   // font
   baseFont: '#4E4E4E',
@@ -35,6 +36,9 @@ const colors = {
 
   // Facebook/Google Button color
   socialBorder: '#02034a1a',
+
+  // shadow
+  shadow: '#000000',
 };
 
 export default colors;
