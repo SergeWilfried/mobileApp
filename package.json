@@ -31,6 +31,7 @@
     "react-native-config": "1.4.1",
     "react-native-fbsdk": "3.0.0",
     "react-native-gesture-handler": "1.9.0",
+    "react-native-parallax-header": "1.1.4",
     "react-native-phone-number-input": "2.0.0",
     "react-native-reanimated": "1.13.2",
     "react-native-safe-area-context": "3.1.9",
@@ -38,11 +39,13 @@
     "react-native-sensitive-info": "6.0.0-alpha.8",
     "react-native-smooth-pincode-input": "1.0.9",
     "react-native-splash-screen": "3.2.0",
+    "react-native-sticky-parallax-header": "0.4.0",
     "react-native-svg": "12.1.0",
     "react-native-svg-transformer": "0.14.3",
     "react-redux": "7.2.2",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
+    "rn-sliding-up-panel": "2.4.5",
     "yup": "0.32.8"
   },
   "devDependencies": {

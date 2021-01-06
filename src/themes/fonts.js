@@ -12,21 +12,24 @@ const letterSpacing = {
 };
 
 const size = {
-  extraExtraSmall: normalize(10),
-  extraSmall: normalize(12),
-  small: normalize(14),
-  regular: normalize(16),
-  medium: normalize(18),
+  extraExtraSmall: 10,
+  extraSmall: 12,
+  small: 14,
+  regular: 16,
+  medium: 18,
   large: normalize(20),
   extraLarge: normalize(24),
   extraExtraLarge: normalize(62),
+  kingSize: normalize(36),
 };
 
 const lineHeight = {
+  extraSmall: normalize(14),
   small: normalize(16),
   regular: normalize(21),
   medium: normalize(24),
   large: 30,
+  extraLarge: 42,
 };
 
 const weight = {
