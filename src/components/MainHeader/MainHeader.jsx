@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -10,10 +10,17 @@ import styles from './MainHeader.styles';
 
 function MainHeader({ navigation, scene }) {
   const { title, subTitle } = scene.descriptor.options;
+
+  const handleGoBack = useCallback(() => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    }
+  }, [navigation]);
+
   return (
     <>
       <View style={styles.header}>
-        <TouchableOpacity onPress={navigation.goBack} style={styles.arrowBack}>
+        <TouchableOpacity onPress={handleGoBack} style={styles.arrowBack}>
           <BackIcon />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>{title}</Text>
@@ -28,6 +35,7 @@ function MainHeader({ navigation, scene }) {
 MainHeader.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
+    canGoBack: PropTypes.func.isRequired,
   }).isRequired,
   scene: PropTypes.shape({
     descriptor: PropTypes.shape({

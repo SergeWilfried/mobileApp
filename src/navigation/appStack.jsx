@@ -4,8 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView } from 'react-native';
 
 import Wallet from 'screens/Wallet';
+import DepositMoney from 'screens/DepositMoney';
+
 import DismissKeyboard from 'components/DismissKeyboard';
 import MainHeader from 'components/MainHeader';
+
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
 import SavingsIcon from 'assets/icons/tabBar/savings.svg';
 import SendIcon from 'assets/icons/tabBar/send.svg';
@@ -27,10 +30,10 @@ function DepositScreens() {
     >
       <DepositStack.Screen
         name="DepositMoney"
-        component={Wallet}
+        component={DepositMoney}
         options={{
-          title: 'Wallet',
-          subTitle: 'Wallet',
+          title: 'Top up my Wallet',
+          subTitle: 'Choose a deposit method',
         }}
       />
     </DepositStack.Navigator>

@@ -17,6 +17,7 @@ export default StyleSheet.create({
   headerSubTitle: {
     fontSize: styles.size.small,
     marginTop: 37,
+    color: colors.gray,
     textAlign: 'center',
     marginHorizontal: 35,
   },

@@ -3,6 +3,7 @@ const colors = {
   passiveTheme: '#6D81EB',
   white: '#FFFFFF',
   black: '#101010',
+  gray: 'rgba(16,16, 16, 0.5)',
 
   // input
   inputStandardBorder: 'rgba(155,155,155, 0.6)',
