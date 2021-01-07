@@ -5,9 +5,9 @@ import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
   header: {
+    flexGrow: 1,
     width: '100%',
-    height: 285,
-    backgroundColor: colors.theme,
+    alignContent: 'flex-start',
   },
   profileContainer: {
     padding: 7,

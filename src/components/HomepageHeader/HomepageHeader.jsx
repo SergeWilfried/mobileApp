@@ -13,7 +13,7 @@ import Profile from 'assets/icons/profile.svg';
 
 import styles from './HomepageHeader.styles';
 
-function HomepageHeader({ title, subtitle }) {
+function HomepageHeader({ title, subtitle, location }) {
   return (
     <View style={styles.header}>
       <View style={styles.titleContainer}>
@@ -23,6 +23,7 @@ function HomepageHeader({ title, subtitle }) {
         <Text style={[styles.text, styles.textContainer]}>{title}</Text>
       </View>
       <Text style={styles.headerSubtitle}>{subtitle}</Text>
+      {location < 70 && (
       <View style={styles.iconsContainer}>
         <View>
           <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
@@ -43,6 +44,7 @@ function HomepageHeader({ title, subtitle }) {
           <Text style={styles.text}>Receive</Text>
         </View>
       </View>
+      )}
     </View>
   );
 }
@@ -50,11 +52,13 @@ function HomepageHeader({ title, subtitle }) {
 HomepageHeader.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  location: PropTypes.number,
 };
 
 HomepageHeader.defaultProps = {
   title: '',
   subtitle: '',
+  location: '',
 };
 
 export default HomepageHeader;
