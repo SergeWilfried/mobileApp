@@ -45,7 +45,7 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: fonts.size.small,
-    lineHeight: fonts.lineHeight.regular,
+    lineHeight: fonts.lineHeight.medium,
     paddingHorizontal: 13,
     textAlign: 'center',
     fontFamily: fonts.type.title,

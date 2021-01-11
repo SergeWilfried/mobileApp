@@ -3,10 +3,10 @@ const colors = {
   passiveTheme: '#6D81EB',
   white: '#FFFFFF',
   black: '#101010',
-  gray: 'rgba(16,16, 16, 0.5)',
+  gray: 'rgba(16, 16, 16, 0.5)',
 
   // input
-  inputStandardBorder: 'rgba(155,155,155, 0.6)',
+  inputStandardBorder: 'rgba(155, 155, 155, 0.6)',
   inputPlaceholder: '#9B9B9B',
   inputLabel: 'rgba(78,78,78, 0.8)',
   inputFocused: '#5067EB',
@@ -30,7 +30,7 @@ const colors = {
   progressBackground: '#5067EB',
 
   // loader
-  loaderOverlay: 'rgba(255,255,255,0.75)',
+  loaderOverlay: 'rgba(255, 255, 255, 0.75)',
 };
 
 export default colors;

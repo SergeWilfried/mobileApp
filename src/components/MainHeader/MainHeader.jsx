@@ -8,8 +8,14 @@ import BackIcon from 'assets/icons/blackBackIcon.svg';
 
 import styles from './MainHeader.styles';
 
-function MainHeader({ navigation, scene }) {
-  const { title, subTitle } = scene.descriptor.options;
+function MainHeader({
+  navigation,
+  scene,
+  title: titleHeader,
+  subTitle: subTitleHeader,
+}) {
+  const title = titleHeader || scene.descriptor.options.title;
+  const subTitle = subTitleHeader || scene.descriptor.options.subTitle;
 
   const handleGoBack = useCallback(() => {
     if (navigation.canGoBack()) {
@@ -40,11 +46,13 @@ MainHeader.propTypes = {
   scene: PropTypes.shape({
     descriptor: PropTypes.shape({
       options: PropTypes.shape({
-        title: PropTypes.string.isRequired,
+        title: PropTypes.string,
         subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-      }).isRequired,
-    }).isRequired,
+      }),
+    }),
   }),
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
 };
 
 MainHeader.defaultProps = {
@@ -55,6 +63,8 @@ MainHeader.defaultProps = {
       },
     },
   },
+  title: '',
+  subTitle: '',
 };
 
 export default MainHeader;

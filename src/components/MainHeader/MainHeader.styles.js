@@ -8,6 +8,7 @@ export default StyleSheet.create({
     paddingTop: 36,
     flexDirection: 'row',
     justifyContent: 'center',
+    width: '100%',
   },
   headerTitle: {
     fontWeight: styles.weight.bold,
@@ -16,7 +17,7 @@ export default StyleSheet.create({
   },
   headerSubTitle: {
     fontSize: styles.size.small,
-    marginTop: 37,
+    marginTop: 17,
     color: colors.gray,
     textAlign: 'center',
     marginHorizontal: 35,
