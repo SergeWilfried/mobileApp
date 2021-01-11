@@ -41,14 +41,14 @@ export default StyleSheet.create({
     borderColor: colors.inputErrorBorder,
   },
   countryInputContainer: {
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     borderColor: colors.inputStandardBorder,
     borderRightWidth: StyleSheet.hairlineWidth,
   },
   textInputContainer: {
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     paddingVertical: 0,

@@ -8,7 +8,7 @@ import fonts from 'themes/fonts';
 export default StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   linkWrapper: {
     marginTop: normalize(41),

@@ -1,18 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Platform,
-  ScrollView,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { Platform, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import styles from './DismissKeyboard.styles';
 
 function DismissKeyboard({ children }) {
   const [size, setSize] = useState('');
-  const contentStyle = useMemo(() => (size
-    ? { height: size }
-    : styles.flexLayout), [size]);
+  const contentStyle = useMemo(
+    () => (size ? { height: size } : styles.flexLayout),
+    [size],
+  );
 
   const withKeyboardDismiss = (
     <ScrollView
@@ -20,7 +17,9 @@ function DismissKeyboard({ children }) {
       bounces={false}
       overScrollMode="never"
       keyboardShouldPersistTaps="handled"
-      onContentSizeChange={(contentWidth, contentHeight) => setSize(contentHeight)}
+      onContentSizeChange={(contentWidth, contentHeight) =>
+        setSize(contentHeight)
+      }
     >
       {children}
     </ScrollView>
@@ -40,7 +39,10 @@ function DismissKeyboard({ children }) {
 }
 
 DismissKeyboard.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default DismissKeyboard;

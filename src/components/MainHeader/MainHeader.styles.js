@@ -1,24 +1,28 @@
 import { StyleSheet } from 'react-native';
 
-import styles from 'themes/fonts';
 import colors from 'themes/colors';
+import styles from 'themes/fonts';
 
 export default StyleSheet.create({
-  container: {
-    width: '100%',
-    backgroundColor: colors.theme,
-    paddingVertical: 22,
-    paddingHorizontal: 16,
-  },
-  safeAreaView: {
-    flex: 0,
-    justifyContent: 'space-between',
+  header: {
+    paddingTop: 36,
     flexDirection: 'row',
+    justifyContent: 'center',
   },
-  title: {
+  headerTitle: {
     fontWeight: styles.weight.bold,
-    color: colors.white,
+    color: colors.black,
     fontSize: styles.size.large,
+  },
+  headerSubTitle: {
+    fontSize: styles.size.small,
+    marginTop: 37,
     textAlign: 'center',
+    marginHorizontal: 35,
+  },
+  arrowBack: {
+    position: 'absolute',
+    left: 16,
+    bottom: 0,
   },
 });

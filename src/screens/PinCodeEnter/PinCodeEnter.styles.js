@@ -4,7 +4,7 @@ import colors from 'themes/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   pinCodeWrapper: {
     marginTop: 60,

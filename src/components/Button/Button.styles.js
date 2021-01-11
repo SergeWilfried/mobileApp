@@ -24,7 +24,7 @@ export default StyleSheet.create({
   title: {
     fontSize: fonts.size.medium,
     fontWeight: fonts.weight.bold,
-    color: colors.screenBackground,
+    color: colors.authScreenBackground,
   },
   defaultTitle: {
     paddingVertical: 18,

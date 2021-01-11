@@ -2,6 +2,7 @@ const colors = {
   theme: '#263BBA',
   passiveTheme: '#6D81EB',
   white: '#FFFFFF',
+  black: '#101010',
 
   // input
   inputStandardBorder: 'rgba(155,155,155, 0.6)',
@@ -13,8 +14,9 @@ const colors = {
   inputErrorText: '#DF5956',
 
   // background
-  screenBackground: '#FFFFFF',
+  authScreenBackground: '#FFFFFF',
   headerBackground: '#263BBA',
+  mainScreenBackground: '#F2F4F7',
 
   // font
   baseFont: '#4E4E4E',

@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   authHeaderContainer: {
     marginTop: 47,

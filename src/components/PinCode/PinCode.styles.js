@@ -4,6 +4,6 @@ import colors from 'themes/colors';
 export default StyleSheet.create({
   pinWrapper: {
     alignItems: 'center',
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
 });

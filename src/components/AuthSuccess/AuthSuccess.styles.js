@@ -6,7 +6,7 @@ import colors from 'themes/colors';
 export default StyleSheet.create({
   screen: {
     flexGrow: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   container: {
     flexGrow: 1,

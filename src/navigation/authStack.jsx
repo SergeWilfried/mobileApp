@@ -33,8 +33,7 @@ function OnBoardingScreens() {
       headerMode="none"
       screenOptions={{
         gestureEnabled: true,
-        cardStyleInterpolator:
-          CardStyleInterpolators.forHorizontalIOS,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
       animation="fade"
     >
@@ -61,7 +60,7 @@ function OnBoardingScreens() {
 function AuthScreens() {
   return (
     <DismissKeyboard>
-      <SafeAreaView style={styles.screen}>
+      <SafeAreaView style={styles.authScreen}>
         <AuthStack.Navigator headerMode="none">
           <AuthStack.Screen name="OnBoarding" component={OnBoardingScreens} />
           <AuthStack.Screen name="SignUp" component={SignUp} />
@@ -73,7 +72,10 @@ function AuthScreens() {
           <AuthStack.Screen name="SignIn" component={SignIn} />
           <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
           <AuthStack.Screen name="ResetPassword" component={ResetPassword} />
-          <AuthStack.Screen name="Congratulations" component={Congratulations} />
+          <AuthStack.Screen
+            name="Congratulations"
+            component={Congratulations}
+          />
           <AuthStack.Screen name="VerifyEmail" component={VerifyEmail} />
         </AuthStack.Navigator>
       </SafeAreaView>

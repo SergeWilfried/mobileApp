@@ -7,7 +7,7 @@ import colors from 'themes/colors';
 export default StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   authHeaderLayout: {
     paddingTop: '15%',

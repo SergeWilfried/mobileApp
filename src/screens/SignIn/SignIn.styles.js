@@ -9,7 +9,7 @@ const { height } = Dimensions.get('window');
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   screen: {
     ...styles.authScreenStyle,

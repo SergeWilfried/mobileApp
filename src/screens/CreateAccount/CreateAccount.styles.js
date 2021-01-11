@@ -10,14 +10,14 @@ const { height } = Dimensions.get('window');
 export default StyleSheet.create({
   screenWrapper: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   screen: {
     ...styles.authScreenStyle,
   },
   container: {
     flexGrow: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   authHeaderLayout: {
     paddingTop: '15%',

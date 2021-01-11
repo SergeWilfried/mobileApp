@@ -1,49 +1,52 @@
 import React from 'react';
-import { SafeAreaView, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-
-import WhiteBackIcon from 'assets/icons/whiteBackIcon.svg';
-import HelpIcon from 'assets/icons/helpIcon.svg';
 
 import Text from 'components/Text';
 
+import BackIcon from 'assets/icons/blackBackIcon.svg';
+
 import styles from './MainHeader.styles';
 
-function MainHeader({
-  leftIcon: LeftIcon,
-  rightIcon: RightIcon,
-  title,
-  onLeftIconClick,
-  onRightIconClick,
-}) {
+function MainHeader({ navigation, scene }) {
+  const { title, subTitle } = scene.descriptor.options;
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={styles.safeAreaView}>
-        <TouchableOpacity onPress={onLeftIconClick}>
-          <LeftIcon />
+    <>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={navigation.goBack} style={styles.arrowBack}>
+          <BackIcon />
         </TouchableOpacity>
-        <Text style={styles.title}>{title}</Text>
-        <TouchableOpacity onPress={onRightIconClick}>
-          <RightIcon />
-        </TouchableOpacity>
-      </SafeAreaView>
-    </View>
+        <Text style={styles.headerTitle}>{title}</Text>
+      </View>
+      {Boolean(subTitle) && (
+        <Text style={styles.headerSubTitle}>{subTitle}</Text>
+      )}
+    </>
   );
 }
 
 MainHeader.propTypes = {
-  leftIcon: PropTypes.elementType,
-  rightIcon: PropTypes.elementType,
-  title: PropTypes.string.isRequired,
-  onLeftIconClick: PropTypes.func,
-  onRightIconClick: PropTypes.func,
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+  scene: PropTypes.shape({
+    descriptor: PropTypes.shape({
+      options: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+      }).isRequired,
+    }).isRequired,
+  }),
 };
 
 MainHeader.defaultProps = {
-  leftIcon: WhiteBackIcon,
-  rightIcon: HelpIcon,
-  onRightIconClick: () => {},
-  onLeftIconClick: () => {},
+  scene: {
+    descriptor: {
+      options: {
+        subTitle: null,
+      },
+    },
+  },
 };
 
 export default MainHeader;

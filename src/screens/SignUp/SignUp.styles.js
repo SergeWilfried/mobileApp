@@ -8,7 +8,7 @@ import { normalize } from 'helpers/utils';
 export default StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.screenBackground,
+    backgroundColor: colors.authScreenBackground,
   },
   screenContent: {
     ...styles.authScreenStyle,
@@ -32,7 +32,6 @@ export default StyleSheet.create({
     marginTop: 'auto',
     width: '100%',
     marginBottom: normalize(33),
-
   },
   phoneContainer: {
     marginTop: 50,
