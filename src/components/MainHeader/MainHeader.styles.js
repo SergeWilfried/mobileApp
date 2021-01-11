@@ -8,6 +8,7 @@ export default StyleSheet.create({
     paddingTop: 36,
     flexDirection: 'row',
     justifyContent: 'center',
+    width: '100%',
   },
   headerTitle: {
     fontWeight: styles.weight.bold,

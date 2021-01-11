@@ -20,7 +20,7 @@ export default StyleSheet.create({
   subtitle: {
     marginTop: 11,
     textAlign: 'center',
-    lineHeight: styles.lineHeight.regular,
+    lineHeight: styles.lineHeight.medium,
     letterSpacing: styles.letterSpacing.regular,
   },
 });

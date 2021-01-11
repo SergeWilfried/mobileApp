@@ -9,6 +9,6 @@ export default StyleSheet.create({
   title: {
     fontSize: fonts.size.regular,
     fontWeight: fonts.weight.regular,
-    lineHeight: fonts.lineHeight.regular,
+    lineHeight: fonts.lineHeight.medium,
   },
 });

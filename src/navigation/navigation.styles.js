@@ -7,10 +7,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.authScreenBackground,
   },
-  mainScreens: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
   statusBar: {
     flex: 0,
     backgroundColor: colors.mainScreenBackground,

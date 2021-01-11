@@ -9,24 +9,24 @@ function Card({
   rightIcon: RightIcon,
   leftIconStyle,
   rightIconStyle,
-  onLeftIconClick,
-  onRightIconClick,
+  onCardClick,
   cardStyle,
   children,
 }) {
   return (
-    <View style={[styles.container, cardStyle]}>
-      <TouchableOpacity onPress={onLeftIconClick} style={leftIconStyle}>
+    <TouchableOpacity
+      style={[styles.container, cardStyle]}
+      onPress={onCardClick}
+      activeOpacity={0.8}
+    >
+      <View style={leftIconStyle}>
         <LeftIcon />
-      </TouchableOpacity>
+      </View>
       {children}
-      <TouchableOpacity
-        onPress={onRightIconClick}
-        style={[styles.rightIcon, rightIconStyle]}
-      >
+      <View style={[styles.rightIcon, rightIconStyle]}>
         <RightIcon />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -38,8 +38,7 @@ Card.propTypes = {
     PropTypes.node,
   ]).isRequired,
   cardStyle: ViewPropTypes.style,
-  onLeftIconClick: PropTypes.func,
-  onRightIconClick: PropTypes.func,
+  onCardClick: PropTypes.func,
   leftIconStyle: ViewPropTypes.style,
   rightIconStyle: ViewPropTypes.style,
 };
@@ -48,8 +47,7 @@ Card.defaultProps = {
   cardStyle: null,
   leftIconStyle: null,
   rightIconStyle: null,
-  onRightIconClick: () => {},
-  onLeftIconClick: () => {},
+  onCardClick: () => {},
 };
 
 export default Card;

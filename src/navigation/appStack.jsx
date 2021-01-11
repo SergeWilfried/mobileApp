@@ -5,8 +5,8 @@ import { SafeAreaView } from 'react-native';
 
 import Wallet from 'screens/Wallet';
 import DepositMoney from 'screens/DepositMoney';
-
-import DismissKeyboard from 'components/DismissKeyboard';
+import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
+import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import MainHeader from 'components/MainHeader';
 
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
@@ -89,14 +89,20 @@ function Dashboard() {
 
 function AppScreens() {
   return (
-    <DismissKeyboard>
+    <>
       <SafeAreaView style={styles.statusBar} />
-      <SafeAreaView style={styles.mainScreens}>
-        <AppStack.Navigator headerMode="none">
-          <AppStack.Screen name="Dashboard" component={Dashboard} />
-        </AppStack.Navigator>
-      </SafeAreaView>
-    </DismissKeyboard>
+      <AppStack.Navigator headerMode="none">
+        <AppStack.Screen name="Dashboard" component={Dashboard} />
+        <AppStack.Screen
+          name="ConfirmMobileDeposit"
+          component={ConfirmMobileDeposit}
+        />
+        <AppStack.Screen
+          name="ConfirmCardDeposit"
+          component={ConfirmCardDeposit}
+        />
+      </AppStack.Navigator>
+    </>
   );
 }
 

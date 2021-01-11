@@ -18,11 +18,13 @@ const size = {
   medium: normalize(18),
   large: normalize(20),
   extraLarge: normalize(24),
+  extraExtraLarge: normalize(62),
 };
 
 const lineHeight = {
   small: normalize(16),
-  regular: normalize(24),
+  regular: normalize(21),
+  medium: normalize(24),
   large: 30,
 };
 
