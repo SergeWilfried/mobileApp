@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 
-import * as constants from 'helpers/constants';
 import AuthHeader from 'components/AuthHeader';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import Button from 'components/Button';
@@ -11,10 +11,12 @@ import Input from 'components/Input';
 import Text from 'components/Text';
 import SocialButtons from 'components/SocialButtons';
 import ProgressBar from 'components/ProgressBar';
+import FullScreenLoader from 'components/FullScreenLoader';
 import { PASSWORD } from 'helpers/constants';
 import { SignUpSchema } from 'helpers/schemas';
-import { checkEmail } from 'resources/user/user.api';
 import { ApiError } from 'helpers/api';
+import * as constants from 'helpers/constants';
+import * as usersApi from 'resources/user/user.actions';
 
 import styles from './CreateAccount.styles';
 
@@ -26,12 +28,32 @@ const initialValues = {
 
 function CreateAccount({ navigation, route }) {
   const { verificationToken } = route.params;
+  const [isSubmitting, setSubmitting] = useState(false);
+
+  const dispatch = useDispatch();
 
   const onSubmit = useCallback(
-    (userData) => {
-      navigation.navigate('PinCodeChoose', {
-        user: { ...userData, verificationToken },
-      });
+    async (userData, { setErrors }) => {
+      try {
+        setSubmitting(true);
+        await dispatch(usersApi.signUp({ ...userData, verificationToken }));
+        setSubmitting(false);
+        navigation.navigate('PinCodeChoose', {
+          withLogo: false,
+          showProgressBar: true,
+          pinFlow: constants.AUTH.SIGN_UP,
+        });
+      } catch (e) {
+        if (e instanceof ApiError) {
+          setErrors(e.data);
+          setSubmitting(false);
+        } else {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'SignUp' }],
+          });
+        }
+      }
     },
     [navigation, verificationToken],
   );
@@ -46,7 +68,6 @@ function CreateAccount({ navigation, route }) {
     handleSubmit,
     setFieldValue,
     setFieldTouched,
-    setFieldError,
   } = useFormik({
     onSubmit,
     initialValues,
@@ -62,18 +83,6 @@ function CreateAccount({ navigation, route }) {
     [setFieldValue, setFieldTouched],
   );
 
-  const handleEmailBlur = useCallback(async () => {
-    try {
-      await checkEmail(values.email);
-      setFieldTouched('email', true);
-    } catch (error) {
-      if (error instanceof ApiError) {
-        setFieldError('email', error.data.email);
-        setFieldTouched('email', true, false);
-      }
-    }
-  }, [values, setFieldTouched, setFieldError]);
-
   const handlePasswordChange = useCallback(
     (value) => {
       setFieldTouched('password', false);
@@ -84,6 +93,7 @@ function CreateAccount({ navigation, route }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {isSubmitting && <FullScreenLoader />}
       <View style={styles.screen}>
         <AuthHeaderLayout style={styles.authHeaderLayout}>
           <ProgressBar currentStep={2} totalSteps={3} />
@@ -97,7 +107,6 @@ function CreateAccount({ navigation, route }) {
             label="Email address"
             value={values.email}
             onChangeText={handleEmailChange}
-            onBlur={handleEmailBlur}
             errorMessage={touched.email ? errors.email : ''}
           />
           <Input
@@ -145,6 +154,7 @@ function CreateAccount({ navigation, route }) {
 CreateAccount.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
   }).isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({

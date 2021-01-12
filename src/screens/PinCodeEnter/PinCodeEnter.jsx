@@ -1,36 +1,25 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PinCode from 'components/PinCode';
 import Text from 'components/Text';
 import ButtonLink from 'components/ButtonLink';
-import Button from 'components/Button';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import AuthHeader from 'components/AuthHeader';
-import { getPassword } from 'helpers/keychain.helper';
+import * as userActions from 'resources/user/user.actions';
+import * as userSelectors from 'resources/user/user.selectors';
 
 import styles from './PinCodeEnter.styles';
 
 function PinCodeEnter({ navigation }) {
-  const [storedPin, setPinCode] = useState(null);
+  const storedPin = useSelector(userSelectors.getPinCode);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const init = async () => {
-      const password = await getPassword();
-
-      if (!password) {
-        navigation.reset({ index: 0, routes: [{ name: 'SignIn' }] });
-        return;
-      }
-
-      setPinCode(password);
-    };
-
-    init();
-  }, [navigation]);
-
-  const handlePinEnter = useCallback(() => {}, []);
+  const handlePinEnter = useCallback(() => {
+    dispatch(userActions.setUserAuthenticated());
+  }, []);
   const validatePinCode = useCallback(
     (pinValue) => {
       return storedPin === pinValue;
@@ -40,10 +29,6 @@ function PinCodeEnter({ navigation }) {
   const navigateToLogin = useCallback(() => {
     navigation.navigate('SignIn');
   }, [navigation]);
-
-  if (!storedPin) {
-    return null;
-  }
 
   return (
     <View style={styles.container}>

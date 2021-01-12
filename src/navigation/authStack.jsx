@@ -1,9 +1,9 @@
-import React from 'react';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
+import React, { useMemo } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import * as userSelectors from 'resources/user/user.selectors';
 
 import DismissKeyboard from 'components/DismissKeyboard';
 import SignUp from 'screens/SignUp';
@@ -11,10 +11,6 @@ import ForgotPassword from 'screens/ForgotPassword';
 import ResetPassword from 'screens/ResetPassword';
 import InviteCode from 'screens/InviteCode';
 import SignIn from 'screens/SignIn';
-import OnBoardingStepOne from 'screens/OnBoardingStepOne';
-import OnBoardingStepTwo from 'screens/OnBoardingStepTwo';
-import OnBoardingStepThree from 'screens/OnBoardingStepThree';
-import OnBoardingStepFour from 'screens/OnBoardingStepFour';
 import Congratulations from 'screens/Congratulations';
 import VerifyEmail from 'screens/VerifyEmail';
 import CreateAccount from 'screens/CreateAccount';
@@ -25,44 +21,26 @@ import ResetCode from 'screens/ResetCode';
 import styles from './navigation.styles';
 
 const AuthStack = createStackNavigator();
-const OnBoardingStack = createStackNavigator();
-
-function OnBoardingScreens() {
-  return (
-    <OnBoardingStack.Navigator
-      headerMode="none"
-      screenOptions={{
-        gestureEnabled: true,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}
-      animation="fade"
-    >
-      <OnBoardingStack.Screen
-        name="OnBoardingStepOne"
-        component={OnBoardingStepOne}
-      />
-      <OnBoardingStack.Screen
-        name="OnBoardingStepTwo"
-        component={OnBoardingStepTwo}
-      />
-      <OnBoardingStack.Screen
-        name="OnBoardingStepThree"
-        component={OnBoardingStepThree}
-      />
-      <OnBoardingStack.Screen
-        name="OnBoardingStepFour"
-        component={OnBoardingStepFour}
-      />
-    </OnBoardingStack.Navigator>
-  );
-}
 
 function AuthScreens() {
+  const token = useSelector(userSelectors.getUserToken);
+  const pinCode = useSelector(userSelectors.getPinCode);
+
+  const initialRouteName = useMemo(() => {
+    if (token && pinCode) {
+      return 'PinCodeEnter';
+    }
+
+    return 'SignUp';
+  }, [token, pinCode]);
+
   return (
     <DismissKeyboard>
       <SafeAreaView style={styles.authScreen}>
-        <AuthStack.Navigator headerMode="none">
-          <AuthStack.Screen name="OnBoarding" component={OnBoardingScreens} />
+        <AuthStack.Navigator
+          headerMode="none"
+          initialRouteName={initialRouteName}
+        >
           <AuthStack.Screen name="SignUp" component={SignUp} />
           <AuthStack.Screen name="InviteCode" component={InviteCode} />
           <AuthStack.Screen name="ResetCode" component={ResetCode} />

@@ -3,10 +3,20 @@ import {
   USER_CURRENT,
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
+  HIDE_ONBOARDING,
   SET_PIN_CODE,
+  SET_USER_TOKEN,
 } from './user.constants';
 
-export default (state = { userData: {}, pinCode: null }, action) => {
+const initialState = {
+  userData: {},
+  authenticated: false,
+  isOnboardingHidden: false,
+  pinCode: '',
+  accessToken: '',
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case USER_AUTHENTICATED:
       return {
@@ -21,22 +31,34 @@ export default (state = { userData: {}, pinCode: null }, action) => {
           ...action.userData,
         },
       };
-    case USER_SIGNED_UP:
+    case USER_SIGNED_UP: {
+      const { accessToken, ...userData } = action.payload;
+
       return {
         ...state,
-        userData: action.userData.user,
-        accessToken: action.userData.accessToken,
-        authenticated: true,
+        userData,
+        accessToken,
+      };
+    }
+    case SET_USER_TOKEN:
+      return {
+        ...state,
+        accessToken: action.payload.token,
       };
     case USER_LOGGED_OUT:
       return {
         ...state,
         authenticated: false,
       };
+    case HIDE_ONBOARDING:
+      return {
+        ...state,
+        isOnboardingHidden: action.payload.isOnboardingHidden,
+      };
     case SET_PIN_CODE:
       return {
         ...state,
-        pinCode: action.pinCode,
+        pinCode: action.payload.pinCode,
       };
     default:
       return state;

@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 
 import * as constants from 'helpers/constants';
@@ -16,6 +16,7 @@ import { SignInSchema } from 'helpers/schemas';
 import ApiError from 'helpers/api/api.error';
 
 import * as userActions from 'resources/user/user.actions';
+import * as userSelectors from 'resources/user/user.selectors';
 
 import styles from './SignIn.styles';
 
@@ -26,6 +27,33 @@ const initialValues = {
 
 function SignIn({ navigation }) {
   const dispatch = useDispatch();
+  const storedPin = useSelector(userSelectors.getPinCode);
+
+  const onSubmit = useCallback(
+    async (values, { setErrors }) => {
+      try {
+        await dispatch(userActions.signIn(values));
+
+        if (storedPin) {
+          dispatch(userActions.setUserAuthenticated());
+          return;
+        }
+
+        navigation.navigate('PinCodeChoose', {
+          withLogo: true,
+          showProgressBar: false,
+          pinFlow: constants.AUTH.SIGN_IN,
+        });
+      } catch (e) {
+        if (e instanceof ApiError) {
+          setErrors(e.data);
+        } else {
+          throw e;
+        }
+      }
+    },
+    [dispatch, storedPin],
+  );
 
   const {
     values,
@@ -37,21 +65,8 @@ function SignIn({ navigation }) {
     handleSubmit,
     setFieldValue,
     setFieldTouched,
-    setFieldError,
   } = useFormik({
-    onSubmit: async () => {
-      try {
-        await dispatch(userActions.signIn(values));
-      } catch (e) {
-        if (e instanceof ApiError) {
-          if (e.data?.credentials) {
-            setFieldError('credentials', e.data.credentials);
-          }
-        } else {
-          throw e;
-        }
-      }
-    },
+    onSubmit,
     initialValues,
     validateOnMount: true,
     validationSchema: SignInSchema,

@@ -15,10 +15,6 @@ export const verifyCode = (data) => {
   return apiClient.post('accounts/verify/code', data);
 };
 
-export const checkEmail = (email) => {
-  return apiClient.post('accounts/check-email', { email });
-};
-
 export const forgotPassword = (phoneNumber) => {
   return apiClient.post('/accounts/forgot-password', { phoneNumber });
 };

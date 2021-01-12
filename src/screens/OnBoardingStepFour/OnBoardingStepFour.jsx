@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
+import * as userActions from 'resources/user/user.actions';
 import OnBoarding from 'components/OnBoarding';
 
 function OnBoardingStepFour({ navigation }) {
-  const onContinuePress = async () => {
-    navigation.navigate('SignUp');
-  };
+  const dispatch = useDispatch();
+
+  const onContinuePress = useCallback(async () => {
+    dispatch(userActions.hideOnboarding(true));
+  }, [navigation]);
 
   return (
     <OnBoarding
@@ -25,6 +29,5 @@ OnBoardingStepFour.propTypes = {
     goBack: PropTypes.func.isRequired,
   }).isRequired,
 };
-
 
 export default OnBoardingStepFour;

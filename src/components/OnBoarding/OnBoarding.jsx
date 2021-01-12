@@ -1,10 +1,12 @@
 import React, { useCallback } from 'react';
 import { Image, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Text from 'components/Text';
 import Button from 'components/Button';
 import ButtonLink from 'components/ButtonLink';
+import * as userActions from 'resources/user/user.actions';
 
 import OnBoardingImage from 'assets/images/onBoarding.png';
 
@@ -22,11 +24,12 @@ function OnBoarding({
   currentStep,
   navigation,
 }) {
-  const handleSkip = useCallback(() => {
-    handleSkipOnBoarding();
-    navigation.navigate('SignUp');
-  }, [handleSkipOnBoarding, navigation]);
+  const dispatch = useDispatch();
 
+  const handleSkip = useCallback(async () => {
+    handleSkipOnBoarding();
+    dispatch(userActions.hideOnboarding(true));
+  }, [handleSkipOnBoarding, navigation]);
 
   return (
     <View style={styles.screen}>
@@ -46,7 +49,11 @@ function OnBoarding({
         <Text style={styles.subTitle}>{subTitle}</Text>
         <ProgressIndicator currentStep={currentStep} stepCount={4} />
         <View style={styles.buttonWrapper}>
-          <Button onPress={onContinuePress} title={buttonName} buttonStyle={styles.button} />
+          <Button
+            onPress={onContinuePress}
+            title={buttonName}
+            buttonStyle={styles.button}
+          />
         </View>
       </View>
     </View>

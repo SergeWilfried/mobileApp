@@ -8,6 +8,10 @@ export const EMAIL = {
 };
 
 export const AUTH = {
-  SIGN_UP:'signup',
-  SIGN_IN:"signin"
-}
+  SIGN_UP: 'signup',
+  SIGN_IN: 'signin',
+};
+
+export const STORAGE = {
+  HIDE_ON_BOARDING: 'HIDE_ON_BOARDING',
+};

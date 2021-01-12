@@ -7,12 +7,11 @@ import PinCode from 'components/PinCode/PinCode';
 import ProgressBar from 'components/ProgressBar';
 import AuthHeaderLayout from 'components/AuthHeaderLayout';
 import AuthHeader from 'components/AuthHeader';
-import FullScreenLoader from 'components/FullScreenLoader';
 import { setPassword } from 'helpers/keychain.helper';
-import * as usersApi from 'resources/user/user.actions';
+import { AUTH } from 'helpers/constants';
+import * as userActions from 'resources/user/user.actions';
 
 import styles from './PinCodeChoose.styles';
-
 
 const PIN_STATUSES = {
   CHOOSE: 'choose',
@@ -22,13 +21,15 @@ const PIN_STATUSES = {
 function PinCodeChoose({ navigation, route }) {
   const [pinCode, setPinCode] = useState('');
   const [status, setStatus] = useState(PIN_STATUSES.CHOOSE);
-  const [isSubmitting, setSubmitting] = useState(false);
 
   const dispatch = useDispatch();
 
+  const { withLogo, showProgressBar, pinFlow } = route.params;
+
   const headerTitle = useMemo(() => {
     return status === PIN_STATUSES.CHOOSE
-      ? 'Create your PIN' : 'Repeat your PIN';
+      ? 'Create your PIN'
+      : 'Repeat your PIN';
   }, [status]);
 
   const handlePinChoose = useCallback((pinValue) => {
@@ -36,24 +37,21 @@ function PinCodeChoose({ navigation, route }) {
     setStatus(PIN_STATUSES.CONFIRM);
   }, []);
 
-  const handleConfirmation = useCallback(async (pinValue) => {
-    const { user } = route.params;
-    try {
-      setSubmitting(true);
-      const userData = await dispatch(usersApi.signUp(user));
+  const handleConfirmation = useCallback(
+    async (pinValue) => {
       await setPassword(pinValue);
-      setSubmitting(false);
 
-      navigation.reset({
-        index: 0,
-        routes: [
-          { name: 'Congratulations', params: { userData } },
-        ],
-      });
-    } catch (e) {
-      navigation.navigate('SignUp');
-    }
-  }, [dispatch, route, navigation]);
+      if (pinFlow === AUTH.SIGN_UP) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Congratulations' }],
+        });
+      } else if (pinFlow === AUTH.SIGN_IN) {
+        dispatch(userActions.setUserAuthenticated());
+      }
+    },
+    [navigation],
+  );
 
   const validateConfirmation = useCallback(
     (pinValue) => {
@@ -64,13 +62,13 @@ function PinCodeChoose({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      {isSubmitting && <FullScreenLoader />}
       <AuthHeaderLayout>
-        <ProgressBar currentStep={3} totalSteps={3} />
+        {showProgressBar && <ProgressBar currentStep={3} totalSteps={3} />}
         <View style={styles.authHeaderContainer}>
           <AuthHeader
             title={headerTitle}
             subtitle="Choose a 4-digit PIN to protect your account"
+            withLogo={withLogo}
           />
         </View>
       </AuthHeaderLayout>
@@ -102,12 +100,9 @@ PinCodeChoose.propTypes = {
   }).isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
-      user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-        verificationToken: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
-      }).isRequired,
+      pinFlow: PropTypes.string,
+      withLogo: PropTypes.bool,
+      showProgressBar: PropTypes.bool,
     }).isRequired,
   }).isRequired,
 };
