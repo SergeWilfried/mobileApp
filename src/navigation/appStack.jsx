@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native';
 
 import * as constants from 'helpers/constants';
 
+import Homepage from 'screens/Homepage';
 import Wallet from 'screens/Wallet';
 import DepositMoney from 'screens/DepositMoney';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
@@ -21,6 +22,8 @@ import SavingsIcon from 'assets/icons/tabBar/savings.svg';
 import SendIcon from 'assets/icons/tabBar/send.svg';
 import AirtimeIcon from 'assets/icons/tabBar/airtime.svg';
 import MoreIcon from 'assets/icons/tabBar/more.svg';
+
+import colors from 'themes/colors';
 
 import styles from './navigation.styles';
 

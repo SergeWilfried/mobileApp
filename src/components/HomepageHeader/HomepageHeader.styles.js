@@ -30,7 +30,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: colors.textFont,
+    color: colors.black,
     fontSize: fonts.size.small,
     lineHeight: fonts.lineHeight.small,
     textAlign: 'center',
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     marginLeft: 'auto',
   },
   headerSubtitle: {
-    color: colors.textFont,
+    color: colors.black,
     fontSize: fonts.size.kingSize,
     lineHeight: fonts.lineHeight.extraLarge,
     letterSpacing: fonts.letterSpacing.regular,

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     marginVertical: 27,
   },
   text: {
-    color: colors.textFont,
+    color: colors.black,
     fontSize: fonts.size.extraLarge,
     lineHeight: fonts.lineHeight.extraLarge,
     letterSpacing: fonts.letterSpacing.regular,

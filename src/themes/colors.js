@@ -4,6 +4,7 @@ const colors = {
   white: '#FFFFFF',
   black: '#101010',
   gray: 'rgba(16, 16, 16, 0.5)',
+  darkBlack: '#000000',
 
   // input
   inputStandardBorder: 'rgba(155, 155, 155, 0.6)',
@@ -16,10 +17,8 @@ const colors = {
 
   // background
   authScreenBackground: '#FFFFFF',
-  headerBackground: '#263BBA',
   mainScreenBackground: '#F2F4F7',
   iconBackground: '#6178FF',
-  screenBackground: '#FFFFFF',
   headerBackground: '#F2F3F7',
   increaseLimitContainerBackground: '#F0F4FF',
 
@@ -34,6 +33,7 @@ const colors = {
   inActiveTabBarFont: '#99b4ff',
   textFont: '#101010',
   textFontWithOpacity: 'rgba(16, 16, 16, 0.5)',
+  tabBarfont: '#99b4ff',
 
   // progressBar
   labelProgressBar: 'rgba(2, 3, 74, 0.3)',

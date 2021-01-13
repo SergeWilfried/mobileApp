@@ -31,13 +31,13 @@ export default StyleSheet.create({
     marginTop: 17,
   },
   title: {
-    color: colors.textFont,
+    color: colors.black,
     fontWeight: fonts.weight.bold,
     fontSize: fonts.size.medium,
     lineHeight: fonts.lineHeight.medium,
   },
   subtitle: {
-    color: colors.textFont,
+    color: colors.black,
     fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.extraSmall,
     opacity: 0.5,

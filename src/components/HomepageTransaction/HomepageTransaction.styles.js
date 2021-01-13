@@ -24,20 +24,20 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    color: colors.textFont,
+    color: colors.black,
     fontWeight: fonts.weight.bold,
     fontSize: fonts.size.medium,
     lineHeight: fonts.lineHeight.medium,
   },
   subtitle: {
-    color: colors.textFont,
+    color: colors.black,
     fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.extraSmall,
     opacity: 0.5,
   },
   divideLine: {
     marginTop: 19,
-    borderColor: colors.black,
+    borderColor: colors.darkBlack,
     width: '100%',
     borderWidth: 1,
     opacity: 0.1,
