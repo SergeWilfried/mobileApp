@@ -1,29 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, TouchableOpacity,
+  View, TouchableOpacity, Image,
 } from 'react-native';
 
 import Text from 'components/Text';
 
 import TopUp from 'assets/icons/topUp.svg';
-import ReceiveMoney from 'assets/icons/receiveMoney.svg';
-import SendMoney from 'assets/icons/sendMoney.svg';
-import Profile from 'assets/icons/profile.svg';
+import ReceiveMoney from 'assets/icons/receiveMoneyWhiteIcon.svg';
+import SendMoney from 'assets/icons/sendMoneyWhiteIcon.svg';
 
 import styles from './HomepageHeader.styles';
 
-function HomepageHeader({ title, subtitle, location }) {
+function HomepageHeader({
+  title, subtitle, avatarUrl, username,
+}) {
+  const getInitials = (name) => {
+    const initials = name.substring(0, 1).toUpperCase();
+    if (username.length > 1) {
+      return username.substring(0, 2).toUpperCase();
+    }
+    return initials;
+  };
+
   return (
     <View style={styles.header}>
-      <View style={styles.titleContainer}>
+      <View style={styles.headerTitle}>
         <TouchableOpacity style={styles.profileContainer} onPress={() => {}}>
-          <Profile />
+          {avatarUrl ? (
+            <Image
+              source={{ uri: avatarUrl }}
+            />
+          ) : (
+            <Text>
+              {getInitials(username)}
+            </Text>
+          )}
         </TouchableOpacity>
-        <Text style={[styles.text, styles.textContainer]}>{title}</Text>
+        <Text style={[styles.text, styles.title]}>{title}</Text>
       </View>
       <Text style={styles.headerSubtitle}>{subtitle}</Text>
-      {location < 70 && (
       <View style={styles.iconsContainer}>
         <View>
           <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
@@ -44,7 +60,6 @@ function HomepageHeader({ title, subtitle, location }) {
           <Text style={styles.text}>Receive</Text>
         </View>
       </View>
-      )}
     </View>
   );
 }
@@ -52,13 +67,15 @@ function HomepageHeader({ title, subtitle, location }) {
 HomepageHeader.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  location: PropTypes.number,
+  username: PropTypes.string,
+  avatarUrl: PropTypes.string,
 };
 
 HomepageHeader.defaultProps = {
   title: '',
   subtitle: '',
-  location: '',
+  username: '',
+  avatarUrl: '',
 };
 
 export default HomepageHeader;

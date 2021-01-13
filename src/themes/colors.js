@@ -19,12 +19,21 @@ const colors = {
   headerBackground: '#263BBA',
   mainScreenBackground: '#F2F4F7',
   iconBackground: '#6178FF',
+  screenBackground: '#FFFFFF',
+  headerBackground: '#F2F3F7',
+  increaseLimitContainerBackground: '#F0F4FF',
+
+  // border
+  profileBorder: '#6C7FEA',
+  transactionBorder: '#E4E4E4',
 
   // font
   baseFont: '#4E4E4E',
   secondaryFont: '#373A4D',
   linkFont: '#263BBA',
   inActiveTabBarFont: '#99b4ff',
+  textFont: '#101010',
+  textFontWithOpacity: 'rgba(16, 16, 16, 0.5)',
 
   // progressBar
   labelProgressBar: 'rgba(2, 3, 74, 0.3)',

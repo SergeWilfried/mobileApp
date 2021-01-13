@@ -24,6 +24,7 @@ const size = {
 };
 
 const lineHeight = {
+  extraSmall: normalize(14),
   small: normalize(16),
   regular: normalize(21),
   medium: normalize(24),
