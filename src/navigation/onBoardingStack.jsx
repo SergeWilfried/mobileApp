@@ -16,7 +16,7 @@ const OnBoardingStack = createStackNavigator();
 
 function OnBoardingScreens() {
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={styles.authScreen}>
       <OnBoardingStack.Navigator
         headerMode="none"
         screenOptions={{
