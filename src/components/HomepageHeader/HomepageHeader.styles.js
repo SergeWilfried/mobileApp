@@ -7,13 +7,14 @@ export default StyleSheet.create({
   header: {
     width: '100%',
     height: 258,
-    alignContent: 'flex-start',
+    paddingTop: 27,
+    paddingBottom: 27,
     backgroundColor: colors.headerBackground,
+    // backgroundColor: 'green',
   },
   headerTitle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 28,
     marginBottom: 3.74,
     marginHorizontal: 17.92,
   },
