@@ -10,13 +10,7 @@ import SendMoney from 'assets/icons/sendMoneyWhiteIcon.svg';
 
 import styles from './HomepageHeader.styles';
 
-function HomepageHeader({
-  title,
-  subtitle,
-  avatarUrl,
-  username,
-  styles: propsStyles,
-}) {
+function HomepageHeader({ title, subtitle, avatarUrl, username, propsStyles }) {
   const getInitials = (name) => {
     const initials = name.substring(0, 1).toUpperCase();
     if (username.length > 1) {
@@ -48,6 +42,18 @@ function HomepageHeader({
             <TopUp />
           </TouchableOpacity>
           <Text style={styles.text}>Top up</Text>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
+            <SendMoney />
+          </TouchableOpacity>
+          <Text style={styles.text}>Send</Text>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
+            <ReceiveMoney />
+          </TouchableOpacity>
+          <Text style={styles.text}>Receive</Text>
         </View>
       </View>
     </View>

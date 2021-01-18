@@ -9,8 +9,6 @@ export default StyleSheet.create({
     height: 258,
     paddingTop: 27,
     paddingBottom: 27,
-    backgroundColor: colors.headerBackground,
-    // backgroundColor: 'green',
   },
   headerTitle: {
     flexDirection: 'row',

@@ -25,7 +25,6 @@ import MoreIcon from 'assets/icons/tabBar/more.svg';
 
 import colors from 'themes/colors';
 
-import ParallaxHeader from 'components/ParallaxHeader/ParallaxHeader';
 import styles from './navigation.styles';
 
 const AppStack = createStackNavigator();

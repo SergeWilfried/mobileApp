@@ -25,7 +25,7 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.bold,
     fontSize: fonts.size.medium,
     lineHeight: fonts.lineHeight.medium,
-    paddingBottom: 26
+    paddingBottom: 26,
   },
   subtitle: {
     color: colors.black,
