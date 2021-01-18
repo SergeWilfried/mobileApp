@@ -9,6 +9,7 @@ import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SelectCards from 'screens/SelectCards';
 
+import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
 
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
@@ -111,6 +112,7 @@ function AppScreens() {
           name="ConfirmCardDeposit"
           component={ConfirmCardDeposit}
         />
+        <AppStack.Screen name="Congratulations" component={Congratulations} />
       </AppStack.Navigator>
     </>
   );

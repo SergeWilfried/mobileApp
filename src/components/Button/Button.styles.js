@@ -7,8 +7,10 @@ export default StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
+    alignContent: 'center',
     borderRadius: 100,
     backgroundColor: colors.theme,
+    height: 58,
   },
   disabled: {
     opacity: 0.5,
@@ -17,16 +19,13 @@ export default StyleSheet.create({
     backgroundColor: colors.white,
     width: 40,
     height: 40,
-    borderColor: '#02034a1a',
+    borderColor: colors.socialBorder,
     borderWidth: 1,
     borderRadius: 12,
   },
   title: {
-    fontSize: fonts.size.medium,
+    fontSize: fonts.size.large,
     fontWeight: fonts.weight.bold,
     color: colors.authScreenBackground,
-  },
-  defaultTitle: {
-    paddingVertical: 18,
   },
 });

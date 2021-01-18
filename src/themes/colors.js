@@ -31,6 +31,9 @@ const colors = {
 
   // loader
   loaderOverlay: 'rgba(255, 255, 255, 0.75)',
+
+  // Facebook/Google Button color
+  socialBorder: '#02034a1a',
 };
 
 export default colors;

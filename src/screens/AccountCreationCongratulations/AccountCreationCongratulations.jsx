@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 
 import * as userActions from 'resources/user/user.actions';
 
-import AuthSuccess from 'components/AuthSuccess';
+import Congratulations from 'components/Congratulations';
 
-function Congratulations() {
+function AccountCreationCongratulations() {
   const dispatch = useDispatch();
 
   const onContinuePress = useCallback(() => {
@@ -14,7 +14,7 @@ function Congratulations() {
   }, [dispatch]);
 
   return (
-    <AuthSuccess
+    <Congratulations
       title="Congratulations"
       subTitle="You created your DuniaPay account. Now you’re ready to access your wallet."
       buttonName="Go to wallet"
@@ -23,10 +23,10 @@ function Congratulations() {
   );
 }
 
-Congratulations.propTypes = {
+AccountCreationCongratulations.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default Congratulations;
+export default AccountCreationCongratulations;

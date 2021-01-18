@@ -44,7 +44,7 @@ function PinCodeChoose({ navigation, route }) {
       if (pinFlow === AUTH.SIGN_UP) {
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Congratulations' }],
+          routes: [{ name: 'AccountCreationCongratulations' }],
         });
       } else if (pinFlow === AUTH.SIGN_IN) {
         dispatch(userActions.setUserAuthenticated());

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -17,6 +17,21 @@ function ConfirmCardDeposit({ navigation, route }) {
     cardNumber,
   } = route.params;
 
+  const handlePressConfirm = useCallback(() => {
+    navigation.navigate('Congratulations', {
+      title: 'Congratulations!',
+      buttonName: 'Back to Wallet',
+      screenStyle: styles.successScreen,
+      onContinuePress: () => navigation.navigate('DepositMoney'),
+      subTitle: (
+        <Text>
+          You just toped up <Text style={styles.amountMoney}>₣ {value}</Text> to
+          your DuniaPay Wallet.
+        </Text>
+      ),
+    });
+  }, [value, navigation]);
+
   return (
     <ConfirmDeposit
       onPressContinue={() => {}}
@@ -26,6 +41,7 @@ function ConfirmCardDeposit({ navigation, route }) {
       subTitle="Enter amount"
       navigation={navigation}
       leftIcon={CardPayment}
+      handleConfirm={handlePressConfirm}
     >
       <View style={styles.cardContent}>
         <Text style={styles.cardTitle}>{cardNumber}</Text>

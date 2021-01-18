@@ -11,7 +11,7 @@ import ForgotPassword from 'screens/ForgotPassword';
 import ResetPassword from 'screens/ResetPassword';
 import InviteCode from 'screens/InviteCode';
 import SignIn from 'screens/SignIn';
-import Congratulations from 'screens/Congratulations';
+import AccountCreationCongratulations from 'screens/AccountCreationCongratulations';
 import VerifyEmail from 'screens/VerifyEmail';
 import CreateAccount from 'screens/CreateAccount';
 import PinCodeChoose from 'screens/PinCodeChoose';
@@ -51,8 +51,8 @@ function AuthScreens() {
           <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
           <AuthStack.Screen name="ResetPassword" component={ResetPassword} />
           <AuthStack.Screen
-            name="Congratulations"
-            component={Congratulations}
+            name="AccountCreationCongratulations"
+            component={AccountCreationCongratulations}
           />
           <AuthStack.Screen name="VerifyEmail" component={VerifyEmail} />
         </AuthStack.Navigator>

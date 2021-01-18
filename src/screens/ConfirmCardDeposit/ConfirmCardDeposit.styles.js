@@ -26,4 +26,10 @@ export default StyleSheet.create({
   cardSubTitleRightPart: {
     marginLeft: 46,
   },
+  successScreen: {
+    backgroundColor: colors.mainScreenBackground,
+  },
+  amountMoney: {
+    fontWeight: fonts.weight.bold,
+  },
 });

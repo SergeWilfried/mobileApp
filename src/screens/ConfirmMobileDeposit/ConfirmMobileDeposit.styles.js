@@ -20,4 +20,10 @@ export default StyleSheet.create({
     fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.small,
   },
+  amountMoney: {
+    fontWeight: fonts.weight.bold,
+  },
+  successScreen: {
+    backgroundColor: colors.mainScreenBackground,
+  },
 });

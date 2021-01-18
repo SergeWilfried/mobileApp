@@ -6,15 +6,7 @@ import Text from 'components/Text';
 
 import styles from './Button.styles';
 
-function Button({
-  type,
-  onPress,
-  disabled,
-  title,
-  style,
-  icon: Icon,
-  buttonStyle,
-}) {
+function Button({ type, onPress, disabled, title, style, icon: Icon }) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -23,22 +15,12 @@ function Button({
       style={[
         styles.button,
         type === 'social' && styles.social,
-        buttonStyle,
         disabled && styles.disabled,
         style,
       ]}
     >
       {Icon && <Icon />}
-      {title && (
-        <Text
-          style={[
-            styles.title,
-            styles.defaultTitle,
-          ]}
-        >
-          {title}
-        </Text>
-      )}
+      {title && <Text style={styles.title}>{title}</Text>}
     </TouchableOpacity>
   );
 }
@@ -50,7 +32,6 @@ Button.propTypes = {
   title: PropTypes.string,
   icon: PropTypes.elementType,
   style: ViewPropTypes.style,
-  buttonStyle: Text.propTypes.style,
 };
 
 Button.defaultProps = {
@@ -59,7 +40,6 @@ Button.defaultProps = {
   title: null,
   style: null,
   icon: null,
-  buttonStyle: null,
 };
 
 export default Button;

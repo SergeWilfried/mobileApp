@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 
-import AuthSuccess from 'components/AuthSuccess';
+import Congratulations from 'components/Congratulations';
 
 function VerifyEmail() {
   const onContinuePress = useCallback(() => {}, []);
 
   return (
-    <AuthSuccess
+    <Congratulations
       title="Verify email"
       subTitle="Please verify your email to protect your account."
       buttonName="Open email"
