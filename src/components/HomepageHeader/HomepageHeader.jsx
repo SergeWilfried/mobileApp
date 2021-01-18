@@ -15,9 +15,7 @@ function HomepageHeader({
   subtitle,
   avatarUrl,
   username,
-  textScale,
-  textSubtitleScale,
-  textTranslateY,
+  styles: propsStyles,
 }) {
   const getInitials = (name) => {
     const initials = name.substring(0, 1).toUpperCase();
@@ -37,22 +35,11 @@ function HomepageHeader({
             <Text>{getInitials(username)}</Text>
           )}
         </TouchableOpacity>
-        <Animated.View
-          style={[
-            styles.text,
-            {
-              transform: [{ scale: textSubtitleScale }],
-            },
-          ]}
-        >
+        <Animated.View style={[styles.text, propsStyles.title]}>
           <Text style={[styles.text, styles.title]}>{title}</Text>
         </Animated.View>
       </View>
-      <Animated.View
-        style={{
-          transform: [{ scale: textScale }, { translateY: textTranslateY }],
-        }}
-      >
+      <Animated.View style={propsStyles.subtitle}>
         <Text style={styles.headerSubtitle}>{subtitle}</Text>
       </Animated.View>
       <View style={styles.iconsContainer}>
@@ -72,6 +59,10 @@ HomepageHeader.propTypes = {
   subtitle: PropTypes.string,
   username: PropTypes.string,
   avatarUrl: PropTypes.string,
+  propsStyles: PropTypes.shape({
+    title: PropTypes.shape({}),
+    subtitle: PropTypes.shape({}),
+  }),
 };
 
 HomepageHeader.defaultProps = {
@@ -79,6 +70,10 @@ HomepageHeader.defaultProps = {
   subtitle: '',
   username: '',
   avatarUrl: '',
+  propsStyles: {
+    title: {},
+    subtitle: {},
+  },
 };
 
 export default HomepageHeader;

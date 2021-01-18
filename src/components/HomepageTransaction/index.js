@@ -1,1 +1,1 @@
-export { default } from './HomepageTransaction2';
+export { default } from './HomepageTransaction';
