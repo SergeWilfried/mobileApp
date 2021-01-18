@@ -7,6 +7,8 @@ import Wallet from 'screens/Wallet';
 import DepositMoney from 'screens/DepositMoney';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
+import SelectCards from 'screens/SelectCards';
+
 import MainHeader from 'components/MainHeader';
 
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
@@ -25,7 +27,7 @@ function DepositScreens() {
   return (
     <DepositStack.Navigator
       screenOptions={{
-        header: MainHeader,
+        header: (props) => <MainHeader {...props} />,
       }}
     >
       <DepositStack.Screen
@@ -34,6 +36,14 @@ function DepositScreens() {
         options={{
           title: 'Top up my Wallet',
           subTitle: 'Choose a deposit method',
+        }}
+      />
+      <DepositStack.Screen
+        name="SelectCards"
+        component={SelectCards}
+        options={{
+          title: 'Debit Card Top up',
+          subTitle: 'Choose a debit card',
         }}
       />
     </DepositStack.Navigator>

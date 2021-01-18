@@ -5,6 +5,9 @@ import styles from 'themes/fonts';
 
 export default StyleSheet.create({
   header: {
+    backgroundColor: colors.mainScreenBackground,
+  },
+  titleWrapper: {
     paddingTop: 36,
     flexDirection: 'row',
     justifyContent: 'center',

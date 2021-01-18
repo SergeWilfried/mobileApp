@@ -1,11 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import {
-  View,
-  TextInput,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
+import { View, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Text from 'components/Text';
@@ -57,45 +51,47 @@ function ConfirmDeposit({
   );
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'android' ? 'height' : 'padding'}
         style={styles.container}
         keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 30}
       >
         <MainHeader title={title} subTitle={subTitle} navigation={navigation} />
-        <View style={styles.wrapperInput}>
-          <Text style={[styles.inputText, styles.currency]}>{currency}</Text>
-          <TextInput
-            multiline={false}
-            underlineColorAndroid="transparent"
-            ref={inputRef}
-            onChangeText={handleChangeText}
-            value={amountMoney}
-            blurOnSubmit={false}
-            style={styles.inputText}
-            keyboardType="numeric"
+        <View style={styles.contentWrapper}>
+          <View style={styles.wrapperInput}>
+            <Text style={[styles.inputText, styles.currency]}>{currency}</Text>
+            <TextInput
+              multiline={false}
+              underlineColorAndroid="transparent"
+              ref={inputRef}
+              onChangeText={handleChangeText}
+              value={amountMoney}
+              blurOnSubmit={false}
+              style={styles.inputText}
+              keyboardType="numeric"
+            />
+          </View>
+          <Text style={styles.subTitle}>
+            Available balance: {currency} {amountMoney}
+          </Text>
+          <Card
+            leftIcon={leftIcon}
+            rightIcon={RightIcon}
+            onCardClick={handleBack}
+            cardStyle={styles.card}
+          >
+            {children}
+          </Card>
+          <Button
+            onPress={handleConfirm}
+            style={styles.buttonConfirm}
+            disabled={isDisabled}
+            title="Confirm Top up"
           />
         </View>
-        <Text style={styles.subTitle}>
-          Available balance: {currency} {amountMoney}
-        </Text>
-        <Card
-          leftIcon={leftIcon}
-          rightIcon={RightIcon}
-          onCardClick={handleBack}
-          cardStyle={styles.card}
-        >
-          {children}
-        </Card>
-        <Button
-          onPress={handleConfirm}
-          style={styles.buttonConfirm}
-          disabled={isDisabled}
-          title="Confirm Top up"
-        />
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 }
 

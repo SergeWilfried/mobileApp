@@ -10,10 +10,13 @@ export default StyleSheet.create({
     flex: 1,
   },
   container: {
-    marginTop: height > 700 ? 35 : -10,
-    marginHorizontal: 16,
-    alignItems: 'center',
     flex: 1,
+  },
+  contentWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    marginHorizontal: 16,
+    marginTop: height > 700 ? 35 : 0,
   },
   wrapperInput: {
     flexDirection: 'row',
@@ -37,7 +40,7 @@ export default StyleSheet.create({
     width: '100%',
     marginTop: 'auto',
     marginBottom: 30,
-    height: 58,
+    height: height > 700 ? 58 : 50,
   },
   card: {
     height: 78,

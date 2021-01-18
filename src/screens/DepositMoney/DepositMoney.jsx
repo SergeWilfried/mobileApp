@@ -10,7 +10,6 @@ import CreditCardIcon from 'assets/icons/creditCard.svg';
 import TransferIcon from 'assets/icons/transfer.svg';
 import RightArrow from 'assets/icons/rightArrow.svg';
 import PhoneOperator from 'assets/icons/MtnPhoneOperator.svg';
-import CardPayment from 'assets/icons/mastercard.svg';
 
 import styles from './DepositMoney.styles';
 
@@ -38,12 +37,7 @@ const cards = [
     title: 'Debit card',
     subTitle: 'Send money to your wallet with a debit card',
     handleRightClick: (navigation) => {
-      navigation.navigate('ConfirmCardDeposit', {
-        cardName: 'Shojol Islam',
-        cardExpirationDate: 'Exp. 12/22',
-        cardNumber: '•••• 1234',
-        CardPayment,
-      });
+      navigation.navigate('SelectCards');
     },
   },
   {

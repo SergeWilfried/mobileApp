@@ -24,8 +24,8 @@ function MainHeader({
   }, [navigation]);
 
   return (
-    <>
-      <View style={styles.header}>
+    <View style={styles.header}>
+      <View style={styles.titleWrapper}>
         <TouchableOpacity onPress={handleGoBack} style={styles.arrowBack}>
           <BackIcon />
         </TouchableOpacity>
@@ -34,7 +34,7 @@ function MainHeader({
       {Boolean(subTitle) && (
         <Text style={styles.headerSubTitle}>{subTitle}</Text>
       )}
-    </>
+    </View>
   );
 }
 
