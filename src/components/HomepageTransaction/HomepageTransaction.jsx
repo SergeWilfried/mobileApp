@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { Text, View, Dimensions, Animated, ScrollView } from 'react-native';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { Text, View, Dimensions, Animated, ScrollView, useWindowDimensions, Platform } from 'react-native';
 import HomepageHeader from 'components/HomepageHeader';
 
 import SlidingUpPanel from 'rn-sliding-up-panel';
@@ -16,7 +16,11 @@ function HomepageTransaction() {
   const AVATARURL = '';
   const PANEL_VELOCITY = 2.3;
   const USERNAME = 'Tatyana';
-  const draggableRange = { top: height - 160, bottom: height - 350 };
+
+  const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+  const TOP_RATIO = 0.78;
+  const BOTTOM_RATIO = 0.55;
+  const draggableRange = { top: (height - statusBarHeight) * TOP_RATIO, bottom: (height - statusBarHeight) * BOTTOM_RATIO };
   const { top, bottom } = draggableRange;
   const [scrollEnabled, setScrollEnabled] = useState(false);
   const [allowDragging, setAllowDragging] = useState(true);
