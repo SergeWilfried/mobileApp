@@ -19,7 +19,7 @@ function HomepageTransaction() {
 
   const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
   const TOP_RATIO = 0.78;
-  const BOTTOM_RATIO = 0.55;
+  const BOTTOM_RATIO = 0.5;
   const draggableRange = { top: (height - statusBarHeight) * TOP_RATIO, bottom: (height - statusBarHeight) * BOTTOM_RATIO };
   const { top, bottom } = draggableRange;
   const [scrollEnabled, setScrollEnabled] = useState(false);
