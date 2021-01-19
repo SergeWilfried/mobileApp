@@ -15,3 +15,11 @@ export const AUTH = {
 export const STORAGE = {
   HIDE_ON_BOARDING: 'HIDE_ON_BOARDING',
 };
+
+export const NAVBAR_ICONS = {
+  WALLET: 'Wallet',
+  SAVINGS: 'Savings',
+  SEND: 'Send',
+  AIRTIME: 'Airtime',
+  MORE: 'More',
+};

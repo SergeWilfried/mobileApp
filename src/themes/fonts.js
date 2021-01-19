@@ -12,7 +12,8 @@ const letterSpacing = {
 };
 
 const size = {
-  extraSmall: 12,
+  extraExtraSmall: normalize(10),
+  extraSmall: normalize(12),
   small: normalize(14),
   regular: normalize(16),
   medium: normalize(18),

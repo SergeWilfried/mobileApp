@@ -11,4 +11,10 @@ export default StyleSheet.create({
     flex: 0,
     backgroundColor: colors.mainScreenBackground,
   },
+  tabNavigation: {
+    paddingVertical: 6,
+  },
+  bottomNavigation: {
+    backgroundColor: colors.theme,
+  },
 });

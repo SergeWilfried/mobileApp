@@ -3,6 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaView } from 'react-native';
 
+import * as constants from 'helpers/constants';
+
 import Wallet from 'screens/Wallet';
 import DepositMoney from 'screens/DepositMoney';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
@@ -11,6 +13,8 @@ import SelectCards from 'screens/SelectCards';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
+import TabBarIcon from 'components/TabBarIcon';
+import TabBarLabel from 'components/TabBarLabel';
 
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
 import SavingsIcon from 'assets/icons/tabBar/savings.svg';
@@ -53,45 +57,86 @@ function DepositScreens() {
 
 function Dashboard() {
   return (
-    <Tab.Navigator initialRouteName="Wallet">
+    <Tab.Navigator
+      initialRouteName={constants.NAVBAR_ICONS.WALLET}
+      tabBarOptions={{
+        tabStyle: styles.tabNavigation,
+        style: styles.bottomNavigation,
+      }}
+    >
       <Tab.Screen
-        name="Wallet"
+        name={constants.NAVBAR_ICONS.WALLET}
         component={DepositScreens}
         options={{
-          tabBarLabel: 'Wallet',
-          tabBarIcon: WalletIcon,
+          tabBarLabel: (label) => (
+            <TabBarLabel
+              focused={label.focused}
+              text={constants.NAVBAR_ICONS.WALLET}
+            />
+          ),
+          tabBarIcon: (icon) => (
+            <TabBarIcon focused={icon.focused} icon={WalletIcon} />
+          ),
         }}
       />
       <Tab.Screen
-        name="Savings"
+        name={constants.NAVBAR_ICONS.SAVINGS}
         component={Wallet}
         options={{
-          tabBarLabel: 'Savings',
-          tabBarIcon: SavingsIcon,
+          tabBarLabel: (label) => (
+            <TabBarLabel
+              focused={label.focused}
+              text={constants.NAVBAR_ICONS.SAVINGS}
+            />
+          ),
+          tabBarIcon: (icon) => (
+            <TabBarIcon focused={icon.focused} icon={SavingsIcon} />
+          ),
         }}
       />
       <Tab.Screen
-        name="Send"
+        name={constants.NAVBAR_ICONS.SEND}
         component={Wallet}
         options={{
-          tabBarLabel: 'Send',
-          tabBarIcon: SendIcon,
+          tabBarLabel: (label) => (
+            <TabBarLabel
+              focused={label.focused}
+              text={constants.NAVBAR_ICONS.SEND}
+            />
+          ),
+          tabBarIcon: (icon) => (
+            <TabBarIcon focused={icon.focused} icon={SendIcon} />
+          ),
         }}
       />
       <Tab.Screen
-        name="Airtime"
+        name={constants.NAVBAR_ICONS.AIRTIME}
         component={Wallet}
         options={{
-          tabBarLabel: 'Airtime',
-          tabBarIcon: AirtimeIcon,
+          tabBarLabel: (label) => (
+            <TabBarLabel
+              focused={label.focused}
+              text={constants.NAVBAR_ICONS.AIRTIME}
+            />
+          ),
+          tabBarIcon: (icon) => (
+            <TabBarIcon focused={icon.focused} icon={AirtimeIcon} />
+          ),
         }}
       />
       <Tab.Screen
-        name="More"
+        name={constants.NAVBAR_ICONS.MORE}
         component={Wallet}
         options={{
-          tabBarLabel: 'More',
-          tabBarIcon: MoreIcon,
+          tabBarLabel: (label) => (
+            <TabBarLabel
+              focused={label.focused}
+              text={constants.NAVBAR_ICONS.MORE}
+            />
+          ),
+          tabBarIcon: (icon) => (
+            <TabBarIcon focused={icon.focused} icon={MoreIcon} />
+          ),
         }}
       />
     </Tab.Navigator>
