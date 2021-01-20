@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Text, View, Dimensions, Animated, ScrollView, useWindowDimensions, Platform } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { normalize } from 'helpers/utils';
+import { Text, View, Dimensions, Animated, ScrollView, useWindowDimensions, Platform, PixelRatio, Pressable } from 'react-native';
 import HomepageHeader from 'components/HomepageHeader';
 
 import SlidingUpPanel from 'rn-sliding-up-panel';
@@ -17,13 +19,19 @@ function HomepageTransaction() {
   const PANEL_VELOCITY = 2.3;
   const USERNAME = 'Tatyana';
 
-  const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
-  const TOP_RATIO = 0.78;
-  const BOTTOM_RATIO = 0.5;
-  const draggableRange = { top: (height - statusBarHeight) * TOP_RATIO, bottom: (height - statusBarHeight) * BOTTOM_RATIO };
+  const statusBarHeight = getStatusBarHeight(true);
+  const additionalPadding = 27;
+
+  const pixelRatioValue = PixelRatio.getPixelSizeForLayoutSize(additionalPadding);
+  const fullHeaderHeight = 258;
+  const smallHeaderHeight = 80;
+  const draggableRange = { top: height - smallHeaderHeight - pixelRatioValue - statusBarHeight, bottom: height - fullHeaderHeight - pixelRatioValue - statusBarHeight 
+  };
   const { top, bottom } = draggableRange;
   const [scrollEnabled, setScrollEnabled] = useState(false);
   const [allowDragging, setAllowDragging] = useState(true);
+  const [lastDragValue, setLastDragValue] = useState(bottom);
+  const [beginScrollPosition, setBeginScrollPosition] = useState(1);
   const [atTop, setAtTop] = useState(true);
   const snappingPoints = [top, bottom];
   const panelRef = useRef(null);
@@ -75,42 +83,61 @@ function HomepageTransaction() {
     toValue: draggableRange.bottom,
   };
 
+  const enableDragging = useCallback(() => {
+    setAllowDragging(true);
+    setScrollEnabled(false);
+  }, []);
+
+  const enableScroll = useCallback(() => {
+    setAllowDragging(false);
+    setScrollEnabled(true);
+  }, []);
+
+  const slidePanelDown = useCallback(() => {
+    if (panelRef && panelRef.current) {
+      panelRef.current.show(hideFullScreenPanelOptions);
+    }
+  }, [panelRef]);
+
   const onMomentumDragEnd = useCallback(
-    (value) => {
-      if (value === draggableRange.top && !scrollEnabled) {
-        setScrollEnabled(true);
-        setAtTop(true);
-      }
+    (value) => {      
+      setLastDragValue(value);
+      const isPanelOnTop = value === draggableRange.top;
+      return isPanelOnTop ?  enableScroll() : enableDragging();
     },
     [draggableRange, scrollEnabled],
   );
 
   const onMomentumScrollEnd = useCallback((event) => {
     const { nativeEvent } = event;
-    if (nativeEvent.contentOffset.y === 0) {
-      setAtTop(true);
-      setAllowDragging(true);
+    const isScrollOnTop = nativeEvent.contentOffset.y === 0;
+    const isScrolledToTop = beginScrollPosition <= 0 && isScrollOnTop;
+
+    if (isScrolledToTop) {
+      enableDragging();
+      slidePanelDown();
     }
+  }, [beginScrollPosition, panelRef]);
+
+  const onMomentumScrollBegin = useCallback((event) => {
+    const { nativeEvent } = event;
+    setBeginScrollPosition(nativeEvent.contentOffset.y);
   }, []);
 
-  const onDragStart = useCallback(
-    (_, gestureState) => {
-      if (atTop && scrollEnabled) {
-        if (gestureState.vy > 0) {
-          setScrollEnabled(false);
-          setAllowDragging(true);
-          if (panelRef && panelRef.current) {
-            panelRef.current.show(hideFullScreenPanelOptions);
-          }
-        } else {
-          setAtTop(false);
-          setAllowDragging(false);
-        }
-      }
-    },
-    [atTop, scrollEnabled, panelRef],
-  );
+  const onPressIn = useCallback(() => {
+    const isPanelOnTop = lastDragValue === draggableRange.top;
+    if (isPanelOnTop) {
+      enableDragging();
+    }
+  }, [lastDragValue]);
 
+  const onPressOut = useCallback(() => {    
+    const isPanelOnTop = lastDragValue === draggableRange.top;
+    if (isPanelOnTop) {
+      enableScroll();
+    }
+  }, [lastDragValue]);
+  
   return (
     <>
       <HomepageHeader
@@ -125,7 +152,6 @@ function HomepageTransaction() {
         draggableRange={draggableRange}
         animatedValue={draggedValue}
         onMomentumDragEnd={onMomentumDragEnd}
-        onDragStart={onDragStart}
         backdropOpacity={0}
         snappingPoints={snappingPoints}
         showBackdrop={false}
@@ -133,15 +159,18 @@ function HomepageTransaction() {
         allowDragging={allowDragging}
       >
         <View style={styles.screen}>
-          <View>
-            <View style={styles.iconContainer}>
-              <Home />
+          <Pressable onPressIn={onPressIn} onPressOut={onPressOut} >
+            <View>
+              <View style={styles.iconContainer}>
+                <Home />
+              </View>
+              <Text style={styles.title}>Latest transactions</Text>
             </View>
-            <Text style={styles.title}>Latest transactions</Text>
-          </View>
+          </Pressable>
           <ScrollView
             scrollEnabled={scrollEnabled}
             onMomentumScrollEnd={onMomentumScrollEnd}
+            onMomentumScrollBegin={onMomentumScrollBegin}
           >
             <View style={styles.container}>
               <View style={styles.titleContainer}>

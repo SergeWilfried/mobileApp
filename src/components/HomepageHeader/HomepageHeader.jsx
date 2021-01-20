@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Image, Animated } from 'react-native';
+import { View, TouchableOpacity, Image, Animated, Platform } from 'react-native';
 
 import Text from 'components/Text';
 
@@ -20,7 +20,14 @@ function HomepageHeader({ title, subtitle, avatarUrl, username, propsStyles }) {
   };
 
   return (
-    <View style={styles.header}>
+    <View style={styles.header}
+    onLayout={(event) => {
+      var {x, y, width, height} = event.nativeEvent.layout;
+    
+      console.log('HomepageHeader x, y, width, height:', Platform.OS, x, y, width, height);
+      
+    }}
+    >
       <View style={styles.headerTitle}>
         <TouchableOpacity style={styles.profileContainer} onPress={() => {}}>
           {avatarUrl ? (

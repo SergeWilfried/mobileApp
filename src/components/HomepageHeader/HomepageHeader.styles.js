@@ -6,7 +6,7 @@ import fonts from 'themes/fonts';
 export default StyleSheet.create({
   header: {
     width: '100%',
-    height: '100%',
+    height: 258,
     paddingTop: 27,
     paddingBottom: 27,
   },
