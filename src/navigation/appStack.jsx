@@ -23,8 +23,6 @@ import SendIcon from 'assets/icons/tabBar/send.svg';
 import AirtimeIcon from 'assets/icons/tabBar/airtime.svg';
 import MoreIcon from 'assets/icons/tabBar/more.svg';
 
-import colors from 'themes/colors';
-
 import styles from './navigation.styles';
 
 const AppStack = createStackNavigator();
@@ -38,6 +36,11 @@ function DepositScreens() {
         header: (props) => <MainHeader {...props} />,
       }}
     >
+      <DepositStack.Screen
+        name="Homepage"
+        component={Homepage}
+        options={{ header: () => null }}
+      />
       <DepositStack.Screen
         name="DepositMoney"
         component={DepositMoney}

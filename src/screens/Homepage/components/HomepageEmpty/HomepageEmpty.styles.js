@@ -6,6 +6,7 @@ import fonts from 'themes/fonts';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white,
@@ -14,15 +15,15 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
   },
   textContainer: {
-    paddingTop: 26,
+    marginTop: 26,
   },
   text: {
     textAlign: 'center',
-    color: colors.textFontWithOpacity,
+    color: colors.gray,
+    lineHeight: fonts.lineHeight.regular,
   },
   linkText: {
     color: colors.theme,
     fontWeight: fonts.weight.bold,
-    lineHeight: fonts.lineHeight.medium,
   },
 });

@@ -4,7 +4,6 @@ const colors = {
   white: '#FFFFFF',
   black: '#101010',
   gray: 'rgba(16, 16, 16, 0.5)',
-  darkBlack: '#000000',
 
   // input
   inputStandardBorder: 'rgba(155, 155, 155, 0.6)',
@@ -32,7 +31,6 @@ const colors = {
   linkFont: '#263BBA',
   inActiveTabBarFont: '#99b4ff',
   textFont: '#101010',
-  textFontWithOpacity: 'rgba(16, 16, 16, 0.5)',
   tabBarfont: '#99b4ff',
 
   // progressBar

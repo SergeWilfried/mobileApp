@@ -4,9 +4,11 @@ import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
-  iconContainer: {
+  contentContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 20,
+    justifyContent: 'space-between',
+    marginTop: 17,
   },
   textContainer: {
     width: '100%',
@@ -15,8 +17,7 @@ export default StyleSheet.create({
   },
   receiveMoney: {
     color: colors.inputCorrect,
-    fontSize: fonts.size.medium,
-    lineHeight: fonts.lineHeight.medium,
+    fontSize: fonts.size.regular,
   },
   iconWrapper: {
     padding: 11,
@@ -24,22 +25,15 @@ export default StyleSheet.create({
     borderColor: colors.transactionBorder,
     borderWidth: 1,
   },
-  contentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 17,
-  },
   title: {
     color: colors.black,
-    fontWeight: fonts.weight.bold,
-    fontSize: fonts.size.medium,
-    lineHeight: fonts.lineHeight.medium,
+    fontWeight: fonts.weight.medium,
+    fontSize: fonts.size.regular,
   },
   subtitle: {
-    color: colors.black,
+    color: colors.gray,
     fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.extraSmall,
-    opacity: 0.5,
+    marginTop: 6,
   },
 });

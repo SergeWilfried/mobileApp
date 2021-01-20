@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Image, Animated, Platform } from 'react-native';
+import { View, TouchableOpacity, Image, Animated } from 'react-native';
 
 import Text from 'components/Text';
 
@@ -10,15 +10,16 @@ import SendMoney from 'assets/icons/sendMoneyWhiteIcon.svg';
 
 import styles from './HomepageHeader.styles';
 
-function HomepageHeader({ title, subtitle, avatarUrl, username, propsStyles }) {
-  const getInitials = (name) => {
-    const initials = name.substring(0, 1).toUpperCase();
-    if (username.length > 1) {
-      return username.substring(0, 2).toUpperCase();
-    }
-    return initials;
-  };
-
+function HomepageHeader({
+  title,
+  subtitle,
+  avatarUrl,
+  username,
+  propsStyles,
+  onClickTopUp,
+  onClickSend,
+  onClickReceive,
+}) {
   return (
     <View style={styles.header}>
       <View style={styles.headerTitle}>
@@ -26,7 +27,7 @@ function HomepageHeader({ title, subtitle, avatarUrl, username, propsStyles }) {
           {avatarUrl ? (
             <Image source={{ uri: avatarUrl }} />
           ) : (
-            <Text>{getInitials(username)}</Text>
+            <Text>{username[0].toUpperCase()}</Text>
           )}
         </TouchableOpacity>
         <Animated.View style={[styles.text, propsStyles.title]}>
@@ -36,26 +37,26 @@ function HomepageHeader({ title, subtitle, avatarUrl, username, propsStyles }) {
       <Animated.View style={propsStyles.subtitle}>
         <Text style={styles.headerSubtitle}>{subtitle}</Text>
       </Animated.View>
-      <View style={styles.iconsContainer}>
-        <View>
-          <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
+      <Animated.View style={styles.iconsContainer}>
+        <TouchableOpacity onPress={onClickTopUp}>
+          <View style={styles.iconBackground}>
             <TopUp />
-          </TouchableOpacity>
+          </View>
           <Text style={styles.text}>Top up</Text>
-        </View>
-        <View>
-          <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onClickSend}>
+          <View style={styles.iconBackground}>
             <SendMoney />
-          </TouchableOpacity>
+          </View>
           <Text style={styles.text}>Send</Text>
-        </View>
-        <View>
-          <TouchableOpacity style={styles.iconBackground} onPress={() => {}}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onClickReceive}>
+          <View style={styles.iconBackground}>
             <ReceiveMoney />
-          </TouchableOpacity>
+          </View>
           <Text style={styles.text}>Receive</Text>
-        </View>
-      </View>
+        </TouchableOpacity>
+      </Animated.View>
     </View>
   );
 }
@@ -69,6 +70,9 @@ HomepageHeader.propTypes = {
     title: PropTypes.shape({}),
     subtitle: PropTypes.shape({}),
   }),
+  onClickTopUp: PropTypes.func,
+  onClickSend: PropTypes.func,
+  onClickReceive: PropTypes.func,
 };
 
 HomepageHeader.defaultProps = {
@@ -80,6 +84,9 @@ HomepageHeader.defaultProps = {
     title: {},
     subtitle: {},
   },
+  onClickTopUp: () => {},
+  onClickSend: () => {},
+  onClickReceive: () => {},
 };
 
 export default HomepageHeader;

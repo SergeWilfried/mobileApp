@@ -19,8 +19,8 @@ const size = {
   medium: normalize(18),
   large: normalize(20),
   extraLarge: normalize(24),
-  extraExtraLarge: normalize(62),
-  kingSize: normalize(36),
+  extraExtraLarge: normalize(36),
+  extraExtraExtraLarge: normalize(62),
 };
 
 const lineHeight = {

@@ -5,26 +5,24 @@ import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
   header: {
-    width: '100%',
-    height: 258,
-    paddingTop: 27,
-    paddingBottom: 27,
+    marginHorizontal: 16,
+    paddingTop: 28,
+    height: 248,
   },
   headerTitle: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 3.74,
-    marginHorizontal: 17.92,
+    marginBottom: 5,
   },
   title: {
-    opacity: 0.5,
+    color: colors.gray,
   },
   profileContainer: {
     height: 36,
     width: 36,
-    borderWidth: 2,
     borderColor: colors.profileBorder,
     borderRadius: 50,
+    borderWidth: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -38,7 +36,7 @@ export default StyleSheet.create({
   },
   headerSubtitle: {
     color: colors.black,
-    fontSize: fonts.size.kingSize,
+    fontSize: fonts.size.extraExtraLarge,
     lineHeight: fonts.lineHeight.extraLarge,
     letterSpacing: fonts.letterSpacing.regular,
     fontWeight: fonts.weight.bold,
