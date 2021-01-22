@@ -7,7 +7,7 @@ target 'duniapay' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-
+  
   target 'duniapayTests' do
     inherit! :complete
     # Pods for testing
@@ -20,6 +20,9 @@ target 'duniapay' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    end
   end
 end
 
