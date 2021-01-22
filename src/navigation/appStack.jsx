@@ -11,6 +11,7 @@ import DepositMoney from 'screens/DepositMoney';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SelectCards from 'screens/SelectCards';
+import ChooseProvider from 'screens/ChooseProvider';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -163,6 +164,7 @@ function AppScreens() {
           name="ConfirmCardDeposit"
           component={ConfirmCardDeposit}
         />
+        <AppStack.Screen name="ChooseProvider" component={ChooseProvider} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
       </AppStack.Navigator>
     </>

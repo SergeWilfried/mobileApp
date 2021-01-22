@@ -15,10 +15,11 @@ function PhoneNumberInput({
   onChangePhone,
   onChangeFormattedPhone,
   error,
+  text,
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Phone number</Text>
+      {text && <Text style={styles.label}>{text}</Text>}
       <PhoneInput
         ref={inputRef}
         defaultCode="US"
@@ -27,16 +28,17 @@ function PhoneNumberInput({
         onChangeText={onChangePhone}
         onChangeFormattedText={onChangeFormattedPhone}
         renderDropdownImage={<DownArrow />}
-        containerStyle={[styles.inputContainer, error && styles.inputContainerError]}
+        containerStyle={[
+          styles.inputContainer,
+          error && styles.inputContainerError,
+        ]}
         codeTextStyle={[styles.text, styles.codeText]}
         textInputStyle={[styles.text, styles.phoneText]}
         textContainerStyle={styles.textInputContainer}
         countryPickerButtonStyle={styles.countryInputContainer}
         textInputProps={{ selectionColor: colors.theme }}
       />
-      {error && (
-        <Text style={styles.error}>{error}</Text>
-      )}
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 }
@@ -51,11 +53,13 @@ PhoneNumberInput.propTypes = {
   onChangePhone: PropTypes.func.isRequired,
   onChangeFormattedPhone: PropTypes.func.isRequired,
   error: PropTypes.string,
+  text: PropTypes.string,
 };
 
 PhoneNumberInput.defaultProps = {
   inputRef: null,
   error: null,
+  text: null,
 };
 
 export default PhoneNumberInput;

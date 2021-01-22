@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import * as userSelectors from 'resources/user/user.selectors';
 
-import DismissKeyboard from 'components/DismissKeyboard';
 import SignUp from 'screens/SignUp';
 import ForgotPassword from 'screens/ForgotPassword';
 import ResetPassword from 'screens/ResetPassword';
@@ -17,6 +16,8 @@ import CreateAccount from 'screens/CreateAccount';
 import PinCodeChoose from 'screens/PinCodeChoose';
 import PinCodeEnter from 'screens/PinCodeEnter';
 import ResetCode from 'screens/ResetCode';
+
+import DismissKeyboard from 'components/DismissKeyboard';
 
 import styles from './navigation.styles';
 

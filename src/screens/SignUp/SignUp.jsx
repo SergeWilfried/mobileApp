@@ -52,6 +52,7 @@ function SignUp({ navigation }) {
             onChangePhone={onChangePhone}
             onChangeFormattedPhone={onChangeFormattedPhone}
             error={phoneError}
+            text="Phone number"
           />
         </View>
       </View>

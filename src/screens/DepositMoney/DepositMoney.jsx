@@ -9,7 +9,6 @@ import SmartphoneIcon from 'assets/icons/smartphone.svg';
 import CreditCardIcon from 'assets/icons/creditCard.svg';
 import TransferIcon from 'assets/icons/transfer.svg';
 import RightArrow from 'assets/icons/rightArrow.svg';
-import PhoneOperator from 'assets/icons/MtnPhoneOperator.svg';
 
 import styles from './DepositMoney.styles';
 
@@ -26,10 +25,7 @@ const cards = [
     title: 'Mobile money',
     subTitle: 'Send money to your wallet from your phone number',
     handleRightClick: (navigation) => {
-      navigation.navigate('ConfirmMobileDeposit', {
-        phoneNumber: '+375336376495',
-        PhoneOperator,
-      });
+      navigation.navigate('ChooseProvider');
     },
   },
   {

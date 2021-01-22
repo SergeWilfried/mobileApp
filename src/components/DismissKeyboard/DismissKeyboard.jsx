@@ -4,7 +4,7 @@ import { Platform, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import styles from './DismissKeyboard.styles';
 
-function DismissKeyboard({ children }) {
+function DismissKeyboard({ children, keyboardAvoidingViewProps }) {
   const [size, setSize] = useState('');
   const contentStyle = useMemo(
     () => (size ? { height: size } : styles.flexLayout),
@@ -30,6 +30,7 @@ function DismissKeyboard({ children }) {
       behavior="padding"
       style={styles.flexLayout}
       contentContainerStyle={styles.flexLayout}
+      {...keyboardAvoidingViewProps}
     >
       {withKeyboardDismiss}
     </KeyboardAvoidingView>
@@ -43,6 +44,13 @@ DismissKeyboard.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  keyboardAvoidingViewProps: PropTypes.shape({
+    keyboardVerticalOffset: PropTypes.number,
+  }),
+};
+
+DismissKeyboard.defaultProps = {
+  keyboardAvoidingViewProps: {},
 };
 
 export default DismissKeyboard;

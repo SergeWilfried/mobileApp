@@ -14,13 +14,13 @@ import * as userApi from 'resources/user/user.api';
 import styles from './ForgotPassword.styles';
 
 function ForgotPassword({ navigation }) {
-  const handleSubmit = useCallback(async (phoneNumber) => {
-    await userApi.forgotPassword(phoneNumber);
-    navigation.navigate(
-      'ResetCode',
-      { phoneNumber },
-    );
-  }, [navigation]);
+  const handleSubmit = useCallback(
+    async (phoneNumber) => {
+      await userApi.forgotPassword(phoneNumber);
+      navigation.navigate('ResetCode', { phoneNumber });
+    },
+    [navigation],
+  );
 
   const onBackNavigation = useCallback(() => {
     navigation.goBack();
@@ -51,14 +51,11 @@ function ForgotPassword({ navigation }) {
           onChangePhone={onChangePhone}
           onChangeFormattedPhone={onChangeFormattedPhone}
           error={phoneError}
+          text="Phone number"
         />
       </View>
       <View style={styles.buttonContinueWrapper}>
-        <Button
-          title="Continue"
-          disabled={!!phoneError}
-          onPress={onContinue}
-        />
+        <Button title="Continue" disabled={!!phoneError} onPress={onContinue} />
       </View>
     </View>
   );
