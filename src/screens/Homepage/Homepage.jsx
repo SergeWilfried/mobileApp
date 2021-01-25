@@ -132,7 +132,14 @@ function Homepage({ navigation }) {
     }
   }, [lastDragValue]);
 
-  const onClickTopUp = useCallback(() => navigation.navigate('DepositMoney'));
+  const onClickTopUp = useCallback(
+    () => navigation.navigate('DepositMoneyMethods'),
+    [navigation],
+  );
+
+  const onClickSend = useCallback(() => navigation.navigate('Send'), [
+    navigation,
+  ]);
 
   return (
     <>
@@ -144,6 +151,7 @@ function Homepage({ navigation }) {
         username={USERNAME}
         propsStyles={headerStyles}
         onClickTopUp={onClickTopUp}
+        onClickSend={onClickSend}
       />
       {!transactions.length ? (
         <HomepageEmpty onClickTopUp={onClickTopUp} />

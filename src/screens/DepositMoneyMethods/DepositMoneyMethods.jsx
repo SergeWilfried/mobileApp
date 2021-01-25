@@ -10,7 +10,7 @@ import CreditCardIcon from 'assets/icons/creditCard.svg';
 import TransferIcon from 'assets/icons/transfer.svg';
 import RightArrow from 'assets/icons/rightArrow.svg';
 
-import styles from './DepositMoney.styles';
+import styles from './DepositMoneyMethods.styles';
 
 // disable react-navigation warnings passing in route params Components.
 // https://reactnavigation.org/docs/troubleshooting/#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
@@ -44,7 +44,7 @@ const cards = [
   },
 ];
 
-function DepositMoney({ navigation }) {
+function DepositMoneyMethods({ navigation }) {
   return (
     <View style={styles.cardsContainer}>
       {cards.map(({ title, icon, subTitle, handleRightClick }) => (
@@ -66,11 +66,11 @@ function DepositMoney({ navigation }) {
   );
 }
 
-DepositMoney.propTypes = {
+DepositMoneyMethods.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default DepositMoney;
+export default DepositMoneyMethods;

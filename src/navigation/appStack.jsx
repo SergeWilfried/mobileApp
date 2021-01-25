@@ -7,11 +7,12 @@ import * as constants from 'helpers/constants';
 
 import Homepage from 'screens/Homepage';
 import Wallet from 'screens/Wallet';
-import DepositMoney from 'screens/DepositMoney';
+import DepositMoneyMethods from 'screens/DepositMoneyMethods';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
+import SendMoneyMethod from 'screens/SendMoneyMethod';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -30,7 +31,7 @@ const AppStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const DepositStack = createStackNavigator();
 
-function DepositScreens() {
+function DepositMoneyScreens() {
   return (
     <DepositStack.Navigator
       screenOptions={{
@@ -43,8 +44,8 @@ function DepositScreens() {
         options={{ header: () => null }}
       />
       <DepositStack.Screen
-        name="DepositMoney"
-        component={DepositMoney}
+        name="DepositMoneyMethods"
+        component={DepositMoneyMethods}
         options={{
           title: 'Top up my Wallet',
           subTitle: 'Choose a deposit method',
@@ -62,6 +63,25 @@ function DepositScreens() {
   );
 }
 
+function SendMoneyScreens() {
+  return (
+    <DepositStack.Navigator
+      screenOptions={{
+        header: (props) => <MainHeader {...props} />,
+      }}
+    >
+      <DepositStack.Screen
+        name="SendMoneyMethod"
+        component={SendMoneyMethod}
+        options={{
+          title: 'Send Money',
+          subTitle: 'How would you like to send money?',
+        }}
+      />
+    </DepositStack.Navigator>
+  );
+}
+
 function Dashboard() {
   return (
     <Tab.Navigator
@@ -73,7 +93,7 @@ function Dashboard() {
     >
       <Tab.Screen
         name={constants.NAVBAR_ICONS.WALLET}
-        component={DepositScreens}
+        component={DepositMoneyScreens}
         options={{
           tabBarLabel: (label) => (
             <TabBarLabel
@@ -103,7 +123,7 @@ function Dashboard() {
       />
       <Tab.Screen
         name={constants.NAVBAR_ICONS.SEND}
-        component={Wallet}
+        component={SendMoneyScreens}
         options={{
           tabBarLabel: (label) => (
             <TabBarLabel

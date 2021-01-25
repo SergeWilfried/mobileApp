@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 import fonts from 'themes/fonts';
 import colors from 'themes/colors';
