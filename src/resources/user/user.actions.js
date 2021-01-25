@@ -23,7 +23,7 @@ const setUser = async (userData, dispatch) => {
   if (!userData) return null;
   if (userData.accessToken) {
     config.token = userData.accessToken;
-    await setToken('token', userData.accessToken);
+    await setToken(userData.accessToken);
     dispatch(setUserToken(userData.accessToken));
   }
 

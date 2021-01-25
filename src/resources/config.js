@@ -5,7 +5,9 @@ const getApiUrl = () => {
   if (Config.MODE !== 'DEV') {
     return Config.API_URL;
   }
-  return Platform.OS === 'android' ? Config.ANDROID_API_URL : Config.IOS_API_URL;
+  return Platform.OS === 'android'
+    ? Config.ANDROID_API_URL
+    : Config.IOS_API_URL;
 };
 
 export default {

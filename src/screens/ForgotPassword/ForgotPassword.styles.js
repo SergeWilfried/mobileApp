@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
   screen: {

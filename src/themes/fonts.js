@@ -1,4 +1,4 @@
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 const type = {
   base: 'Roboto',

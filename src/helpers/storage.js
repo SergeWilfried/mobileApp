@@ -13,7 +13,7 @@ export const removeToken = () => {
 };
 
 export const getItem = async (key) => {
-  const item = await AsyncStorage.getItem(key)
+  const item = await AsyncStorage.getItem(key);
   return JSON.parse(item);
 };
 

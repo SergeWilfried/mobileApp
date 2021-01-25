@@ -30,3 +30,8 @@ export const signUpFacebook = (tokens) => {
 export const signInFacebook = (facebookAccessToken) => {
   return apiClient.post('accounts/signin/facebook', facebookAccessToken);
 };
+
+export const getBalance = async () => {
+  const { availableBalance } = await apiClient.get('users/current/balance');
+  return availableBalance;
+};

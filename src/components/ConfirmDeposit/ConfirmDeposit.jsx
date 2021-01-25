@@ -6,21 +6,15 @@ import Text from 'components/Text';
 import Button from 'components/Button';
 import MainHeader from 'components/MainHeader';
 import Card from 'components/Card';
+import FullScreenLoader from 'components/FullScreenLoader';
+import { processMoney } from 'helpers/utils.helper';
+
 import RightIcon from './components/RightIcon';
 
 import styles from './ConfirmDeposit.styles';
 
-const processMoney = (text) => {
-  const onlyNumbers = text.replace(/[^\d]/g, '');
-  const withoutLeadZeroes = onlyNumbers.replace(/^0+/, '');
-  const max6numbers = withoutLeadZeroes.slice(0, 6);
-  return max6numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 function ConfirmDeposit({
   children,
-  amountMoney,
-  onChangeAmountMoney,
   title,
   subTitle,
   navigation,
@@ -28,6 +22,8 @@ function ConfirmDeposit({
   handleConfirm,
 }) {
   const [isDisabled, setDisabled] = useState(true);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [amountMoney, onChangeAmountMoney] = useState('');
   const inputRef = useRef();
   const currency = '₣';
 
@@ -41,6 +37,13 @@ function ConfirmDeposit({
     }
   }, [navigation]);
 
+  const onConfirm = useCallback(async () => {
+    setSubmitting(true);
+    const validAmount = parseInt(amountMoney.replace(/\D+/g, ''), 10);
+    await handleConfirm(validAmount, amountMoney);
+    setSubmitting(false);
+  }, [amountMoney]);
+
   const handleChangeText = useCallback(
     (text) => {
       const processedMoney = processMoney(text);
@@ -51,47 +54,56 @@ function ConfirmDeposit({
   );
 
   return (
-    <View style={styles.screen}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'android' ? 'height' : 'padding'}
-        style={styles.container}
-        keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 30}
-      >
-        <MainHeader title={title} subTitle={subTitle} navigation={navigation} />
-        <View style={styles.contentWrapper}>
-          <View style={styles.wrapperInput}>
-            <Text style={[styles.inputText, styles.currency]}>{currency}</Text>
-            <TextInput
-              multiline={false}
-              underlineColorAndroid="transparent"
-              ref={inputRef}
-              onChangeText={handleChangeText}
-              value={amountMoney}
-              blurOnSubmit={false}
-              style={styles.inputText}
-              keyboardType="numeric"
+    <>
+      {isSubmitting && <FullScreenLoader />}
+      <View style={styles.screen}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'android' ? 'height' : 'padding'}
+          style={styles.container}
+          keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 30}
+        >
+          <MainHeader
+            title={title}
+            subTitle={subTitle}
+            navigation={navigation}
+          />
+          <View style={styles.contentWrapper}>
+            <View style={styles.wrapperInput}>
+              <Text style={[styles.inputText, styles.currency]}>
+                {currency}
+              </Text>
+              <TextInput
+                multiline={false}
+                underlineColorAndroid="transparent"
+                ref={inputRef}
+                onChangeText={handleChangeText}
+                value={amountMoney}
+                blurOnSubmit={false}
+                style={styles.inputText}
+                keyboardType="numeric"
+              />
+            </View>
+            <Text style={styles.subTitle}>
+              Available balance: {currency} {amountMoney}
+            </Text>
+            <Card
+              leftIcon={leftIcon}
+              rightIcon={RightIcon}
+              onCardClick={handleBack}
+              cardStyle={styles.card}
+            >
+              {children}
+            </Card>
+            <Button
+              onPress={onConfirm}
+              style={styles.buttonConfirm}
+              disabled={isDisabled}
+              title="Confirm Top up"
             />
           </View>
-          <Text style={styles.subTitle}>
-            Available balance: {currency} {amountMoney}
-          </Text>
-          <Card
-            leftIcon={leftIcon}
-            rightIcon={RightIcon}
-            onCardClick={handleBack}
-            cardStyle={styles.card}
-          >
-            {children}
-          </Card>
-          <Button
-            onPress={handleConfirm}
-            style={styles.buttonConfirm}
-            disabled={isDisabled}
-            title="Confirm Top up"
-          />
-        </View>
-      </KeyboardAvoidingView>
-    </View>
+        </KeyboardAvoidingView>
+      </View>
+    </>
   );
 }
 
@@ -105,8 +117,6 @@ ConfirmDeposit.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  onChangeAmountMoney: PropTypes.func,
-  amountMoney: PropTypes.string,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
   leftIcon: PropTypes.func.isRequired,
@@ -114,8 +124,6 @@ ConfirmDeposit.propTypes = {
 };
 
 ConfirmDeposit.defaultProps = {
-  amountMoney: '',
-  onChangeAmountMoney: () => {},
   handleConfirm: () => {},
 };
 

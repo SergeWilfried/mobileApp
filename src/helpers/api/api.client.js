@@ -1,36 +1,43 @@
 import axios from 'axios';
+import { getToken } from 'helpers/storage';
 import { Alert } from 'react-native';
 
 import config from 'resources/config';
 
 import ApiError from './api.error';
 
-// Do not throw errors on 'bad' server response codes
-axios.interceptors.response.use(
-  axiosConfig => axiosConfig,
-  error => error.response || {},
-);
+const axiosClient = axios.create({
+  baseURL: config.apiUrl,
+});
 
-const serverError = 'Server returned an error. Please, contact the support team.';
-const connectionError = 'Connection error. Please, check your Internet connection.';
+// Do not throw errors on 'bad' server response codes
+axiosClient.interceptors.response.use(
+  (axiosConfig) => axiosConfig,
+  (error) => error.response || {},
+);
+axiosClient.interceptors.request.use(async (req) => {
+  const token = await getToken();
+
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return req;
+});
+
+const serverError =
+  'Server returned an error. Please, contact the support team.';
+const connectionError =
+  'Connection error. Please, check your Internet connection.';
 
 const throwApiError = ({ data = {}, status = 500 }) => {
   throw new ApiError(data, status);
 };
 
-const httpRequest = method => async (url, data) => {
-  let urlWithSlash = url;
-
-  if (urlWithSlash[0] !== '/') {
-    urlWithSlash = `/${urlWithSlash}`;
-  }
-
+const httpRequest = (method) => async (url, data) => {
   const options = {
-    headers: {
-      Authorization: `Bearer ${config.token}`,
-    },
     method,
-    url: `${config.apiUrl}${urlWithSlash}`,
+    url,
   };
 
   if (data) {
@@ -45,7 +52,8 @@ const httpRequest = method => async (url, data) => {
     }
   }
 
-  const axiosResponse = await axios(options);
+  const axiosResponse = await axiosClient(options);
+
   if (!axiosResponse.data) {
     Alert.alert('', connectionError);
     throwApiError({

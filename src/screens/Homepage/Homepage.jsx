@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import PropTypes from 'prop-types';
@@ -15,8 +16,11 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Home from 'assets/icons/home.svg';
 
 import { HOMEPAGE_HEADER } from 'helpers/constants';
-
+import { getBalance } from 'resources/user/user.api';
+import { processMoney } from 'helpers/utils.helper';
+import FullScreenLoader from 'components/FullScreenLoader';
 import Transaction from 'screens/Homepage/components/Transaction';
+
 import HomepageHeader from './components/HomepageHeader';
 import HomepageEmpty from './components/HomepageEmpty';
 
@@ -29,7 +33,22 @@ const statusBarHeight = getStatusBarHeight(true);
 
 function Homepage({ navigation }) {
   const tabBarHeight = useBottomTabBarHeight();
+  const [balance, setBalance] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const panelRef = useRef(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      const init = async () => {
+        setLoading(true);
+        const availableBalance = await getBalance();
+        setBalance(processMoney(availableBalance.toString()));
+        setLoading(false);
+      };
+
+      init();
+    }, []),
+  );
 
   const draggableRange = {
     top: height - HOMEPAGE_HEADER.SMALL_HEIGHT - tabBarHeight - statusBarHeight,
@@ -117,9 +136,10 @@ function Homepage({ navigation }) {
 
   return (
     <>
+      {isLoading && <FullScreenLoader />}
       <HomepageHeader
         title="Your balance"
-        subtitle="₣ 3,588"
+        subtitle={`₣ ${balance}`}
         avatarUrl={AVATAR_URL}
         username={USERNAME}
         propsStyles={headerStyles}

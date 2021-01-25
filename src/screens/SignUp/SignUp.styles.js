@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
   screen: {

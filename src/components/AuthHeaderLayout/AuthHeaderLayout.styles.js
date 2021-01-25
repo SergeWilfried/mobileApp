@@ -1,4 +1,4 @@
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({

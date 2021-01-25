@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from 'themes/colors';
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 const { height } = Dimensions.get('window');
 

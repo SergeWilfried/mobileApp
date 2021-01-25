@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { normalize } from 'helpers/utils';
+import { normalize } from 'helpers/utils.helper';
 
 import styles from 'themes/commonStyles';
 
