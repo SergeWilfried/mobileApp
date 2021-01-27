@@ -17,7 +17,9 @@ const cards = [
     icon: DebitCard,
     title: 'DuniaPay',
     subTitle: 'Send money to a DuniaPay username',
-    handleRightClick: () => {},
+    handleRightClick: (navigation) => {
+      navigation.navigate('ChooseContact');
+    },
   },
   {
     icon: Smartphone,

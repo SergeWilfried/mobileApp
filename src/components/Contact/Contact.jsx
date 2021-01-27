@@ -2,20 +2,18 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Text from 'components/Text';
+import LeftIcon from './LeftIcon/index';
 import styles from './Contact.styles';
 
-function Contact({ icon, onCardClick, children, isLastContact }) {
+function Contact({ icon, onContactClick, children, isLastContact }) {
   return (
     <>
       <TouchableOpacity
         style={styles.container}
-        onPress={onCardClick}
+        onPress={onContactClick}
         activeOpacity={0.8}
       >
-        <View style={styles.profileContainer}>
-          <Text style={styles.initials}>{icon}</Text>
-        </View>
+        <LeftIcon icon={icon} />
         {children}
       </TouchableOpacity>
       {!isLastContact && <View style={styles.divideLine} />}
@@ -29,12 +27,12 @@ Contact.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  onCardClick: PropTypes.func,
+  onContactClick: PropTypes.func,
   isLastContact: PropTypes.bool,
 };
 
 Contact.defaultProps = {
-  onCardClick: () => {},
+  onContactClick: () => {},
   isLastContact: false,
 };
 

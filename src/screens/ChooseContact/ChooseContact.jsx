@@ -15,10 +15,11 @@ import Text from 'components/Text';
 import MainHeader from 'components/MainHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
 import Contact from 'components/Contact';
+import LeftIcon from 'components/Contact/LeftIcon';
 
 import styles from './ChooseContact.styles';
 
-function ChooseProvider({ navigation }) {
+function ChooseContact({ navigation }) {
   const [listPhoneContacts, getListPhoneContacts] = useState([]);
 
   useEffect(() => {
@@ -53,7 +54,13 @@ function ChooseProvider({ navigation }) {
             <Contact
               isLastContact={index === listPhoneContacts.length - 1}
               icon={getInitials(familyName)}
-              onCardClick={() => {}}
+              onContactClick={() =>
+                navigation.navigate('ConfirmSendMoney', {
+                  familyName,
+                  givenName,
+                  leftIcon: () => <LeftIcon icon={getInitials(familyName)} />,
+                })
+              }
               key={familyName}
             >
               <View style={styles.cardContent}>
@@ -69,7 +76,13 @@ function ChooseProvider({ navigation }) {
             <Contact
               isLastContact={index === listPhoneContacts.length - 1}
               icon={getInitials(familyName)}
-              onCardClick={() => {}}
+              onContactClick={() =>
+                navigation.navigate('ConfirmSendMoney', {
+                  familyName,
+                  givenName,
+                  leftIcon: () => <LeftIcon icon={getInitials(familyName)} />,
+                })
+              }
               key={familyName}
             >
               <View style={styles.cardContent}>
@@ -84,10 +97,10 @@ function ChooseProvider({ navigation }) {
   );
 }
 
-ChooseProvider.propTypes = {
+ChooseContact.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default ChooseProvider;
+export default ChooseContact;

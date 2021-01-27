@@ -10,10 +10,12 @@ import Wallet from 'screens/Wallet';
 import DepositMoneyMethods from 'screens/DepositMoneyMethods';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
+import ConfirmSendMoney from 'screens/ConfirmSendMoney';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
 import SavedPhoneNumbers from 'screens/SavedPhoneNumbers';
+import ChooseContact from 'screens/ChooseContact';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -193,7 +195,9 @@ function AppScreens() {
           name="ConfirmCardDeposit"
           component={ConfirmCardDeposit}
         />
+        <AppStack.Screen name="ConfirmSendMoney" component={ConfirmSendMoney} />
         <AppStack.Screen name="ChooseProvider" component={ChooseProvider} />
+        <AppStack.Screen name="ChooseContact" component={ChooseContact} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
       </AppStack.Navigator>
     </>
