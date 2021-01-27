@@ -12,27 +12,29 @@ function Card({
   onCardClick,
   cardStyle,
   children,
+  rightIconClick,
 }) {
   return (
-    <TouchableOpacity
-      style={[styles.container, cardStyle]}
-      onPress={onCardClick}
-      activeOpacity={0.8}
-    >
-      <View style={leftIconStyle}>
-        <LeftIcon />
-      </View>
-      {children}
-      <View style={[styles.rightIcon, rightIconStyle]}>
-        <RightIcon />
-      </View>
-    </TouchableOpacity>
+    <View style={[styles.container, cardStyle]}>
+      <TouchableOpacity onPress={onCardClick} style={styles.leftPart}>
+        <View style={leftIconStyle}>
+          <LeftIcon />
+        </View>
+        {children}
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.rightIcon, rightIconStyle]}
+        onPress={rightIconClick}
+      >
+        {RightIcon}
+      </TouchableOpacity>
+    </View>
   );
 }
 
 Card.propTypes = {
   leftIcon: PropTypes.elementType.isRequired,
-  rightIcon: PropTypes.elementType.isRequired,
+  rightIcon: PropTypes.element.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -41,6 +43,7 @@ Card.propTypes = {
   onCardClick: PropTypes.func,
   leftIconStyle: ViewPropTypes.style,
   rightIconStyle: ViewPropTypes.style,
+  rightIconClick: PropTypes.func,
 };
 
 Card.defaultProps = {
@@ -48,6 +51,7 @@ Card.defaultProps = {
   leftIconStyle: null,
   rightIconStyle: null,
   onCardClick: () => {},
+  rightIconClick: () => {},
 };
 
 export default Card;

@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, SafeAreaView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import PhoneNumberInput from 'components/PhoneNumberInput';
 import PhoneCard from 'components/PhoneCard';
@@ -9,14 +10,9 @@ import Text from 'components/Text';
 import MainHeader from 'components/MainHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
 
+import { addPhoneNumber } from 'resources/wallet/wallet.actions';
 import usePhoneNumber from 'hooks/usePhoneNumber';
-
-import Mtn from 'assets/icons/mtnProvider.svg';
-import Airtel from 'assets/icons/airtelProvider.svg';
-import Etisalat from 'assets/icons/etisalatProvider.svg';
-import Orange from 'assets/icons/orangeProvider.svg';
-import Safaricom from 'assets/icons/safaricomProvider.svg';
-import Vodacom from 'assets/icons/vodacomProvider.svg';
+import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
 
 import styles from './ChooseProvider.styles';
 
@@ -24,43 +20,48 @@ const keyboardVerticalOffset = Platform.OS === 'ios' ? 30 : 0;
 
 const operators = [
   {
-    icon: Mtn,
+    icon: 'Mtn',
     title: 'Mtn',
   },
   {
-    icon: Airtel,
+    icon: 'Airtel',
     title: 'Airtel',
   },
   {
-    icon: Etisalat,
+    icon: 'Etisalat',
     title: 'Etisalat',
   },
   {
-    icon: Orange,
+    icon: 'Orange',
     title: 'Orange',
   },
   {
-    icon: Safaricom,
+    icon: 'Safaricom',
     title: 'Safaricom',
   },
   {
-    icon: Vodacom,
+    icon: 'Vodacom',
     title: 'Vodacom',
   },
 ];
 
 function ChooseProvider({ navigation }) {
   const [phoneOperator, setPhoneOperator] = useState({
-    icon: Orange,
-    text: '',
+    icon: 'Orange',
+    title: 'Orange',
   });
+  const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
     async (phoneNumber) => {
-      navigation.navigate('ConfirmMobileDeposit', {
-        phoneNumber,
-        PhoneOperator: phoneOperator.icon,
-      });
+      dispatch(
+        addPhoneNumber({
+          phoneNumber,
+          icon: phoneOperator.icon,
+          id: `${Math.random()}`,
+        }),
+      );
+      navigation.navigate('ConfirmMobileDeposit');
     },
     [navigation, phoneOperator],
   );
@@ -74,7 +75,7 @@ function ChooseProvider({ navigation }) {
     phoneNumber,
   } = usePhoneNumber(handleSubmit);
 
-  const isButtonDisabled = !!phoneError || !phoneOperator.text || !phoneNumber;
+  const isButtonDisabled = !!phoneError || !phoneOperator.title || !phoneNumber;
 
   return (
     <DismissKeyboard keyboardAvoidingViewProps={{ keyboardVerticalOffset }}>
@@ -89,12 +90,12 @@ function ChooseProvider({ navigation }) {
             {operators.map(({ title, icon }) => (
               <PhoneCard
                 providerName={title}
-                providerLogo={icon}
+                providerLogo={getPhoneOperatorIcon(icon)}
                 key={title}
-                isChoosed={phoneOperator.text === title}
+                isChoosed={phoneOperator.title === title}
                 setPhoneOperator={setPhoneOperator}
                 chooseMobileOperator={() => {
-                  setPhoneOperator({ icon, text: title });
+                  setPhoneOperator({ icon, title });
                 }}
               />
             ))}

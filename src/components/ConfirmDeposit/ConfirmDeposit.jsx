@@ -7,9 +7,9 @@ import Button from 'components/Button';
 import MainHeader from 'components/MainHeader';
 import Card from 'components/Card';
 import FullScreenLoader from 'components/FullScreenLoader';
-import { processMoney } from 'helpers/utils.helper';
+import CardRightIcon from 'components/CardRightIcon';
 
-import RightIcon from './components/RightIcon';
+import { processMoney } from 'helpers/utils.helper';
 
 import styles from './ConfirmDeposit.styles';
 
@@ -88,9 +88,10 @@ function ConfirmDeposit({
             </Text>
             <Card
               leftIcon={leftIcon}
-              rightIcon={RightIcon}
+              rightIcon={<CardRightIcon title="Change" />}
               onCardClick={handleBack}
               cardStyle={styles.card}
+              rightIconClick={handleBack}
             >
               {children}
             </Card>

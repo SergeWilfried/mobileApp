@@ -25,7 +25,7 @@ const cards = [
     title: 'Mobile money',
     subTitle: 'Send money to your wallet from your phone number',
     handleRightClick: (navigation) => {
-      navigation.navigate('ChooseProvider');
+      navigation.navigate('SavedPhoneNumbers');
     },
   },
   {
@@ -51,7 +51,7 @@ function DepositMoneyMethods({ navigation }) {
         <Card
           key={title}
           leftIcon={icon}
-          rightIcon={RightArrow}
+          rightIcon={<RightArrow />}
           rightIconStyle={styles.arrowBack}
           cardStyle={styles.card}
           onCardClick={() => handleRightClick(navigation)}

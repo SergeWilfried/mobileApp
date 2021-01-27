@@ -41,7 +41,7 @@ function SendMoneyMethod({ navigation }) {
         <Card
           key={title}
           leftIcon={icon}
-          rightIcon={RightArrow}
+          rightIcon={<RightArrow />}
           rightIconStyle={styles.arrowBack}
           cardStyle={styles.card}
           onCardClick={() => handleRightClick(navigation)}

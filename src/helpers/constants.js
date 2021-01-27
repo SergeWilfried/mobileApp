@@ -30,3 +30,12 @@ export const HOMEPAGE_HEADER = {
   FULL_HEIGHT: 248,
   SMALL_HEIGHT: Platform.OS === 'android' ? 50 : 76,
 };
+
+export const PHONE_OPERATORS = {
+  MTN: 'Mtn',
+  AIRTEL: 'Airtel',
+  ETISALAT: 'Etisalat',
+  ORANGE: 'Orange',
+  SAFARICOM: 'Safaricom',
+  VODACOM: 'Vodacom',
+};

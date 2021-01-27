@@ -34,7 +34,7 @@ function SelectCard({ navigation }) {
           <Card
             key={cardNumber}
             leftIcon={CardPayment}
-            rightIcon={RightArrow}
+            rightIcon={<RightArrow />}
             rightIconStyle={styles.arrowBack}
             cardStyle={styles.card}
             onCardClick={() =>

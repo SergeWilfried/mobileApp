@@ -1,15 +1,19 @@
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import Text from 'components/Text';
 import ConfirmDeposit from 'components/ConfirmDeposit';
+
+import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
 import { deposit } from 'resources/transaction/transaction.api';
+import { getSelectedPhoneNumber } from 'resources/wallet/wallet.selectors';
 
 import styles from './ConfirmMobileDeposit.styles';
 
-function ConfirmMobileDeposit({ navigation, route }) {
-  const { PhoneOperator, phoneNumber } = route.params;
+function ConfirmMobileDeposit({ navigation }) {
+  const { icon, phoneNumber } = useSelector(getSelectedPhoneNumber);
 
   const handlePressConfirm = useCallback(
     async (amount, formattedAmount) => {
@@ -37,7 +41,7 @@ function ConfirmMobileDeposit({ navigation, route }) {
       title="Mobile Money Top up"
       subTitle="Enter amount"
       navigation={navigation}
-      leftIcon={PhoneOperator}
+      leftIcon={getPhoneOperatorIcon(icon)}
       handleConfirm={handlePressConfirm}
     >
       <View style={styles.cardContent}>
@@ -51,12 +55,6 @@ function ConfirmMobileDeposit({ navigation, route }) {
 ConfirmMobileDeposit.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
-  }).isRequired,
-  route: PropTypes.shape({
-    params: PropTypes.shape({
-      PhoneOperator: PropTypes.elementType.isRequired,
-      phoneNumber: PropTypes.string.isRequired,
-    }),
   }).isRequired,
 };
 

@@ -13,6 +13,7 @@ import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
+import SavedPhoneNumbers from 'screens/SavedPhoneNumbers';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -57,6 +58,14 @@ function DepositMoneyScreens() {
         options={{
           title: 'Debit Card Top up',
           subTitle: 'Choose a debit card',
+        }}
+      />
+      <DepositStack.Screen
+        name="SavedPhoneNumbers"
+        component={SavedPhoneNumbers}
+        options={{
+          title: 'Mobile Money Top up',
+          subTitle: 'Choose your mobile number',
         }}
       />
     </DepositStack.Navigator>
