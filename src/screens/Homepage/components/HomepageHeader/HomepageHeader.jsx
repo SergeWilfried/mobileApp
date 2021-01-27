@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Image, Animated } from 'react-native';
 
+import { getInitials } from 'helpers/utils.helper';
+
 import Text from 'components/Text';
 
 import TopUp from 'assets/icons/topUp.svg';
@@ -9,14 +11,6 @@ import ReceiveMoney from 'assets/icons/receiveMoneyWhiteIcon.svg';
 import SendMoney from 'assets/icons/sendMoneyWhiteIcon.svg';
 
 import styles from './HomepageHeader.styles';
-
-const getInitials = (username) => {
-  const nameArray = username.split(' ');
-  if (nameArray.length > 1) {
-    return `${nameArray[0][0].toUpperCase()}${nameArray[1][0].toUpperCase()}`;
-  }
-  return username[0].toUpperCase();
-};
 
 function HomepageHeader({
   title,

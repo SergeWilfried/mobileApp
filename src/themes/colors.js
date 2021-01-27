@@ -20,10 +20,12 @@ const colors = {
   iconBackground: '#6178FF',
   headerBackground: '#F2F3F7',
   increaseLimitContainerBackground: '#F0F4FF',
+  contactProfileBackground: 'rgba(98, 126, 234, 0.2)',
 
   // border
   profileBorder: '#6C7FEA',
   transactionBorder: '#E4E4E4',
+  contactsBorder: '#E5E5EE',
 
   // font
   baseFont: '#4E4E4E',
@@ -32,6 +34,8 @@ const colors = {
   inActiveTabBarFont: '#99b4ff',
   textFont: '#101010',
   tabBarfont: '#99b4ff',
+  contactsTitleFont: '#ADADBD',
+  contactInitials: '#627EEA',
 
   // progressBar
   labelProgressBar: 'rgba(2, 3, 74, 0.3)',
