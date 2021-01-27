@@ -1,6 +1,12 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { View, Switch, Image, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  View,
+  Switch,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { PERMISSIONS } from 'react-native-permissions';
@@ -50,7 +56,9 @@ function Profile({ navigation }) {
   }, []);
 
   const onEditProfilePicture = useCallback(async () => {
-    const permissionsGranted = await checkPermissions(PERMISSIONS.IOS.PHOTO_LIBRARY);
+    const permissionsGranted = await checkPermissions(
+      PERMISSIONS.IOS.PHOTO_LIBRARY,
+    );
     if (permissionsGranted) {
       const options = {
         mediaType: 'photo',
@@ -68,47 +76,69 @@ function Profile({ navigation }) {
     }
   }, []);
 
-  const listItems = useMemo(() => [{
-    id: 1,
-    icon: PersonalInfoIcon,
-    title: 'Personal Information',
-    rightElement: <RightArrow fill={colors.profileArrowIcon} />,
-  }, {
-    id: 2,
-    icon: ActiveNotificationsIcon,
-    title: 'Active Notifications',
-    rightElement: <Switch value={activeNotifications} onValueChange={onToggleNotifications} />,
-  }, {
-    id: 3,
-    icon: HideBalanceIcon,
-    title: 'Hide my Balance',
-    rightElement: <Switch value={isBalanceHidden} onValueChange={onToggleHideBalance} />,
-  }, {
-    id: 4,
-    icon: TouchIdIcon,
-    title: 'Login with Touch ID',
-    rightElement: <Switch value={touchId} onValueChange={onToggleTouchId} />,
-  }, {
-    id: 5,
-    icon: VerifyIdentityIcon,
-    title: 'Verify my Identity',
-    rightElement: <RightArrow fill={colors.profileArrowIcon} />,
-  }, {
-    id: 6,
-    icon: ResetPasswordIcon,
-    title: 'Reset Password',
-    rightElement: <RightArrow fill={colors.profileArrowIcon} />,
-  }, {
-    id: 7,
-    icon: AboutIcon,
-    title: 'About DuniaPay',
-    rightElement: <RightArrow fill={colors.profileArrowIcon} />,
-  }, {
-    id: 8,
-    icon: HelpIcon,
-    title: 'Help Centre',
-    rightElement: <RightArrow fill={colors.profileArrowIcon} />,
-  }], [activeNotifications, isBalanceHidden, touchId]);
+  const listItems = useMemo(
+    () => [
+      {
+        id: 1,
+        icon: PersonalInfoIcon,
+        title: 'Personal Information',
+        onPress: () => navigation.navigate('PersonalInformation'),
+        rightElement: <RightArrow fill={colors.profileArrowIcon} />,
+      },
+      {
+        id: 2,
+        icon: ActiveNotificationsIcon,
+        title: 'Active Notifications',
+        rightElement: (
+          <Switch
+            value={activeNotifications}
+            onValueChange={onToggleNotifications}
+          />
+        ),
+      },
+      {
+        id: 3,
+        icon: HideBalanceIcon,
+        title: 'Hide my Balance',
+        rightElement: (
+          <Switch value={isBalanceHidden} onValueChange={onToggleHideBalance} />
+        ),
+      },
+      {
+        id: 4,
+        icon: TouchIdIcon,
+        title: 'Login with Touch ID',
+        rightElement: (
+          <Switch value={touchId} onValueChange={onToggleTouchId} />
+        ),
+      },
+      {
+        id: 5,
+        icon: VerifyIdentityIcon,
+        title: 'Verify my Identity',
+        rightElement: <RightArrow fill={colors.profileArrowIcon} />,
+      },
+      {
+        id: 6,
+        icon: ResetPasswordIcon,
+        title: 'Reset Password',
+        rightElement: <RightArrow fill={colors.profileArrowIcon} />,
+      },
+      {
+        id: 7,
+        icon: AboutIcon,
+        title: 'About DuniaPay',
+        rightElement: <RightArrow fill={colors.profileArrowIcon} />,
+      },
+      {
+        id: 8,
+        icon: HelpIcon,
+        title: 'Help Centre',
+        rightElement: <RightArrow fill={colors.profileArrowIcon} />,
+      },
+    ],
+    [activeNotifications, isBalanceHidden, touchId],
+  );
 
   return (
     <ScrollView style={styles.screen}>
@@ -117,7 +147,9 @@ function Profile({ navigation }) {
           {userData.avatarUrl ? (
             <Image source={{ uri: userData.avatarUrl }} style={styles.avatar} />
           ) : (
-            <Text style={styles.initials}>{getInitials(userData.username)}</Text>
+            <Text style={styles.initials}>
+              {getInitials(userData.username)}
+            </Text>
           )}
           <View style={styles.editProfileContainer}>
             <TouchableOpacity
@@ -132,14 +164,21 @@ function Profile({ navigation }) {
         <Text style={styles.fullName}>{userData.username}</Text>
         <Text style={styles.username}>@username</Text>
       </View>
-      {listItems.map(({ id, title, icon: Icon, rightElement }) =>
-        <View key={id} style={styles.listItem}>
-          <View style={styles.listItemInfo}>
-            <Icon />
-            <Text style={styles.listItemTitle}>{title}</Text>
-          </View>
-          {rightElement}
-        </View>
+      {listItems.map(
+        ({ id, title, icon: Icon, rightElement, onPress = () => {} }) => (
+          <TouchableOpacity
+            key={id}
+            style={styles.listItem}
+            onPress={onPress}
+            activeOpacity={1}
+          >
+            <View style={styles.listItemInfo}>
+              <Icon />
+              <Text style={styles.listItemTitle}>{title}</Text>
+            </View>
+            {rightElement}
+          </TouchableOpacity>
+        ),
       )}
     </ScrollView>
   );

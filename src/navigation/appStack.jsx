@@ -19,6 +19,7 @@ import DepositSavedPhoneNumbers from 'screens/DepositSavedPhoneNumbers';
 import SendSavedPhoneNumbers from 'screens/SendSavedPhoneNumbers';
 import SendMobileMoney from 'screens/SendMobileMoney';
 import Profile from 'screens/Profile';
+import PersonalInformation from 'screens/PersonalInformation';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -219,6 +220,10 @@ function AppScreens() {
         <AppStack.Screen name="ChooseContact" component={ChooseContact} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
         <AppStack.Screen name="SendMobileMoney" component={SendMobileMoney} />
+        <AppStack.Screen
+          name="PersonalInformation"
+          component={PersonalInformation}
+        />
       </AppStack.Navigator>
     </>
   );

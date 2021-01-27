@@ -26,6 +26,7 @@ export const processMoney = (text) => {
 };
 
 export const getInitials = (username) => {
+  if (!username) return '';
   const nameArray = username.split(' ');
   if (nameArray.length > 1) {
     return `${nameArray[0][0].toUpperCase()}${nameArray[1][0].toUpperCase()}`;

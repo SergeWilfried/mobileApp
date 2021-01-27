@@ -3,11 +3,9 @@ import { StyleSheet } from 'react-native';
 import colors from 'themes/colors';
 
 export default StyleSheet.create({
-  inputWrapper: {
-  },
   inputContainer: {
     height: 45,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.inputStandardBorder,
     borderRadius: 10,
     backgroundColor: colors.white,

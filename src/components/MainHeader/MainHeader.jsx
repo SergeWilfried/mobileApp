@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { useNavigation } from '@react-navigation/native';
 
 import Text from 'components/Text';
 
@@ -8,12 +9,8 @@ import BackIcon from 'assets/icons/blackBackIcon.svg';
 
 import styles from './MainHeader.styles';
 
-function MainHeader({
-  navigation,
-  scene,
-  title: titleHeader,
-  subTitle: subTitleHeader,
-}) {
+function MainHeader({ scene, title: titleHeader, subTitle: subTitleHeader }) {
+  const navigation = useNavigation();
   const title = titleHeader || scene.descriptor.options.title;
   const subTitle = subTitleHeader || scene.descriptor.options.subTitle;
 
@@ -39,10 +36,6 @@ function MainHeader({
 }
 
 MainHeader.propTypes = {
-  navigation: PropTypes.shape({
-    goBack: PropTypes.func.isRequired,
-    canGoBack: PropTypes.func.isRequired,
-  }).isRequired,
   scene: PropTypes.shape({
     descriptor: PropTypes.shape({
       options: PropTypes.shape({

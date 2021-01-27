@@ -17,7 +17,7 @@ import 'resources/user/user.handlers';
 const { store } = configureStore();
 
 function App() {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [accessToken, setToken] = useState(null);
 
   useEffect(() => {

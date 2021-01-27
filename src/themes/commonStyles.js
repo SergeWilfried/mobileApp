@@ -14,4 +14,10 @@ const authScreenStyle = {
   backgroundColor: colors.authScreenBackground,
 };
 
-export default { heroTitle, authScreenStyle };
+const mainScreenStyle = {
+  paddingHorizontal: 16,
+  flex: 1,
+  backgroundColor: colors.mainScreenBackground,
+};
+
+export default { heroTitle, authScreenStyle, mainScreenStyle };

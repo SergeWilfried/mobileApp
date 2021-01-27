@@ -62,8 +62,6 @@ function ChooseProvider({ navigation, route }) {
           phoneOperator: phoneOperator.icon,
         }),
       );
-      console.log('phoneflow', phoneflow);
-      console.log('MOBILE_MONEY_FLOW.DEPOSIT', MOBILE_MONEY_FLOW.DEPOSIT);
 
       return phoneflow === MOBILE_MONEY_FLOW.DEPOSIT
         ? navigation.navigate('ConfirmMobileDeposit')
@@ -91,7 +89,6 @@ function ChooseProvider({ navigation, route }) {
       <MainHeader
         title="Mobile Money Deposit"
         subTitle="Choose your provider"
-        navigation={navigation}
       />
       <SafeAreaView style={styles.screen}>
         <View>

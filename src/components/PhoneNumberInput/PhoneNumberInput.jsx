@@ -14,6 +14,7 @@ function PhoneNumberInput({
   inputRef,
   onChangePhone,
   onChangeFormattedPhone,
+  onBlur,
   error,
   text,
 }) {
@@ -36,9 +37,9 @@ function PhoneNumberInput({
         textInputStyle={[styles.text, styles.phoneText]}
         textContainerStyle={styles.textInputContainer}
         countryPickerButtonStyle={styles.countryInputContainer}
-        textInputProps={{ selectionColor: colors.theme }}
+        textInputProps={{ selectionColor: colors.theme, onBlur }}
       />
-      {error && <Text style={styles.error}>{error}</Text>}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 }
@@ -52,11 +53,13 @@ PhoneNumberInput.propTypes = {
   ]),
   onChangePhone: PropTypes.func.isRequired,
   onChangeFormattedPhone: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   error: PropTypes.string,
   text: PropTypes.string,
 };
 
 PhoneNumberInput.defaultProps = {
+  onBlur: () => {},
   inputRef: null,
   error: null,
   text: null,

@@ -44,7 +44,6 @@ function ChooseContact({ navigation, route }) {
       <MainHeader
         title="Send Money"
         subTitle={listPhoneContacts.length ? 'Who would you like to pay?' : ''}
-        navigation={navigation}
       />
       {listPhoneContacts.length ? (
         <SafeAreaView style={styles.screen}>

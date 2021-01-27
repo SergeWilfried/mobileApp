@@ -68,11 +68,7 @@ function ConfirmDeposit({
           style={styles.container}
           keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 30}
         >
-          <MainHeader
-            title={title}
-            subTitle={subTitle}
-            navigation={navigation}
-          />
+          <MainHeader title={title} subTitle={subTitle} />
           <View style={styles.contentWrapper}>
             <View style={styles.wrapperInput}>
               <Text style={[styles.inputText, styles.currency]}>

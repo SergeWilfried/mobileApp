@@ -1,11 +1,5 @@
 import React, { useCallback, useState, useMemo } from 'react';
-import {
-  TextInput,
-  Text,
-  View,
-  Keyboard,
-  ViewPropTypes,
-} from 'react-native';
+import { TextInput, Text, View, Keyboard, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
 
 import colors from 'themes/colors';
@@ -37,6 +31,7 @@ function Input({
   autoFocus,
   maxLength,
   autoCapitalize,
+  inputLabelWrapper,
 }) {
   const [focused, setFocused] = useState(false);
 
@@ -50,26 +45,33 @@ function Input({
     setFocused(true);
   }, [setFocused]);
 
-  const handleBlur = useCallback((e) => {
-    setFocused(false);
-    onBlur(e);
-  }, [onBlur, setFocused]);
+  const handleBlur = useCallback(
+    (e) => {
+      setFocused(false);
+      onBlur(e);
+    },
+    [onBlur, setFocused],
+  );
 
   const onEyeClick = useCallback(() => {
-    setEye(prevState => !prevState);
+    setEye((prevState) => !prevState);
   }, [setEye]);
 
   return (
-    <View style={styles.inputWrapper}>
+    <View style={[styles.inputWrapper, inputLabelWrapper]}>
       {!!label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-      <View style={[
-        styles.inputContainer,
-        getBorderStyle(focused, errorMessage, value),
-        inputWrapperStyle,
-      ]}
+      <View
+        style={[
+          styles.inputContainer,
+          getBorderStyle(focused, errorMessage, value),
+          inputWrapperStyle,
+        ]}
       >
         <TextInput
-          style={[isPassword ? [styles.input, styles.inputWithIcon] : styles.input, inputStyle]}
+          style={[
+            isPassword ? [styles.input, styles.inputWithIcon] : styles.input,
+            inputStyle,
+          ]}
           placeholder={placeholder}
           placeholderTextColor={colors.inputPlaceholder}
           onChangeText={onChangeText}
@@ -86,18 +88,13 @@ function Input({
           autoCapitalize={autoCapitalize}
         />
         {isPassword && (
-          <PasswordIcon
-            onEyeClick={onEyeClick}
-            isEyeOpen={isEyeOpen}
-          />
+          <PasswordIcon onEyeClick={onEyeClick} isEyeOpen={isEyeOpen} />
         )}
       </View>
       {!!errorMessage && (
         <View style={styles.containerError}>
           <Warning style={styles.warning} />
-          <Text style={styles.textError}>
-            {errorMessage}
-          </Text>
+          <Text style={styles.textError}>{errorMessage}</Text>
         </View>
       )}
     </View>
@@ -111,6 +108,7 @@ Input.propTypes = {
   errorMessage: PropTypes.string,
   inputWrapperStyle: ViewPropTypes.style,
   inputStyle: ViewPropTypes.style,
+  inputLabelWrapper: ViewPropTypes.style,
   keyboardType: PropTypes.oneOf([
     'default',
     'number-pad',
@@ -133,12 +131,7 @@ Input.propTypes = {
   labelStyle: ViewPropTypes.style,
   autoFocus: PropTypes.bool,
   maxLength: PropTypes.number,
-  autoCapitalize: PropTypes.oneOf([
-    'none',
-    'characters',
-    'sentences',
-    'words',
-  ]),
+  autoCapitalize: PropTypes.oneOf(['none', 'characters', 'sentences', 'words']),
 };
 
 Input.defaultProps = {
@@ -146,6 +139,7 @@ Input.defaultProps = {
   onBlur: () => {},
   inputWrapperStyle: null,
   errorMessage: '',
+  inputLabelWrapper: null,
   labelStyle: null,
   inputStyle: null,
   textContentType: 'none',
