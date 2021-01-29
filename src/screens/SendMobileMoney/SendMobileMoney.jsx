@@ -1,64 +1,66 @@
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 import Text from 'components/Text';
 import ConfirmDeposit from 'components/ConfirmDeposit';
+import CardUsernameIcon from 'components/CardUsernameIcon';
 
-import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
-import { deposit } from 'resources/transaction/transaction.api';
-import { getSelectedPhoneNumber } from 'resources/wallet/wallet.selectors';
 import { processMoney } from 'helpers/utils.helper';
 
-import styles from './ConfirmMobileDeposit.styles';
+import styles from './SendMobileMoney.styles';
 
-function ConfirmMobileDeposit({ navigation }) {
-  const { phoneOperator, phoneNumber } = useSelector(getSelectedPhoneNumber);
+function SendMobileMoney({ navigation }) {
+  // const { phoneContactName, duniapayName } = route.params;
+  const phoneContactName = 'Nick';
+  const duniapayName = 'Awesome';
   const handlePressConfirm = useCallback(
     async (amount, formattedAmount) => {
-      await deposit(amount);
-
       navigation.navigate('Congratulations', {
         title: 'Congratulations!',
-        buttonName: 'Back to Wallet',
+        buttonName: 'Return to Wallet',
         screenStyle: styles.successScreen,
         onContinuePress: () => navigation.navigate('Homepage'),
         subTitle: (
           <Text>
-            You just toped up{' '}
+            You just sent{' '}
             <Text style={styles.amountMoney}>
               ₣ {processMoney(formattedAmount)}
             </Text>{' '}
-            to your DuniaPay Wallet.
+            to {phoneContactName}.
           </Text>
         ),
       });
     },
     [navigation],
   );
-  const MobileOperatorIcon = getPhoneOperatorIcon(phoneOperator);
 
   return (
     <ConfirmDeposit
-      title="Mobile Money Top up"
+      title="Send Money"
       subTitle="Enter amount"
       navigation={navigation}
-      leftIcon={<MobileOperatorIcon />}
       handleConfirm={handlePressConfirm}
+      leftIcon={<CardUsernameIcon username={phoneContactName} />}
     >
       <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>Phone Number</Text>
-        <Text style={styles.cardSubTitle}>{phoneNumber}</Text>
+        <Text style={styles.cardTitle}>{phoneContactName}</Text>
+        <Text style={styles.cardSubTitle}>{duniapayName}</Text>
       </View>
     </ConfirmDeposit>
   );
 }
 
-ConfirmMobileDeposit.propTypes = {
+SendMobileMoney.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      phoneContactName: PropTypes.string.isRequired,
+      duniapayName: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
-export default ConfirmMobileDeposit;
+export default SendMobileMoney;

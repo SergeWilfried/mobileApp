@@ -126,7 +126,7 @@ ConfirmDeposit.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
-  leftIcon: PropTypes.func.isRequired,
+  leftIcon: PropTypes.element.isRequired,
   handleConfirm: PropTypes.func,
 };
 

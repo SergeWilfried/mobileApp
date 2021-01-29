@@ -33,7 +33,7 @@ function SelectCard({ navigation }) {
         ({ CardPayment, cardName, cardExpirationDate, cardNumber }) => (
           <Card
             key={cardNumber}
-            leftIcon={CardPayment}
+            leftIcon={<CardPayment />}
             rightIcon={<RightArrow />}
             rightIconStyle={styles.arrowBack}
             cardStyle={styles.card}

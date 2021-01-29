@@ -17,9 +17,7 @@ function Card({
   return (
     <View style={[styles.container, cardStyle]}>
       <TouchableOpacity onPress={onCardClick} style={styles.leftPart}>
-        <View style={leftIconStyle}>
-          <LeftIcon />
-        </View>
+        <View style={leftIconStyle}>{LeftIcon}</View>
         {children}
       </TouchableOpacity>
       <TouchableOpacity
@@ -33,7 +31,7 @@ function Card({
 }
 
 Card.propTypes = {
-  leftIcon: PropTypes.elementType.isRequired,
+  leftIcon: PropTypes.element.isRequired,
   rightIcon: PropTypes.element.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

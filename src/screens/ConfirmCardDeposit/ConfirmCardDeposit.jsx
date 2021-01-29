@@ -41,7 +41,7 @@ function ConfirmCardDeposit({ navigation, route }) {
       title="Debit Card Top up"
       subTitle="Enter amount"
       navigation={navigation}
-      leftIcon={CardPayment}
+      leftIcon={<CardPayment />}
       handleConfirm={handlePressConfirm}
     >
       <View style={styles.cardContent}>

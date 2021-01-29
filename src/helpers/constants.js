@@ -45,3 +45,8 @@ export const PHONE_OPERATORS = {
   SAFARICOM: 'Safaricom',
   VODACOM: 'Vodacom',
 };
+
+export const MOBILE_MONEY_FLOW = {
+  DEPOSIT: 'deposit',
+  SEND: 'send',
+};

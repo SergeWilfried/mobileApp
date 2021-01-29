@@ -28,7 +28,7 @@ const cards = [
     title: 'Mobile money',
     subTitle: 'Send money from your phone number',
     handleRightClick: (navigation) => {
-      navigation.navigate('ChooseContact', {
+      navigation.navigate('SendSavedPhoneNumbers', {
         sendFlow: SEND_FLOW.MOBILE,
       });
     },
@@ -49,10 +49,10 @@ const cards = [
 function SendMoneyMethod({ navigation }) {
   return (
     <View style={styles.cardsContainer}>
-      {cards.map(({ title, icon, subTitle, handleRightClick }) => (
+      {cards.map(({ title, icon: Icon, subTitle, handleRightClick }) => (
         <Card
           key={title}
-          leftIcon={icon}
+          leftIcon={<Icon />}
           rightIcon={<RightArrow />}
           rightIconStyle={styles.arrowBack}
           cardStyle={styles.card}

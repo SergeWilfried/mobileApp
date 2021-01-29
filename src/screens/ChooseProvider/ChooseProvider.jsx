@@ -10,6 +10,7 @@ import Text from 'components/Text';
 import MainHeader from 'components/MainHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
 
+import { MOBILE_MONEY_FLOW } from 'helpers/constants';
 import { addPhoneNumber } from 'resources/wallet/wallet.actions';
 import usePhoneNumber from 'hooks/usePhoneNumber';
 import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
@@ -45,11 +46,12 @@ const operators = [
   },
 ];
 
-function ChooseProvider({ navigation }) {
+function ChooseProvider({ navigation, route }) {
   const [phoneOperator, setPhoneOperator] = useState({
     icon: 'Orange',
     title: 'Orange',
   });
+  const { phoneflow } = route.params;
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
@@ -60,10 +62,11 @@ function ChooseProvider({ navigation }) {
           phoneOperator: phoneOperator.icon,
         }),
       );
-
-      navigation.navigate('ConfirmMobileDeposit');
+      return phoneflow === MOBILE_MONEY_FLOW.DEPOSIT
+        ? navigation.navigate('ConfirmMobileDeposit')
+        : navigation.navigate('SendMobileMoney');
     },
-    [navigation, phoneOperator],
+    [navigation, phoneOperator, MOBILE_MONEY_FLOW],
   );
 
   const {
@@ -131,6 +134,11 @@ function ChooseProvider({ navigation }) {
 ChooseProvider.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      phoneflow: PropTypes.string.isRequired,
+    }),
   }).isRequired,
 };
 

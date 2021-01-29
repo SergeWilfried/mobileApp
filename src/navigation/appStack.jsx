@@ -14,8 +14,10 @@ import SendDuniaMoney from 'screens/SendDuniaMoney';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
-import SavedPhoneNumbers from 'screens/SavedPhoneNumbers';
 import ChooseContact from 'screens/ChooseContact';
+import DepositSavedPhoneNumbers from 'screens/DepositSavedPhoneNumbers';
+import SendSavedPhoneNumbers from 'screens/SendSavedPhoneNumbers';
+import SendMobileMoney from 'screens/SendMobileMoney';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -33,6 +35,7 @@ import styles from './navigation.styles';
 const AppStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const DepositStack = createStackNavigator();
+const SendStack = createStackNavigator();
 
 function DepositMoneyScreens() {
   return (
@@ -63,8 +66,8 @@ function DepositMoneyScreens() {
         }}
       />
       <DepositStack.Screen
-        name="SavedPhoneNumbers"
-        component={SavedPhoneNumbers}
+        name="DepositSavedPhoneNumbers"
+        component={DepositSavedPhoneNumbers}
         options={{
           title: 'Mobile Money Top up',
           subTitle: 'Choose your mobile number',
@@ -76,12 +79,12 @@ function DepositMoneyScreens() {
 
 function SendMoneyScreens() {
   return (
-    <DepositStack.Navigator
+    <SendStack.Navigator
       screenOptions={{
         header: (props) => <MainHeader {...props} />,
       }}
     >
-      <DepositStack.Screen
+      <SendStack.Screen
         name="SendMoneyMethod"
         component={SendMoneyMethod}
         options={{
@@ -89,7 +92,15 @@ function SendMoneyScreens() {
           subTitle: 'How would you like to send money?',
         }}
       />
-    </DepositStack.Navigator>
+      <SendStack.Screen
+        name="SendSavedPhoneNumbers"
+        component={SendSavedPhoneNumbers}
+        options={{
+          title: 'Mobile Money Send',
+          subTitle: 'Choose your mobile number',
+        }}
+      />
+    </SendStack.Navigator>
   );
 }
 
@@ -199,6 +210,7 @@ function AppScreens() {
         <AppStack.Screen name="ChooseProvider" component={ChooseProvider} />
         <AppStack.Screen name="ChooseContact" component={ChooseContact} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
+        <AppStack.Screen name="SendMobileMoney" component={SendMobileMoney} />
       </AppStack.Navigator>
     </>
   );

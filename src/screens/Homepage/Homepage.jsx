@@ -39,14 +39,23 @@ function Homepage({ navigation }) {
 
   useFocusEffect(
     useCallback(() => {
+      let mounted = true;
+
       const init = async () => {
         setLoading(true);
         const availableBalance = await getBalance();
+        if (!mounted) {
+          return;
+        }
         setBalance(processMoney(availableBalance.toString()));
         setLoading(false);
       };
 
       init();
+
+      return () => {
+        mounted = false;
+      };
     }, []),
   );
 
