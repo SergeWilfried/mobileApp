@@ -7,6 +7,7 @@ import Text from 'components/Text';
 import Button from 'components/Button';
 import AuthHeader from 'components/AuthHeader';
 import PhoneNumberInput from 'components/PhoneNumberInput';
+import SearchInput from 'components/SearchInput';
 
 import * as userApi from 'resources/user/user.api';
 import usePhoneNumber from 'hooks/usePhoneNumber';
@@ -36,6 +37,14 @@ function SignUp({ navigation }) {
     navigation.navigate('SignIn');
   }, [navigation]);
 
+  const [searchText, setSearchText] = React.useState('');
+  const handleSearchText = useCallback(
+    (text) => {
+      setSearchText(text);
+    },
+    [setSearchText],
+  );
+
   return (
     <View style={styles.screenContent}>
       <View style={styles.mainContent}>
@@ -46,6 +55,11 @@ function SignUp({ navigation }) {
             subtitle="To get started, verify your phone number"
           />
         </AuthHeaderLayout>
+        <SearchInput
+          placeholder="Search by name"
+          onChangeText={handleSearchText}
+          value={searchText}
+        />
         <View style={styles.phoneContainer}>
           <PhoneNumberInput
             inputRef={phoneNumberInputRef}

@@ -24,6 +24,8 @@ const colors = {
   // border
   profileBorder: '#6C7FEA',
   transactionBorder: '#E4E4E4',
+  searchBorder: 'rgba(38, 59, 186, 0.2);',
+  contactsBorder: '#E5E5EE',
 
   // font
   baseFont: '#4E4E4E',
