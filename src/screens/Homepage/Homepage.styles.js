@@ -34,7 +34,7 @@ export default StyleSheet.create({
     lineHeight: fonts.lineHeight.extraSmall,
   },
   divideLine: {
-    marginTop: 19,
+    marginVertical: 24,
     borderColor: colors.black,
     width: '100%',
     borderWidth: 1,

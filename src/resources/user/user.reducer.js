@@ -5,9 +5,9 @@ import {
   USER_LOGGED_OUT,
   HIDE_ONBOARDING,
   SET_PIN_CODE,
-  SET_USER_TOKEN,
   HIDE_BALANCE,
   SET_AVATAR_URL,
+  USER_SIGNED_IN,
 } from './user.constants';
 
 const initialState = {
@@ -18,7 +18,6 @@ const initialState = {
   isOnboardingHidden: false,
   isBalanceHidden: false,
   pinCode: '',
-  accessToken: '',
 };
 
 export default (state = initialState, action) => {
@@ -37,19 +36,18 @@ export default (state = initialState, action) => {
         },
       };
     case USER_SIGNED_UP: {
-      const { accessToken, ...userData } = action.payload;
-
       return {
         ...state,
-        userData,
-        accessToken,
+        userData: action.payload,
       };
     }
-    case SET_USER_TOKEN:
+    case USER_SIGNED_IN: {
       return {
         ...state,
-        accessToken: action.payload.token,
+        userData: action.payload,
+        authenticated: true,
       };
+    }
     case USER_LOGGED_OUT:
       return {
         ...state,

@@ -12,10 +12,13 @@ import AppNavigation from './navigation';
 
 import configureStore from './resources/store';
 
+import 'resources/user/user.handlers';
+
 const { store } = configureStore();
 
 function App() {
   const [isLoading, setLoading] = useState(false);
+  const [accessToken, setToken] = useState(null);
 
   useEffect(() => {
     const init = async () => {
@@ -28,7 +31,7 @@ function App() {
 
       store.dispatch(userActions.hideOnboarding(isOnboardingHidden));
       store.dispatch(userActions.setPinCode(pinCode));
-      store.dispatch(userActions.setUserToken(token));
+      setToken(token);
 
       setLoading(false);
 
@@ -46,7 +49,7 @@ function App() {
     <>
       <StatusBar barStyle="dark-content" />
       <Provider store={store}>
-        <AppNavigation />
+        <AppNavigation token={accessToken} />
       </Provider>
     </>
   );

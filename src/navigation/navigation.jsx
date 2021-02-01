@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -9,7 +10,7 @@ import AppScreens from './appStack';
 import AuthScreens from './authStack';
 import OnBoardingScreens from './onBoardingStack';
 
-function AppNavigation() {
+function AppNavigation({ token }) {
   const isOnboardingHidden = useSelector(userSelectors.getHideOnboarding);
   const userAuthenticated = useSelector(userSelectors.getUserAuthenticated);
 
@@ -22,10 +23,18 @@ function AppNavigation() {
       return <OnBoardingScreens />;
     }
 
-    return <AuthScreens />;
+    return <AuthScreens token={token} />;
   }, [userAuthenticated, isOnboardingHidden]);
 
   return <NavigationContainer>{activeStack}</NavigationContainer>;
 }
+
+AppNavigation.propTypes = {
+  token: PropTypes.string,
+};
+
+AppNavigation.defaultProps = {
+  token: null,
+};
 
 export default AppNavigation;

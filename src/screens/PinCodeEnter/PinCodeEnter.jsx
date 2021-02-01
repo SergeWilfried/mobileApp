@@ -18,7 +18,7 @@ function PinCodeEnter({ navigation }) {
   const dispatch = useDispatch();
 
   const handlePinEnter = useCallback(() => {
-    dispatch(userActions.setUserAuthenticated());
+    dispatch(userActions.enterPinCode());
   }, []);
   const validatePinCode = useCallback(
     (pinValue) => {
@@ -57,7 +57,6 @@ function PinCodeEnter({ navigation }) {
         />
       </View>
     </View>
-    
   );
 }
 

@@ -1,5 +1,4 @@
-import config from 'resources/config';
-import { setToken, removeToken, setItem } from 'helpers/storage';
+import { setToken, removeToken, setItem, getToken } from 'helpers/storage';
 import { STORAGE } from 'helpers/constants';
 
 import {
@@ -8,37 +7,40 @@ import {
   USER_LOGGED_OUT,
   HIDE_ONBOARDING,
   SET_PIN_CODE,
-  SET_USER_TOKEN,
   USER_SIGNED_UP,
   HIDE_BALANCE,
   SET_AVATAR_URL,
+  USER_SIGNED_IN,
 } from './user.constants';
 
 import * as api from './user.api';
 
-export const setUserToken = (token) => ({
-  type: SET_USER_TOKEN,
-  payload: { token },
-});
+const setAccessToken = async (accessToken) => {
+  if (!accessToken) return;
 
-const setUser = async (userData, dispatch) => {
-  if (!userData) return null;
-  if (userData.accessToken) {
-    config.token = userData.accessToken;
-    await setToken(userData.accessToken);
-    dispatch(setUserToken(userData.accessToken));
-  }
-
-  return userData;
+  await setToken(accessToken);
 };
 
 export const setUserAuthenticated = () => ({ type: USER_AUTHENTICATED });
+
+export const resetPassword = (password, verificationToken) => async (
+  dispatch,
+) => {
+  const { accessToken, ...userData } = await api.resetPassword({
+    password,
+    verificationToken,
+  });
+
+  await setAccessToken(accessToken);
+  dispatch({ type: USER_SIGNED_UP, payload: userData });
+
+  return userData;
+};
 
 export const signUp = (user) => async (dispatch) => {
   const userData = await api.signUp(user);
 
   if (userData.accessToken) {
-    config.token = userData.accessToken;
     await setToken(userData.accessToken);
   }
 
@@ -48,31 +50,40 @@ export const signUp = (user) => async (dispatch) => {
 };
 
 export const signIn = ({ email, password }) => async (dispatch) => {
-  const userData = await api.signIn({ email, password });
-  return setUser(userData, dispatch);
+  const { accessToken, ...userData } = await api.signIn({ email, password });
+  dispatch({ type: USER_SIGNED_IN, payload: userData });
+  return setAccessToken(accessToken);
 };
 
 export const getCurrentUser = () => async (dispatch) => {
   const userData = await api.getCurrentUser();
   dispatch({ type: USER_CURRENT, userData });
+
+  return userData;
 };
 
 export const logOut = () => async (dispatch) => {
-  config.token = null;
   await removeToken();
+  await setItem(STORAGE.HIDE_ON_BOARDING, false);
   dispatch({ type: USER_LOGGED_OUT });
 };
 
 export const signUpFacebook = (tokens) => async (dispatch) => {
-  const userData = await api.signUpFacebook(tokens);
+  const { accessToken, ...userData } = await api.signUpFacebook(tokens);
 
-  return setUser(userData, dispatch);
+  dispatch({ type: USER_SIGNED_UP, payload: userData });
+
+  return setAccessToken(userData);
 };
 
 export const signInFacebook = (facebookAccessToken) => async (dispatch) => {
-  const userData = await api.signInFacebook(facebookAccessToken);
+  const { accessToken, ...userData } = await api.signInFacebook(
+    facebookAccessToken,
+  );
 
-  return setUser(userData, dispatch);
+  dispatch({ type: USER_SIGNED_UP, payload: userData });
+
+  return setAccessToken(accessToken);
 };
 
 export const hideOnboarding = (isHidden) => (dispatch) => {
@@ -94,4 +105,15 @@ export const hideBalance = (isHidden) => (dispatch) => {
 
 export const setAvatarUrl = (avatarUrl) => (dispatch) => {
   dispatch({ type: SET_AVATAR_URL, avatarUrl });
-}
+};
+
+export const enterPinCode = (pinCode) => async (dispatch, getState) => {
+  const state = getState();
+  const token = await getToken();
+  const storedPinCode = state.pinCode;
+
+  if (pinCode === storedPinCode && token) {
+    await dispatch(getCurrentUser());
+    dispatch(setUserAuthenticated());
+  }
+};

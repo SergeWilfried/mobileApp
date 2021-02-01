@@ -35,3 +35,19 @@ export const getBalance = async () => {
   const { availableBalance } = await apiClient.get('users/current/balance');
   return availableBalance;
 };
+
+export const getLatestTransactions = async (skip = 0) => {
+  return apiClient.get('/users/current/transactions', { skip });
+};
+
+export const getDailyTotal = async (start, end) => {
+  const { total_amount: totalAmount } = await apiClient.get(
+    '/users/current/transactions/totals',
+    {
+      created__gt: start,
+      created__lt: end,
+    },
+  );
+
+  return totalAmount;
+};

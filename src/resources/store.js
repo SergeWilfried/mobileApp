@@ -1,5 +1,3 @@
-/* global __DEV__ */
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -11,9 +9,16 @@ if (__DEV__) {
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+
 export default () => {
-  const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
   return {
     store,
   };
+};
+
+export const getState = () => store.getState();
+
+export const dispatch = (action) => {
+  return store.dispatch(action);
 };

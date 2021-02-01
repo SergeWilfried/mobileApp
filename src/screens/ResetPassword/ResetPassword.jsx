@@ -13,7 +13,6 @@ import Text from 'components/Text';
 import FullScreenLoader from 'components/FullScreenLoader';
 import { ResetPasswordSchema } from 'helpers/schemas';
 import { PASSWORD } from 'helpers/constants';
-import * as userApi from 'resources/user/user.api';
 import * as userActions from 'resources/user/user.actions';
 
 import styles from './ResetPassword.styles';
@@ -41,10 +40,9 @@ function ResetPassword({ navigation, route }) {
   } = useFormik({
     onSubmit: async (data) => {
       setLoading(true);
-      await userApi.resetPassword({
-        password: data.password,
-        verificationToken,
-      });
+      await dispatch(
+        userActions.resetPassword(data.password, verificationToken),
+      );
       setLoading(false);
 
       dispatch(userActions.setUserAuthenticated());
@@ -96,11 +94,7 @@ function ResetPassword({ navigation, route }) {
         />
         <View style={styles.passwordRulesWrapper}>
           <Text style={styles.passwordRule}>
-            1. At least
-            {' '}
-            {PASSWORD.length}
-            {' '}
-            characters long
+            1. At least {PASSWORD.length} characters long
           </Text>
           <Text style={styles.passwordRule}>
             2. Include at least one special characters (@ $ & %)
@@ -115,9 +109,7 @@ function ResetPassword({ navigation, route }) {
           onChangeText={handleChangeRepeatPassword}
           textContentType="password"
           onBlur={handleBlur('repeatPassword')}
-          errorMessage={
-                touched.repeatPassword ? errors.repeatPassword : ''
-              }
+          errorMessage={touched.repeatPassword ? errors.repeatPassword : ''}
         />
       </View>
       <View style={styles.wrapperButton}>

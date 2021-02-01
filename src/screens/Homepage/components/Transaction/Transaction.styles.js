@@ -15,9 +15,12 @@ export default StyleSheet.create({
     marginLeft: 12,
     marginRight: 'auto',
   },
+  moneyAmount: {
+    color: colors.gray,
+    fontSize: fonts.size.regular,
+  },
   receiveMoney: {
     color: colors.inputCorrect,
-    fontSize: fonts.size.regular,
   },
   iconWrapper: {
     padding: 11,

@@ -10,11 +10,31 @@ const axiosClient = axios.create({
   baseURL: config.apiUrl,
 });
 
+const eventHandlers = new Map();
+
+function isNetworkError(err) {
+  return !!err.isAxiosError && !err.response;
+}
+
 // Do not throw errors on 'bad' server response codes
 axiosClient.interceptors.response.use(
   (axiosConfig) => axiosConfig,
-  (error) => error.response || {},
+  (error) => {
+    const errorResponse = error.response || {
+      status: error.code,
+      statusText: error.message,
+      data: error.data,
+    };
+
+    const errorHandlers = eventHandlers.get('error') || [];
+    errorHandlers.forEach((handler) => {
+      handler(errorResponse);
+    });
+
+    return error.response || {};
+  },
 );
+
 axiosClient.interceptors.request.use(async (req) => {
   const token = await getToken();
 
@@ -54,7 +74,7 @@ const httpRequest = (method) => async (url, data) => {
 
   const axiosResponse = await axiosClient(options);
 
-  if (!axiosResponse.data) {
+  if (isNetworkError(axiosResponse)) {
     Alert.alert('', connectionError);
     throwApiError({
       data: { errors: [] },
@@ -70,6 +90,7 @@ const httpRequest = (method) => async (url, data) => {
   if (response.status >= 200 && response.status < 300) {
     return response.data;
   }
+
   if (response.status === 400) {
     throwApiError(response);
   }
@@ -102,6 +123,15 @@ const apiClient = {
   put: putRequest,
   delete: deleteRequest,
   patch: patchRequest,
+  on: (event, handler) => {
+    if (eventHandlers.has(event)) {
+      eventHandlers.get(event).add(handler);
+    } else {
+      eventHandlers.set(event, new Set([handler]));
+    }
+
+    return () => eventHandlers.get(event).remove(handler);
+  },
 };
 
 export default apiClient;

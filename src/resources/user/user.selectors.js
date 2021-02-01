@@ -1,5 +1,5 @@
 export const getUserAuthenticated = ({ user }) =>
-  user.accessToken && user.authenticated;
+  user?.userData._id && user.authenticated;
 
 export const getUserData = ({ user }) => user.userData;
 

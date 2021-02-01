@@ -1,11 +1,11 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useMemo } from 'react';
 import {
   Text,
   View,
-  ScrollView,
   Pressable,
   Animated,
   Dimensions,
+  FlatList,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import SlidingUpPanel from 'rn-sliding-up-panel';
@@ -16,10 +16,9 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Home from 'assets/icons/home.svg';
 
 import { HOMEPAGE_HEADER } from 'helpers/constants';
-import { getBalance } from 'resources/user/user.api';
-import { processMoney } from 'helpers/utils.helper';
+import { getBalance, getLatestTransactions } from 'resources/user/user.api';
+import { groupTransactionsList, processMoney } from 'helpers/utils.helper';
 import FullScreenLoader from 'components/FullScreenLoader';
-import Transaction from 'screens/Homepage/components/Transaction';
 
 import HomepageHeader from './components/HomepageHeader';
 import HomepageEmpty from './components/HomepageEmpty';
@@ -27,6 +26,7 @@ import HomepageEmpty from './components/HomepageEmpty';
 import { getSliderProps } from './helpers';
 
 import styles from './Homepage.styles';
+import DailyTransactions from './components/DailyTransactions';
 
 const { height } = Dimensions.get('window');
 const statusBarHeight = getStatusBarHeight(true);
@@ -35,6 +35,9 @@ function Homepage({ navigation }) {
   const tabBarHeight = useBottomTabBarHeight();
   const [balance, setBalance] = useState(0);
   const [isLoading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
+  const [totalTransactions, setTotalTransactions] = useState(0);
+  const [transactions, setTransactions] = useState([]);
   const panelRef = useRef(null);
 
   useFocusEffect(
@@ -42,11 +45,19 @@ function Homepage({ navigation }) {
       let mounted = true;
 
       const init = async () => {
-        setLoading(true);
-        const availableBalance = await getBalance();
         if (!mounted) {
           return;
         }
+
+        setLoading(true);
+        const availableBalance = await getBalance();
+        const {
+          count,
+          transactions: _transactions,
+        } = await getLatestTransactions();
+        setTotalTransactions(count);
+        setTransactions(_transactions);
+        setHasMore(_transactions.length < count);
         setBalance(processMoney(availableBalance.toString()));
         setLoading(false);
       };
@@ -59,11 +70,35 @@ function Homepage({ navigation }) {
     }, []),
   );
 
-  const draggableRange = {
-    top: height - HOMEPAGE_HEADER.SMALL_HEIGHT - tabBarHeight - statusBarHeight,
-    bottom:
-      height - HOMEPAGE_HEADER.FULL_HEIGHT - tabBarHeight - statusBarHeight,
-  };
+  const loadMore = useCallback(async () => {
+    if (!hasMore) {
+      return;
+    }
+
+    const { transactions: _transactions } = await getLatestTransactions(
+      transactions.length,
+    );
+
+    const allTransactions = [...transactions, ..._transactions];
+
+    setHasMore(allTransactions.length < totalTransactions);
+    setTransactions(allTransactions);
+  }, [hasMore, transactions, totalTransactions]);
+
+  const groupedTransactions = useMemo(
+    () => groupTransactionsList(transactions),
+    [transactions],
+  );
+
+  const draggableRange = useMemo(
+    () => ({
+      top:
+        height - HOMEPAGE_HEADER.SMALL_HEIGHT - tabBarHeight - statusBarHeight,
+      bottom:
+        height - HOMEPAGE_HEADER.FULL_HEIGHT - tabBarHeight - statusBarHeight,
+    }),
+    [],
+  );
   const [draggedValue] = useState(new Animated.Value(draggableRange.bottom));
 
   const {
@@ -71,8 +106,6 @@ function Homepage({ navigation }) {
     headerStyles,
     snappingPoints,
   } = getSliderProps(draggableRange, draggedValue);
-
-  const transactions = [];
 
   const [scrollEnabled, setScrollEnabled] = useState(false);
   const [allowDragging, setAllowDragging] = useState(true);
@@ -179,26 +212,20 @@ function Homepage({ navigation }) {
               </View>
               <Text style={styles.title}>Latest transactions</Text>
             </Pressable>
-            <ScrollView
+            <FlatList
+              keyExtractor={([key]) => key}
+              ItemSeparatorComponent={() => <View style={styles.divideLine} />}
+              data={groupedTransactions}
+              onEndReached={loadMore}
+              onEndReachedThreshold={0.5}
+              renderItem={({ item: [key, items] }) => (
+                <DailyTransactions date={key} transactions={items} />
+              )}
               scrollEnabled={scrollEnabled}
               onMomentumScrollEnd={onMomentumScrollEnd}
               onMomentumScrollBegin={onMomentumScrollBegin}
               style={styles.scrollView}
-            >
-              <View style={styles.titleContainer}>
-                <Text style={styles.subtitle}>Today, 19 June</Text>
-                <Text style={styles.subtitle}>+ ₣ 3,588</Text>
-              </View>
-              {transactions.map(({ username, transactionType, amount }) => (
-                <Transaction
-                  key={username}
-                  username={username}
-                  transactionType={transactionType}
-                  amount={amount}
-                />
-              ))}
-              <View style={styles.divideLine} />
-            </ScrollView>
+            />
           </View>
         </SlidingUpPanel>
       )}

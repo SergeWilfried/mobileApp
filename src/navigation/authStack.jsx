@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -23,8 +24,7 @@ import styles from './navigation.styles';
 
 const AuthStack = createStackNavigator();
 
-function AuthScreens() {
-  const token = useSelector(userSelectors.getUserToken);
+function AuthScreens({ token }) {
   const pinCode = useSelector(userSelectors.getPinCode);
 
   const initialRouteName = useMemo(() => {
@@ -61,5 +61,13 @@ function AuthScreens() {
     </DismissKeyboard>
   );
 }
+
+AuthScreens.propTypes = {
+  token: PropTypes.string,
+};
+
+AuthScreens.defaultProps = {
+  token: null,
+};
 
 export default AuthScreens;
