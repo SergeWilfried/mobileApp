@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const removeMobilePhone = (phoneNumbers, removePhoneId) =>
-  phoneNumbers.filter(({ id }) => id !== removePhoneId);
+  phoneNumbers.filter(({ _id }) => _id !== removePhoneId);
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         phoneNumbers: [...state.phoneNumbers, action.payload],
-        selectedPhoneNumberId: action.payload.id,
+        selectedPhoneNumberId: action.payload._id,
       };
     }
     case REMOVE_PHONE_NUMBER:

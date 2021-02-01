@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,31 +18,14 @@ import { getPhoneNumbers } from 'resources/wallet/wallet.selectors';
 
 import styles from './SavedPhoneNumbers.styles';
 
-const cards = [
-  {
-    id: '1',
-    icon: 'Airtel',
-    phoneNumber: '+31 (20) 666-13-13',
-  },
-  {
-    id: '2',
-    icon: 'Mtn',
-    phoneNumber: '+31 (20) 555-10-10',
-  },
-  {
-    id: '3',
-    icon: 'Orange',
-    phoneNumber: '+31 (20) 444-07-07',
-  },
-];
-
 function SavedPhoneNumbers({ navigation }) {
   const dispatch = useDispatch();
   const phoneNumbers = useSelector(getPhoneNumbers);
+  const [serverError, setServerError] = useState(false);
 
   useEffect(() => {
     const init = async () => {
-      await dispatch(setPhoneNumbers(cards));
+      await dispatch(setPhoneNumbers());
     };
     init();
   }, [dispatch]);
@@ -52,8 +35,8 @@ function SavedPhoneNumbers({ navigation }) {
   }, [navigation]);
 
   const handleChoosePhone = useCallback(
-    (id) => {
-      dispatch(selectPhoneNumber(id));
+    (_id) => {
+      dispatch(selectPhoneNumber(_id));
       navigation.navigate('ConfirmMobileDeposit');
     },
 
@@ -61,34 +44,45 @@ function SavedPhoneNumbers({ navigation }) {
   );
 
   const removePhone = useCallback(
-    (id) => {
-      dispatch(removePhoneNumber(id));
+    async (_id) => {
+      try {
+        await dispatch(removePhoneNumber(_id));
+        setServerError(false);
+      } catch (e) {
+        setServerError(true);
+      }
     },
     [dispatch],
   );
 
   return (
     <View style={styles.cardsContainer}>
-      {phoneNumbers.map(({ id, phoneNumber, icon }) => (
-        <Card
-          key={phoneNumber}
-          leftIcon={getPhoneOperatorIcon(icon)}
-          rightIcon={<CardRightIcon title="Remove" />}
-          rightIconClick={() => removePhone(id)}
-          onCardClick={() => handleChoosePhone(id)}
-          cardStyle={styles.card}
-        >
-          <View style={styles.cardContent}>
-            <Text style={styles.title}>Phone Number</Text>
-            <Text style={styles.subTitle}>{phoneNumber}</Text>
-          </View>
-        </Card>
-      ))}
+      {!phoneNumbers.length ? (
+        <View style={styles.emptyPhoneNumbers}>
+          <Text>You have no mobile numbers yet</Text>
+        </View>
+      ) : (
+        phoneNumbers.map(({ _id, phoneNumber, phoneOperator }) => (
+          <Card
+            key={phoneNumber}
+            leftIcon={getPhoneOperatorIcon(phoneOperator)}
+            rightIcon={<CardRightIcon title="Remove" />}
+            rightIconClick={() => removePhone(_id)}
+            onCardClick={() => handleChoosePhone(_id)}
+            cardStyle={styles.card}
+          >
+            <View style={styles.cardContent}>
+              <Text style={styles.title}>Phone Number</Text>
+              <Text style={styles.subTitle}>{phoneNumber}</Text>
+            </View>
+          </Card>
+        ))
+      )}
       <Button
         onPress={handleAddNewNumber}
         style={styles.buttonAddNumber}
         title="Add New Number"
-        disabled={phoneNumbers.length >= 3}
+        disabled={phoneNumbers.length >= 3 || serverError}
       />
     </View>
   );

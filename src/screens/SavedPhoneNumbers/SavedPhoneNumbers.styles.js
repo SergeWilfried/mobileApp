@@ -13,6 +13,10 @@ export default StyleSheet.create({
     marginBottom: 16,
     height: 78,
   },
+  emptyPhoneNumbers: {
+    flex: 1,
+    alignItems: 'center',
+  },
   cardContent: {
     marginLeft: 21,
     width: '60%',

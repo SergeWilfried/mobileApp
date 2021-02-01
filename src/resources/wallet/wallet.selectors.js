@@ -1,7 +1,7 @@
 export const getSelectedPhoneNumber = ({
   wallet: { selectedPhoneNumberId, phoneNumbers },
 }) => {
-  return phoneNumbers.find(({ id }) => id === selectedPhoneNumberId);
+  return phoneNumbers.find(({ _id }) => _id === selectedPhoneNumberId);
 };
 
 export const getPhoneNumbers = ({ wallet: { phoneNumbers } }) => {

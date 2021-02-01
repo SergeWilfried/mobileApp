@@ -1,3 +1,4 @@
+import * as api from './wallet.api';
 import {
   SELECT_PHONE_NUMBER,
   SET_PHONE_NUMBERS,
@@ -5,27 +6,30 @@ import {
   ADD_PHONE_NUMBER,
 } from './wallet.constants';
 
-export const setPhoneNumbers = (phoneNumbers) => async (dispatch) => {
+export const setPhoneNumbers = () => async (dispatch) => {
+  const phoneNumbers = await api.getSavedPhoneNumbers();
+
   dispatch({
     type: SET_PHONE_NUMBERS,
     payload: phoneNumbers,
   });
+
   return phoneNumbers;
 };
 
-export const selectPhoneNumber = (id) => (dispatch) => {
-  dispatch({ type: SELECT_PHONE_NUMBER, payload: id });
+export const selectPhoneNumber = (_id) => (dispatch) => {
+  dispatch({ type: SELECT_PHONE_NUMBER, payload: _id });
 };
 
-export const addPhoneNumber = (phoneNumber) => /* async */ (dispatch) => {
-  // await addPhoneServer
-  dispatch({ type: ADD_PHONE_NUMBER, payload: phoneNumber });
+export const addPhoneNumber = (phone) => async (dispatch) => {
+  const newPhone = await api.addNewSavedPhoneNumber(phone);
+  dispatch({ type: ADD_PHONE_NUMBER, payload: newPhone });
 };
 
-export const removePhoneNumber = (id) => /* async */ (dispatch) => {
-  // await removeFromServer(id)
+export const removePhoneNumber = (_id) => async (dispatch) => {
+  await api.removeSavedPhoneNumber(_id);
   dispatch({
     type: REMOVE_PHONE_NUMBER,
-    payload: id,
+    payload: _id,
   });
 };

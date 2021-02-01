@@ -13,8 +13,7 @@ import { getSelectedPhoneNumber } from 'resources/wallet/wallet.selectors';
 import styles from './ConfirmMobileDeposit.styles';
 
 function ConfirmMobileDeposit({ navigation }) {
-  const { icon, phoneNumber } = useSelector(getSelectedPhoneNumber);
-
+  const { phoneOperator, phoneNumber } = useSelector(getSelectedPhoneNumber);
   const handlePressConfirm = useCallback(
     async (amount, formattedAmount) => {
       await deposit(amount);
@@ -41,7 +40,7 @@ function ConfirmMobileDeposit({ navigation }) {
       title="Mobile Money Top up"
       subTitle="Enter amount"
       navigation={navigation}
-      leftIcon={getPhoneOperatorIcon(icon)}
+      leftIcon={getPhoneOperatorIcon(phoneOperator)}
       handleConfirm={handlePressConfirm}
     >
       <View style={styles.cardContent}>

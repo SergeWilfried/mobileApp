@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { View, SafeAreaView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -54,13 +54,13 @@ function ChooseProvider({ navigation }) {
 
   const handleSubmit = useCallback(
     async (phoneNumber) => {
-      dispatch(
+      await dispatch(
         addPhoneNumber({
           phoneNumber,
-          icon: phoneOperator.icon,
-          id: `${Math.random()}`,
+          phoneOperator: phoneOperator.icon,
         }),
       );
+
       navigation.navigate('ConfirmMobileDeposit');
     },
     [navigation, phoneOperator],
@@ -75,7 +75,10 @@ function ChooseProvider({ navigation }) {
     phoneNumber,
   } = usePhoneNumber(handleSubmit);
 
-  const isButtonDisabled = !!phoneError || !phoneOperator.title || !phoneNumber;
+  const isButtonDisabled = useMemo(
+    () => !!phoneError || !phoneOperator.title || !phoneNumber,
+    [phoneError, phoneOperator.title, phoneNumber],
+  );
 
   return (
     <DismissKeyboard keyboardAvoidingViewProps={{ keyboardVerticalOffset }}>
