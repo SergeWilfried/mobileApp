@@ -22,8 +22,14 @@ export const NAVBAR_ICONS = {
   WALLET: 'Wallet',
   SAVINGS: 'Savings',
   SEND: 'Send',
-  AIRTIME: 'Airtime',
+  CONTACTS: 'Contacts',
   MORE: 'More',
+};
+
+export const SEND_FLOW = {
+  DUNIAPAY: 'Duniapay',
+  MOBILE: 'Mobile',
+  QR_CODE: 'QRCode',
 };
 
 export const HOMEPAGE_HEADER = {

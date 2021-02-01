@@ -24,3 +24,11 @@ export const processMoney = (text) => {
   const max6numbers = withoutLeadZeroes.slice(0, 6);
   return max6numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
+
+export const getInitials = (username) => {
+  const nameArray = username.split(' ');
+  if (nameArray.length > 1) {
+    return `${nameArray[0][0].toUpperCase()}${nameArray[1][0].toUpperCase()}`;
+  }
+  return username[0].toUpperCase();
+};

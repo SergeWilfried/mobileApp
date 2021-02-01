@@ -10,10 +10,12 @@ import Wallet from 'screens/Wallet';
 import DepositMoneyMethods from 'screens/DepositMoneyMethods';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
+import SendDuniaMoney from 'screens/SendDuniaMoney';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
 import SavedPhoneNumbers from 'screens/SavedPhoneNumbers';
+import ChooseContact from 'screens/ChooseContact';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -23,7 +25,7 @@ import TabBarLabel from 'components/TabBarLabel';
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
 import SavingsIcon from 'assets/icons/tabBar/savings.svg';
 import SendIcon from 'assets/icons/tabBar/send.svg';
-import AirtimeIcon from 'assets/icons/tabBar/airtime.svg';
+import ContactsIcon from 'assets/icons/tabBar/contacts.svg';
 import MoreIcon from 'assets/icons/tabBar/more.svg';
 
 import styles from './navigation.styles';
@@ -146,17 +148,17 @@ function Dashboard() {
         }}
       />
       <Tab.Screen
-        name={constants.NAVBAR_ICONS.AIRTIME}
+        name={constants.NAVBAR_ICONS.CONTACTS}
         component={Wallet}
         options={{
           tabBarLabel: (label) => (
             <TabBarLabel
               focused={label.focused}
-              text={constants.NAVBAR_ICONS.AIRTIME}
+              text={constants.NAVBAR_ICONS.CONTACTS}
             />
           ),
           tabBarIcon: (icon) => (
-            <TabBarIcon focused={icon.focused} icon={AirtimeIcon} />
+            <TabBarIcon focused={icon.focused} icon={ContactsIcon} />
           ),
         }}
       />
@@ -193,7 +195,9 @@ function AppScreens() {
           name="ConfirmCardDeposit"
           component={ConfirmCardDeposit}
         />
+        <AppStack.Screen name="SendDuniaMoney" component={SendDuniaMoney} />
         <AppStack.Screen name="ChooseProvider" component={ChooseProvider} />
+        <AppStack.Screen name="ChooseContact" component={ChooseContact} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
       </AppStack.Navigator>
     </>

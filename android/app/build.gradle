@@ -199,6 +199,7 @@ dependencies {
     implementation project(':lottie-react-native')
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.facebook.android:facebook-login:[8.1)'
+    implementation project(':react-native-contacts')
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

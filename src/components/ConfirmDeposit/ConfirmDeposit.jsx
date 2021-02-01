@@ -1,5 +1,11 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { View, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import {
+  View,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 
 import Text from 'components/Text';
@@ -56,7 +62,7 @@ function ConfirmDeposit({
   return (
     <>
       {isSubmitting && <FullScreenLoader />}
-      <View style={styles.screen}>
+      <SafeAreaView style={styles.screen}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'android' ? 'height' : 'padding'}
           style={styles.container}
@@ -103,7 +109,7 @@ function ConfirmDeposit({
             />
           </View>
         </KeyboardAvoidingView>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
