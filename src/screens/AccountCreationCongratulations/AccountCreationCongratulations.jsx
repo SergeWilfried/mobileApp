@@ -6,11 +6,13 @@ import * as userActions from 'resources/user/user.actions';
 
 import Congratulations from 'components/Congratulations';
 
-function AccountCreationCongratulations() {
+function AccountCreationCongratulations({ navigation }) {
   const dispatch = useDispatch();
 
   const onContinuePress = useCallback(() => {
     dispatch(userActions.setUserAuthenticated());
+
+    navigation.navigate('Homepage');
   }, [dispatch]);
 
   return (

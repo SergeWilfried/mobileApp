@@ -38,7 +38,7 @@ function ConfirmCardDeposit({ navigation, route }) {
 
   return (
     <ConfirmDeposit
-      title="Debit Card Top up"
+      title="Debit Card Deposit"
       subTitle="Enter amount"
       navigation={navigation}
       leftIcon={<CardPayment />}

@@ -45,7 +45,9 @@ function HomepageHeader({
           {userData.avatarUrl ? (
             <Image source={{ uri: userData.avatarUrl }} style={styles.avatar} />
           ) : (
-            <Text style={styles.initials}>{getInitials(userData.username)}</Text>
+            <Text style={styles.initials}>
+              {getInitials(userData.username)}
+            </Text>
           )}
         </TouchableOpacity>
         <Animated.View style={styles.titleContainer}>
@@ -54,19 +56,20 @@ function HomepageHeader({
       </View>
       <Animated.View style={propsStyles.subtitle}>
         {isBalanceHidden ? (
-            <View style={styles.hiddenBalance}>
-              <HideBalance />
-              <Text style={styles.hiddenBalanceText}>Hidden Balance</Text>
-            </View>
-          ) : <Text style={styles.headerSubtitle}>{subtitle}</Text>
-        }
+          <View style={styles.hiddenBalance}>
+            <HideBalance />
+            <Text style={styles.hiddenBalanceText}>Hidden Balance</Text>
+          </View>
+        ) : (
+          <Text style={styles.headerSubtitle}>{subtitle}</Text>
+        )}
       </Animated.View>
       <Animated.View style={styles.iconsContainer}>
         <TouchableOpacity onPress={onClickTopUp}>
           <View style={styles.iconBackground}>
             <TopUp />
           </View>
-          <Text style={styles.text}>Top up</Text>
+          <Text style={styles.text}>Deposit</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={onClickSend}>
           <View style={styles.iconBackground}>

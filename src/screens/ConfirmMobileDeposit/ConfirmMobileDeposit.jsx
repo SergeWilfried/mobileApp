@@ -41,7 +41,7 @@ function ConfirmMobileDeposit({ navigation }) {
 
   return (
     <ConfirmDeposit
-      title="Mobile Money Top up"
+      title="Mobile Money Deposit"
       subTitle="Enter amount"
       navigation={navigation}
       leftIcon={<MobileOperatorIcon />}

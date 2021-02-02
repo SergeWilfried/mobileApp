@@ -105,7 +105,7 @@ function ConfirmDeposit({
               onPress={onConfirm}
               style={styles.buttonConfirm}
               disabled={isDisabled}
-              title="Confirm Top up"
+              title="Confirm"
             />
           </View>
         </KeyboardAvoidingView>

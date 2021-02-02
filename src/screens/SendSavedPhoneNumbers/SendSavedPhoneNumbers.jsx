@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import SavedPhoneNumbers from 'components/SavedPhoneNumbers';
 
-import { MOBILE_MONEY_FLOW } from 'helpers/constants';
+import { MOBILE_MONEY_FLOW, SEND_FLOW } from 'helpers/constants';
 
 function SendSavedPhoneNumbers({ navigation }) {
   const handleConfirm = useCallback(() => {
-    navigation.navigate('SendMobileMoney');
+    navigation.navigate('ChooseContact', { sendFlow: SEND_FLOW.MOBILE });
   }, [navigation]);
 
   return (

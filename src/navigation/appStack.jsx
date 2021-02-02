@@ -54,7 +54,7 @@ function DepositMoneyScreens() {
         name="DepositMoneyMethods"
         component={DepositMoneyMethods}
         options={{
-          title: 'Top up my Wallet',
+          title: 'Deposit my Wallet',
           subTitle: 'Choose a deposit method',
         }}
       />
@@ -62,7 +62,7 @@ function DepositMoneyScreens() {
         name="SelectCards"
         component={SelectCards}
         options={{
-          title: 'Debit Card Top up',
+          title: 'Debit Card Deposit',
           subTitle: 'Choose a debit card',
         }}
       />
@@ -70,7 +70,7 @@ function DepositMoneyScreens() {
         name="DepositSavedPhoneNumbers"
         component={DepositSavedPhoneNumbers}
         options={{
-          title: 'Mobile Money Top up',
+          title: 'Mobile Money Deposit',
           subTitle: 'Choose your mobile number',
         }}
       />

@@ -19,6 +19,12 @@ function ContactServerList({ title, listPhoneContacts, navigation, sendFlow }) {
           duniapayName: givenName,
         });
       }
+      if (sendFlow === SEND_FLOW.MOBILE) {
+        navigation.navigate('SendMobileMoney', {
+          phoneContactName: givenName,
+          duniapayName: givenName,
+        });
+      }
     },
     [navigation],
   );

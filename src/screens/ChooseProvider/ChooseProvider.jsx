@@ -10,7 +10,7 @@ import Text from 'components/Text';
 import MainHeader from 'components/MainHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
 
-import { MOBILE_MONEY_FLOW } from 'helpers/constants';
+import { MOBILE_MONEY_FLOW, SEND_FLOW } from 'helpers/constants';
 import { addPhoneNumber } from 'resources/wallet/wallet.actions';
 import usePhoneNumber from 'hooks/usePhoneNumber';
 import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
@@ -62,9 +62,12 @@ function ChooseProvider({ navigation, route }) {
           phoneOperator: phoneOperator.icon,
         }),
       );
+      console.log('phoneflow', phoneflow);
+      console.log('MOBILE_MONEY_FLOW.DEPOSIT', MOBILE_MONEY_FLOW.DEPOSIT);
+
       return phoneflow === MOBILE_MONEY_FLOW.DEPOSIT
         ? navigation.navigate('ConfirmMobileDeposit')
-        : navigation.navigate('SendMobileMoney');
+        : navigation.navigate('ChooseContact', { sendFlow: SEND_FLOW.MOBILE });
     },
     [navigation, phoneOperator, MOBILE_MONEY_FLOW],
   );
@@ -86,7 +89,7 @@ function ChooseProvider({ navigation, route }) {
   return (
     <DismissKeyboard keyboardAvoidingViewProps={{ keyboardVerticalOffset }}>
       <MainHeader
-        title="Mobile Money Top up"
+        title="Mobile Money Deposit"
         subTitle="Choose your provider"
         navigation={navigation}
       />

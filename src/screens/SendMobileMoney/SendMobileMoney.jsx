@@ -10,10 +10,9 @@ import { processMoney } from 'helpers/utils.helper';
 
 import styles from './SendMobileMoney.styles';
 
-function SendMobileMoney({ navigation }) {
-  // const { phoneContactName, duniapayName } = route.params;
-  const phoneContactName = 'Nick';
-  const duniapayName = 'Awesome';
+function SendMobileMoney({ navigation, route }) {
+  const { phoneContactName, duniapayName } = route.params;
+
   const handlePressConfirm = useCallback(
     async (amount, formattedAmount) => {
       navigation.navigate('Congratulations', {

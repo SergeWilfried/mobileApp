@@ -12,7 +12,6 @@ import styles from './SendDuniaMoney.styles';
 
 function SendDuniaMoney({ navigation, route }) {
   const { phoneContactName, duniapayName } = route.params;
-  const leftIcon = () => <LeftIcon icon={getInitials(phoneContactName)} />;
 
   const handlePressConfirm = useCallback(
     async (formattedValue) => {
@@ -37,11 +36,11 @@ function SendDuniaMoney({ navigation, route }) {
 
   return (
     <ConfirmDeposit
-      title="Debit Card Top up"
+      title="Send Money"
       subTitle="Enter amount"
       navigation={navigation}
       handleConfirm={handlePressConfirm}
-      leftIcon={leftIcon}
+      leftIcon={<LeftIcon icon={getInitials(phoneContactName)} />}
     >
       <View style={styles.cardContent}>
         <Text style={styles.cardTitle}>{phoneContactName}</Text>

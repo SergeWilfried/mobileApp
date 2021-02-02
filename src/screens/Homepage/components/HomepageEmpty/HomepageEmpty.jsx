@@ -14,7 +14,7 @@ function HomepageEmpty({ onClickTopUp }) {
         <Text style={styles.text}>
           Looks like there is no credit in your wallet at the moment.{' '}
           <Text onPress={onClickTopUp} style={[styles.text, styles.linkText]}>
-            Top up
+            Deposit
           </Text>{' '}
           to see your first transaction.
         </Text>

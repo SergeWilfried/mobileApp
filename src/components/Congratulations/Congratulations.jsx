@@ -46,7 +46,7 @@ Congratulations.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
       title: PropTypes.string,
-      subTitle: PropTypes.element,
+      subTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       onContinuePress: PropTypes.func,
       buttonName: PropTypes.string,
       screenStyle: ViewPropTypes.style,
