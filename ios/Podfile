@@ -7,7 +7,11 @@ target 'duniapay' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-  
+
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
+
   target 'duniapayTests' do
     inherit! :complete
     # Pods for testing

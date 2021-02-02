@@ -18,6 +18,7 @@ import ChooseContact from 'screens/ChooseContact';
 import DepositSavedPhoneNumbers from 'screens/DepositSavedPhoneNumbers';
 import SendSavedPhoneNumbers from 'screens/SendSavedPhoneNumbers';
 import SendMobileMoney from 'screens/SendMobileMoney';
+import Profile from 'screens/Profile';
 
 import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
@@ -71,6 +72,13 @@ function DepositMoneyScreens() {
         options={{
           title: 'Mobile Money Top up',
           subTitle: 'Choose your mobile number',
+        }}
+      />
+      <DepositStack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'My Profile',
         }}
       />
     </DepositStack.Navigator>

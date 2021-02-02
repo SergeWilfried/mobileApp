@@ -48,6 +48,8 @@ const colors = {
   // Facebook/Google Button color
   socialBorder: '#02034a1a',
 
+  profileArrowIcon: 'rgba(60, 60, 67, 0.3)',
+
   // shadow
   shadow: '#000000',
 };

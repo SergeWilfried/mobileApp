@@ -72,8 +72,6 @@ function Homepage({ navigation }) {
     snappingPoints,
   } = getSliderProps(draggableRange, draggedValue);
 
-  const AVATAR_URL = '';
-  const USERNAME = 'Tatyana';
   const transactions = [];
 
   const [scrollEnabled, setScrollEnabled] = useState(false);
@@ -156,8 +154,6 @@ function Homepage({ navigation }) {
       <HomepageHeader
         title="Your balance"
         subtitle={`₣ ${balance}`}
-        avatarUrl={AVATAR_URL}
-        username={USERNAME}
         propsStyles={headerStyles}
         onClickTopUp={onClickTopUp}
         onClickSend={onClickSend}

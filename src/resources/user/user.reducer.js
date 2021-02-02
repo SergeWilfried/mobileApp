@@ -6,12 +6,17 @@ import {
   HIDE_ONBOARDING,
   SET_PIN_CODE,
   SET_USER_TOKEN,
+  HIDE_BALANCE,
+  SET_AVATAR_URL,
 } from './user.constants';
 
 const initialState = {
-  userData: {},
+  userData: {
+    username: 'Anita Ukauwa',
+  },
   authenticated: false,
   isOnboardingHidden: false,
+  isBalanceHidden: false,
   pinCode: '',
   accessToken: '',
 };
@@ -59,6 +64,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pinCode: action.payload.pinCode,
+      };
+    case HIDE_BALANCE:
+      return {
+        ...state,
+        isBalanceHidden: action.isHidden,
+      };
+    case SET_AVATAR_URL:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          avatarUrl: action.avatarUrl,
+        },
       };
     default:
       return state;

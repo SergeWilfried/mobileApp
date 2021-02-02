@@ -10,6 +10,8 @@ import {
   SET_PIN_CODE,
   SET_USER_TOKEN,
   USER_SIGNED_UP,
+  HIDE_BALANCE,
+  SET_AVATAR_URL,
 } from './user.constants';
 
 import * as api from './user.api';
@@ -85,3 +87,11 @@ export const setPinCode = (pinCode) => ({
   type: SET_PIN_CODE,
   payload: { pinCode },
 });
+
+export const hideBalance = (isHidden) => (dispatch) => {
+  dispatch({ type: HIDE_BALANCE, isHidden });
+};
+
+export const setAvatarUrl = (avatarUrl) => (dispatch) => {
+  dispatch({ type: SET_AVATAR_URL, avatarUrl });
+}

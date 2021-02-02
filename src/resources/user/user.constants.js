@@ -6,3 +6,5 @@ export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const HIDE_ONBOARDING = 'HIDE_ONBOARDING';
 export const SET_PIN_CODE = 'SET_PIN_CODE';
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
+export const HIDE_BALANCE = 'HIDE_BALANCE';
+export const SET_AVATAR_URL = 'SET_AVATAR_URL';
