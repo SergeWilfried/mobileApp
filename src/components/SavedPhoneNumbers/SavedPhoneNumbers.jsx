@@ -85,7 +85,7 @@ function SavedPhoneNumbers({ navigation, handleConfirm, phoneflow }) {
               key={phoneNumber}
               leftIcon={<MobileOperatorIcon />}
               rightIcon={<CardRightIcon title="Remove" />}
-              rightIconClick={() => removePhone(_id)}
+              rightIconClick={() => removePhone(_id, phoneNumber)}
               onCardClick={() => handleChoosePhone(_id)}
               cardStyle={styles.card}
             >

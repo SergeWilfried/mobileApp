@@ -62,7 +62,7 @@
 		</dict>
 	</dict>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>allow to use contacts</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
