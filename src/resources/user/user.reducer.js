@@ -45,7 +45,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload,
-        authenticated: true,
       };
     }
     case USER_LOGGED_OUT:

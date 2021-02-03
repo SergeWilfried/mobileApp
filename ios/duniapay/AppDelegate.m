@@ -34,18 +34,34 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  //Clear keychain on first run in case of reinstallation
+  if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+    NSString * key = @"DUNIAPAY_KEY";
+    NSLog(@"First run. Attempting to purge any existing persisted state.");
+
+    NSDictionary* query = [NSDictionary dictionaryWithObjectsAndKeys:
+                           (id)kSecClassGenericPassword, kSecClass,
+                           key, kSecAttrAccount,
+                           kCFBooleanTrue, kSecReturnAttributes,
+                           kCFBooleanTrue, kSecReturnData, nil];
+    OSStatus osStatus = SecItemDelete((CFDictionaryRef) query);
+
+    [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
 
   NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.js" fallbackResource:nil];
-  
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation moduleProvider:nil launchOptions:launchOptions];
 
 #if RCT_DEV
   [bridge moduleForClass:[RCTDevLoadingView class]];
 #endif
-  
+
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"duniapay"
                                             initialProperties:nil];
