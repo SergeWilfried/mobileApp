@@ -32,14 +32,14 @@ function ContactServerList({ title, listPhoneContacts, navigation, sendFlow }) {
   return (
     <>
       <Text style={styles.title}>{title}</Text>
-      {listPhoneContacts.map(({ givenName }, index) => (
+      {listPhoneContacts.map(({ givenName, recordID }, index) => (
         <Contact
           isLastContact={index === listPhoneContacts.length - 1}
           icon={getInitials(givenName)}
           onContactClick={() => {
             handleContactClick(givenName);
           }}
-          key={givenName}
+          key={recordID}
         >
           <View style={styles.cardContent}>
             <Text style={styles.phoneContactName}>{givenName}</Text>

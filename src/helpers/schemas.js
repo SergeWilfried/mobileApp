@@ -41,7 +41,7 @@ export const PersonalInfoSchema = Yup.object().shape({
   firstName: Yup.string().trim(),
   lastName: Yup.string().trim(),
   email: Yup.string().email('Please, enter a correct email!'),
-  birthDay: Yup.string().trim(),
+  birthDate: Yup.date().default(() => new Date()),
   phoneNumber: Yup.string(),
   country: Yup.string(),
 });

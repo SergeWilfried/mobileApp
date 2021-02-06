@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import {
@@ -8,9 +8,12 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
+import * as userActions from 'resources/user/user.actions';
 import { PersonalInfoSchema } from 'helpers/schemas';
 import { ApiError } from 'helpers/api';
+import * as userSelectors from 'resources/user/user.selectors';
 
 import Text from 'components/Text';
 import Input from 'components/Input';
@@ -23,26 +26,41 @@ import DatePickerInput from 'components/DatePickerInput';
 
 import styles from './PersonalInformation.styles';
 
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  birthDay: new Date(2000, 1),
-  phoneNumber: '',
-  country: 'Nigeria',
-};
+const isEqualValues = (oldValues, newValues) =>
+  oldValues.country === newValues.country &&
+  oldValues.email === newValues.email &&
+  oldValues.firstName === newValues.firstName &&
+  oldValues.lastName === newValues.lastName &&
+  oldValues.birthDate.getDay() === newValues.birthDate.getDay() &&
+  oldValues.birthDate.getMonth() === newValues.birthDate.getMonth() &&
+  oldValues.birthDate.getFullYear() === newValues.birthDate.getFullYear();
 
-function PersonalInformation({ navigation }) {
-  const [isLoading, setLoading] = useState(false);
+function PersonalInformation() {
+  const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(true);
   const [phoneError, setPhoneError] = useState('');
+  const initialValues = useSelector(userSelectors.getUserData);
+
+  useEffect(() => {
+    try {
+      setLoading(true);
+      dispatch(userActions.getCurrentUser());
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   const onSafeSubmit = useCallback(async (data, { setErrors }) => {
     try {
+      if (isEqualValues(initialValues, data)) {
+        return;
+      }
       setLoading(true);
-      // await userApi.updateUserInfo(data);
+      await dispatch(userActions.updateUserInfo(data));
     } catch (e) {
       if (e instanceof ApiError) {
         setErrors(e.data);
+        if (e.data?.phoneNumber) setPhoneError(e.data.phoneNumber);
       } else {
         throw e;
       }
@@ -89,7 +107,7 @@ function PersonalInformation({ navigation }) {
   const handleChange = useCallback(
     async (fieldName, value) => {
       await setFieldTouched(fieldName, false);
-      await setFieldValue(fieldName, value.trim());
+      await setFieldValue(fieldName, value);
     },
     [setFieldValue, setFieldTouched],
   );
@@ -118,7 +136,7 @@ function PersonalInformation({ navigation }) {
                   label="First Name"
                   name="firstName"
                   value={values.firstName}
-                  onChangeText={(val) => handleChange('firstName', val)}
+                  onChangeText={(val) => handleChange('firstName', val.trim())}
                   onBlur={() => handleBlur('firstName')}
                   errorMessage={touched.firstName ? errors.firstName : ''}
                   inputLabelWrapper={styles.input}
@@ -127,7 +145,7 @@ function PersonalInformation({ navigation }) {
                   label="Last Name"
                   name="lastName"
                   value={values.lastName}
-                  onChangeText={(val) => handleChange('lastName', val)}
+                  onChangeText={(val) => handleChange('lastName', val.trim())}
                   onBlur={() => handleBlur('lastName')}
                   errorMessage={touched.lastName ? errors.lastName : ''}
                   inputLabelWrapper={styles.input}
@@ -136,7 +154,7 @@ function PersonalInformation({ navigation }) {
                   name="email"
                   label="Email"
                   value={values.email}
-                  onChangeText={(val) => handleChange('email', val)}
+                  onChangeText={(val) => handleChange('email', val.trim())}
                   onBlur={() => handleBlur('email')}
                   errorMessage={touched.email ? errors.email : ''}
                   inputLabelWrapper={styles.input}
@@ -155,12 +173,13 @@ function PersonalInformation({ navigation }) {
                   onChangeFormattedPhone={onChangeFormattedPhone}
                   onBlur={onBlurPhone}
                   error={phoneError}
+                  defaultValue="+375336376495"
                 />
                 <Text style={styles.label}>Birth Date</Text>
                 <DatePickerInput
-                  initialValue={initialValues.birthDay}
+                  value={values.birthDate}
                   onChange={(val) => {
-                    handleChange('birthDay', val);
+                    handleChange('birthDate', val);
                   }}
                   maxDate={new Date()}
                   minDate={new Date(1930, 1)}
@@ -171,7 +190,11 @@ function PersonalInformation({ navigation }) {
                 title="Save Changes"
                 onPress={handleSubmit}
                 style={styles.button}
-                disabled={!isValid || Boolean(phoneError)}
+                disabled={
+                  !isValid ||
+                  Boolean(phoneError) ||
+                  isEqualValues(initialValues, values)
+                }
               />
             </View>
           </View>
@@ -180,11 +203,5 @@ function PersonalInformation({ navigation }) {
     </SafeAreaView>
   );
 }
-
-PersonalInformation.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default PersonalInformation;

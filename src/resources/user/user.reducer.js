@@ -8,6 +8,7 @@ import {
   HIDE_BALANCE,
   SET_AVATAR_URL,
   USER_SIGNED_IN,
+  USER_UPDATED,
 } from './user.constants';
 
 const initialState = {
@@ -26,6 +27,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authenticated: true,
+      };
+    case USER_UPDATED:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          ...action.payload,
+        },
       };
     case USER_CURRENT:
       return {

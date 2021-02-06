@@ -74,7 +74,7 @@ function SignIn({ navigation }) {
   const handleEmailChange = useCallback(
     (value) => {
       setFieldTouched('email', false);
-      setFieldValue('email', value);
+      setFieldValue('email', value.trim());
     },
     [setFieldValue, setFieldTouched],
   );

@@ -78,7 +78,7 @@ function CreateAccount({ navigation, route }) {
   const handleEmailChange = useCallback(
     (value) => {
       setFieldTouched('email', false);
-      setFieldValue('email', value);
+      setFieldValue('email', value.trim());
     },
     [setFieldValue, setFieldTouched],
   );

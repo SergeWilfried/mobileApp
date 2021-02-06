@@ -8,3 +8,4 @@ export const SET_PIN_CODE = 'SET_PIN_CODE';
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 export const HIDE_BALANCE = 'HIDE_BALANCE';
 export const SET_AVATAR_URL = 'SET_AVATAR_URL';
+export const USER_UPDATED = 'USER_UPDATED';

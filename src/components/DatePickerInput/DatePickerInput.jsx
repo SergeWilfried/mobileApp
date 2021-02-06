@@ -15,15 +15,8 @@ const timeOptions = {
   year: 'numeric',
 };
 const locale = 'en-US';
-function DatePickerInput({
-  onChange,
-  placeholder,
-  minDate,
-  maxDate,
-  initialValue,
-}) {
+function DatePickerInput({ onChange, placeholder, minDate, maxDate, value }) {
   const [showModal, setShowModal] = useState(false);
-  const [value, setValue] = useState(initialValue);
 
   const onOpenModal = useCallback(() => {
     setShowModal(true);
@@ -36,14 +29,11 @@ function DatePickerInput({
         return;
       }
 
-      setValue(selectedDate);
+      onChange(selectedDate);
 
       setShowModal(false);
-
-      const correctDay = selectedDate.toLocaleDateString(locale, timeOptions);
-      onChange(correctDay);
     },
-    [setShowModal, setValue, onChange],
+    [setShowModal, onChange],
   );
 
   return (
@@ -84,7 +74,7 @@ function DatePickerInput({
 DatePickerInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
-  initialValue: PropTypes.instanceOf(Date).isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
   minDate: PropTypes.instanceOf(Date).isRequired,
   maxDate: PropTypes.instanceOf(Date).isRequired,
 };

@@ -36,6 +36,10 @@ export const getBalance = async () => {
   return availableBalance;
 };
 
+export const updateUser = async (user) => {
+  return apiClient.put('users/current', user);
+};
+
 export const getLatestTransactions = async (skip = 0) => {
   return apiClient.get('/users/current/transactions', { skip });
 };

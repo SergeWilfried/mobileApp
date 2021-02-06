@@ -11,6 +11,7 @@ import {
   HIDE_BALANCE,
   SET_AVATAR_URL,
   USER_SIGNED_IN,
+  USER_UPDATED,
 } from './user.constants';
 
 import * as api from './user.api';
@@ -32,9 +33,18 @@ export const resetPassword = (password, verificationToken) => async (
   });
 
   await setAccessToken(accessToken);
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_SIGNED_UP, payload: userData });
 
   return userData;
+};
+
+export const updateUserInfo = (updatedUser) => async (dispatch) => {
+  const userData = await api.updateUser(updatedUser);
+  userData.birthDate = new Date(userData.birthDate);
+  dispatch({ type: USER_UPDATED, payload: userData });
 };
 
 export const signUp = (user) => async (dispatch) => {
@@ -43,7 +53,9 @@ export const signUp = (user) => async (dispatch) => {
   if (userData.accessToken) {
     await setToken(userData.accessToken);
   }
-
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_SIGNED_UP, payload: userData });
 
   return userData;
@@ -51,12 +63,19 @@ export const signUp = (user) => async (dispatch) => {
 
 export const signIn = ({ email, password }) => async (dispatch) => {
   const { accessToken, ...userData } = await api.signIn({ email, password });
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_SIGNED_IN, payload: userData });
   return setAccessToken(accessToken);
 };
 
 export const getCurrentUser = () => async (dispatch) => {
   const userData = await api.getCurrentUser();
+
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_CURRENT, userData });
 
   return userData;
@@ -70,7 +89,9 @@ export const logOut = () => async (dispatch) => {
 
 export const signUpFacebook = (tokens) => async (dispatch) => {
   const { accessToken, ...userData } = await api.signUpFacebook(tokens);
-
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_SIGNED_UP, payload: userData });
 
   return setAccessToken(userData);
@@ -80,7 +101,9 @@ export const signInFacebook = (facebookAccessToken) => async (dispatch) => {
   const { accessToken, ...userData } = await api.signInFacebook(
     facebookAccessToken,
   );
-
+  userData.birthDate = userData.birthData
+    ? new Date(userData.birthDate)
+    : new Date();
   dispatch({ type: USER_SIGNED_UP, payload: userData });
 
   return setAccessToken(accessToken);

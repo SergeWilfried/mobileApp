@@ -26,12 +26,14 @@ export const processMoney = (text) => {
 };
 
 export const getInitials = (username) => {
-  if (!username) return '';
-  const nameArray = username.split(' ');
+  const processedUsername = username.trim();
+  if (!username || !processedUsername) return '';
+
+  const nameArray = processedUsername.split(' ');
   if (nameArray.length > 1) {
     return `${nameArray[0][0].toUpperCase()}${nameArray[1][0].toUpperCase()}`;
   }
-  return username[0].toUpperCase();
+  return processedUsername[0].toUpperCase();
 };
 
 export const groupTransactionsList = (transactions) => {
