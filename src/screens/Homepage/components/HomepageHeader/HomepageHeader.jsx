@@ -21,9 +21,9 @@ function HomepageHeader({
   title,
   subtitle,
   propsStyles,
-  onClickTopUp,
-  onClickSend,
-  onClickReceive,
+  onPressTopUp,
+  onPressSend,
+  onPressReceive,
 }) {
   const navigation = useNavigation();
 
@@ -65,19 +65,19 @@ function HomepageHeader({
         )}
       </Animated.View>
       <Animated.View style={styles.iconsContainer}>
-        <TouchableOpacity onPress={onClickTopUp}>
+        <TouchableOpacity onPress={onPressTopUp}>
           <View style={styles.iconBackground}>
             <TopUp />
           </View>
           <Text style={styles.text}>Deposit</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onClickSend}>
+        <TouchableOpacity onPress={onPressSend}>
           <View style={styles.iconBackground}>
             <SendMoney />
           </View>
           <Text style={styles.text}>Send</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onClickReceive}>
+        <TouchableOpacity onPress={onPressReceive}>
           <View style={styles.iconBackground}>
             <ReceiveMoney />
           </View>
@@ -95,9 +95,9 @@ HomepageHeader.propTypes = {
     title: PropTypes.shape({}),
     subtitle: PropTypes.shape({}),
   }),
-  onClickTopUp: PropTypes.func,
-  onClickSend: PropTypes.func,
-  onClickReceive: PropTypes.func,
+  onPressTopUp: PropTypes.func,
+  onPressSend: PropTypes.func,
+  onPressReceive: PropTypes.func,
 };
 
 HomepageHeader.defaultProps = {
@@ -107,9 +107,9 @@ HomepageHeader.defaultProps = {
     title: {},
     subtitle: {},
   },
-  onClickTopUp: () => {},
-  onClickSend: () => {},
-  onClickReceive: () => {},
+  onPressTopUp: () => {},
+  onPressSend: () => {},
+  onPressReceive: () => {},
 };
 
 export default HomepageHeader;

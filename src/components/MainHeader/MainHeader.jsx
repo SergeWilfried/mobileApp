@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
 import { useNavigation } from '@react-navigation/native';
+import PropTypes from 'prop-types';
 
 import Text from 'components/Text';
 
@@ -11,6 +11,7 @@ import styles from './MainHeader.styles';
 
 function MainHeader({ scene, title: titleHeader, subTitle: subTitleHeader }) {
   const navigation = useNavigation();
+
   const title = titleHeader || scene.descriptor.options.title;
   const subTitle = subTitleHeader || scene.descriptor.options.subTitle;
 

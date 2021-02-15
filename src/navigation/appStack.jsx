@@ -8,6 +8,7 @@ import * as constants from 'helpers/constants';
 import Homepage from 'screens/Homepage';
 import Wallet from 'screens/Wallet';
 import DepositMoneyMethods from 'screens/DepositMoneyMethods';
+import QRCodeGenerate from 'screens/QRCodeGenerate';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SendDuniaMoney from 'screens/SendDuniaMoney';
@@ -219,6 +220,7 @@ function AppScreens() {
         <AppStack.Screen name="SendDuniaMoney" component={SendDuniaMoney} />
         <AppStack.Screen name="ChooseProvider" component={ChooseProvider} />
         <AppStack.Screen name="ChooseContact" component={ChooseContact} />
+        <AppStack.Screen name="QRCodeGenerate" component={QRCodeGenerate} />
         <AppStack.Screen name="Congratulations" component={Congratulations} />
         <AppStack.Screen name="SendMobileMoney" component={SendMobileMoney} />
         <AppStack.Screen

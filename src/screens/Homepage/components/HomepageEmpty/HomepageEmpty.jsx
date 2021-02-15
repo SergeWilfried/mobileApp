@@ -6,14 +6,14 @@ import CardIllustration from 'assets/icons/cardIllustration.svg';
 
 import styles from './HomepageEmpty.styles';
 
-function HomepageEmpty({ onClickTopUp }) {
+function HomepageEmpty({ onPressTopUp }) {
   return (
     <View style={styles.container}>
       <CardIllustration />
       <View style={styles.textContainer}>
         <Text style={styles.text}>
           Looks like there is no credit in your wallet at the moment.{' '}
-          <Text onPress={onClickTopUp} style={[styles.text, styles.linkText]}>
+          <Text onPress={onPressTopUp} style={[styles.text, styles.linkText]}>
             Deposit
           </Text>{' '}
           to see your first transaction.
@@ -24,7 +24,7 @@ function HomepageEmpty({ onClickTopUp }) {
 }
 
 HomepageEmpty.propTypes = {
-  onClickTopUp: PropTypes.func.isRequired,
+  onPressTopUp: PropTypes.func.isRequired,
 };
 
 export default HomepageEmpty;

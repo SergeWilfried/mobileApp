@@ -95,5 +95,5 @@ export const formatTransactionAmount = (amount) => {
 };
 
 export const getSizeQrCode = () => {
-  return SCREEN_WIDTH - 68;
+  return width - 68;
 };

@@ -172,14 +172,19 @@ function Homepage({ navigation }) {
     }
   }, [lastDragValue]);
 
-  const onClickTopUp = useCallback(
+  const onPressTopUp = useCallback(
     () => navigation.navigate('DepositMoneyMethods'),
     [navigation],
   );
 
-  const onClickSend = useCallback(() => navigation.navigate('Send'), [
+  const onPressSend = useCallback(() => navigation.navigate('Send'), [
     navigation,
   ]);
+
+  const onPressReceive = useCallback(
+    () => navigation.navigate('QRCodeGenerate'),
+    [navigation],
+  );
 
   return (
     <>
@@ -188,11 +193,12 @@ function Homepage({ navigation }) {
         title="Your balance"
         subtitle={`₣ ${balance}`}
         propsStyles={headerStyles}
-        onClickTopUp={onClickTopUp}
-        onClickSend={onClickSend}
+        onPressTopUp={onPressTopUp}
+        onPressSend={onPressSend}
+        onPressReceive={onPressReceive}
       />
       {!transactions.length ? (
-        <HomepageEmpty onClickTopUp={onClickTopUp} />
+        <HomepageEmpty onPressTopUp={onPressTopUp} />
       ) : (
         <SlidingUpPanel
           ref={panelRef}
