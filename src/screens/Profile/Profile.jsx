@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Linking,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -128,6 +129,7 @@ function Profile({ navigation }) {
         id: 7,
         icon: AboutIcon,
         title: 'About DuniaPay',
+        onPress: () => Linking.openURL('https://medium.com/@duniapay'),
         rightElement: <RightArrow fill={colors.profileArrowIcon} />,
       },
       {
