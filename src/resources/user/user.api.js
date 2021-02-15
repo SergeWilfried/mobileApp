@@ -36,6 +36,10 @@ export const getBalance = async () => {
   return availableBalance;
 };
 
+export const getUserData = async (userData) => {
+  return apiClient.get(`/users/${userData.userId}`);
+};
+
 export const getLatestTransactions = async (skip = 0) => {
   return apiClient.get('/users/current/transactions', { skip });
 };

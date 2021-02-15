@@ -39,9 +39,7 @@ const cards = [
     subTitle:
       'Scan a QR code to send money to nearby friends or to pay for services',
     handleRightClick: (navigation) => {
-      navigation.navigate('ChooseContact', {
-        sendFlow: SEND_FLOW.QR_CODE,
-      });
+      navigation.navigate('QRCodeScan');
     },
   },
 ];

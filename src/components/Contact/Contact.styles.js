@@ -12,6 +12,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 16,
     width: '70%',
+    alignItems: 'center',
   },
   divideLine: {
     borderColor: colors.contactsBorder,

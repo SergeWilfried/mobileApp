@@ -63,10 +63,14 @@
 	</dict>
 	<key>NSContactsUsageDescription</key>
 	<string>allow to use contacts</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Allow to use scan QRCode</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Your message to user when the microsphone is accessed for the first time</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow to use photos from library</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow to use photos from library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Regular.ttf</string>

@@ -12,6 +12,7 @@ function Contact({
   children,
   isLastContact,
   rightIcon: RightIcon,
+  isDivideLine,
 }) {
   return (
     <>
@@ -32,7 +33,7 @@ function Contact({
           )}
         </TouchableOpacity>
       </View>
-      {!isLastContact && <View style={styles.divideLine} />}
+      {!isLastContact && isDivideLine && <View style={styles.divideLine} />}
     </>
   );
 }
@@ -46,12 +47,14 @@ Contact.propTypes = {
   onContactClick: PropTypes.func,
   isLastContact: PropTypes.bool,
   rightIcon: PropTypes.elementType,
+  isDivideLine: PropTypes.bool,
 };
 
 Contact.defaultProps = {
   onContactClick: () => {},
   isLastContact: false,
   rightIcon: null,
+  isDivideLine: true,
 };
 
 export default Contact;

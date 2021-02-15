@@ -62,3 +62,7 @@ export const formatTransactionAmount = (amount) => {
 
   return `${sign} ₣ ${processMoney(absValue)}`;
 };
+
+export const getSizeQrCode = () => {
+  return SCREEN_WIDTH - 68;
+};

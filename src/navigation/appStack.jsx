@@ -11,6 +11,7 @@ import DepositMoneyMethods from 'screens/DepositMoneyMethods';
 import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SendDuniaMoney from 'screens/SendDuniaMoney';
+import QRCodeScan from 'screens/QRCodeScan';
 import SelectCards from 'screens/SelectCards';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
@@ -224,6 +225,7 @@ function AppScreens() {
           name="PersonalInformation"
           component={PersonalInformation}
         />
+        <AppStack.Screen name="QRCodeScan" component={QRCodeScan} />
       </AppStack.Navigator>
     </>
   );
