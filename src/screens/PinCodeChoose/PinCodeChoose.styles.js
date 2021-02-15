@@ -1,4 +1,7 @@
 import { StyleSheet } from 'react-native';
+
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import colors from 'themes/colors';
 
 export default StyleSheet.create({
@@ -8,9 +11,9 @@ export default StyleSheet.create({
     backgroundColor: colors.authScreenBackground,
   },
   authHeaderContainer: {
-    marginTop: 47,
+    marginTop: normalizeSpace(47),
   },
   pinCodeContainer: {
-    marginTop: 36,
+    marginTop: normalizeSpace(36),
   },
 });

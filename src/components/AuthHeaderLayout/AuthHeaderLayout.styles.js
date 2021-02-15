@@ -1,8 +1,9 @@
-import { normalize } from 'helpers/utils.helper';
 import { StyleSheet } from 'react-native';
+
+import { normalizeSpace } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
   wrapper: {
-    paddingTop: normalize(70),
+    paddingTop: normalizeSpace(70),
   },
 });

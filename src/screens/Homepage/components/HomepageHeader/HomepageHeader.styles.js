@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 
@@ -70,7 +72,7 @@ export default StyleSheet.create({
   iconsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 40,
+    marginHorizontal: normalizeSpace(40),
   },
   iconBackground: {
     alignItems: 'center',

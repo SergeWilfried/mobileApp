@@ -107,6 +107,7 @@ function CreateAccount({ navigation, route }) {
             label="Email address"
             value={values.email}
             onChangeText={handleEmailChange}
+            onBlur={handleBlur('email')}
             errorMessage={touched.email ? errors.email : ''}
           />
           <Input

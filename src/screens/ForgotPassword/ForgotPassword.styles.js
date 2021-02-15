@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils.helper';
+import { normalizeSpace } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
   screen: {
     ...styles.authScreenStyle,
   },
   inputWrapper: {
-    marginTop: 31,
+    marginTop: normalizeSpace(31),
   },
   buttonContinueWrapper: {
-    marginBottom: normalize(33),
+    marginBottom: normalizeSpace(33),
     marginTop: 'auto',
   },
 });

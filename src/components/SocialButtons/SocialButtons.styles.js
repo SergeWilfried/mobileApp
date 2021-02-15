@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
-import { normalize } from 'helpers/utils.helper';
+import { normalizeSpace } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
   socialWrapper: {
     alignItems: 'center',
-    marginBottom: normalize(16),
+    marginBottom: normalizeSpace(16),
   },
   socialText: {
     fontSize: fonts.size.extraSmall,
@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   socialButtonsWrapper: {
     flexDirection: 'row',
-    marginTop: normalize(11),
+    marginTop: normalizeSpace(11),
   },
   socialButton: {
     marginRight: 15,

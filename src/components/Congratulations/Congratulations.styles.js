@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import fonts from 'themes/fonts';
 import colors from 'themes/colors';
 
@@ -7,6 +9,7 @@ export default StyleSheet.create({
   screen: {
     flexGrow: 1,
     backgroundColor: colors.authScreenBackground,
+    paddingHorizontal: 16,
   },
   container: {
     flex: 1,
@@ -18,13 +21,13 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.bold,
     lineHeight: fonts.lineHeight.medium,
     letterSpacing: fonts.letterSpacing.regular,
-    marginTop: 50,
+    marginTop: normalizeSpace(50),
     color: colors.black,
   },
   subTitle: {
     fontSize: fonts.size.small,
     lineHeight: fonts.lineHeight.regular,
-    marginTop: 30,
+    marginTop: normalizeSpace(30),
     color: colors.gray,
     letterSpacing: fonts.letterSpacing.regular,
     textAlign: 'center',
@@ -33,6 +36,6 @@ export default StyleSheet.create({
     width: '100%',
     paddingHorizontal: 23,
     marginTop: 'auto',
-    marginBottom: 30,
+    marginBottom: normalizeSpace(33),
   },
 });

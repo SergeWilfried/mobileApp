@@ -1,18 +1,28 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import { normalize } from 'helpers/utils.helper';
+import { normalizeSpace } from 'helpers/utils.helper';
 
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
+
+const { height } = Dimensions.get('window');
+const linkBottomPading = () => {
+  if (height > 700) return 54;
+  if (height < 600) {
+    return 0;
+  }
+  return 20;
+};
 
 export default StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: colors.authScreenBackground,
+    paddingTop: normalizeSpace(31),
   },
   linkWrapper: {
-    marginTop: normalize(41),
-    marginBottom: normalize(31),
+    marginTop: 'auto',
+    paddingBottom: linkBottomPading(),
   },
   linkText: {
     color: colors.baseFont,
@@ -23,13 +33,14 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+    paddingBottom: height > 700 ? 31 : 11,
   },
   link: {
     position: 'absolute',
     right: 20,
   },
   button: {
-    height: normalize(58),
+    height: normalizeSpace(58),
   },
   image: {
     resizeMode: 'cover',
@@ -46,15 +57,14 @@ export default StyleSheet.create({
   subTitle: {
     fontSize: fonts.size.small,
     lineHeight: fonts.lineHeight.medium,
-    paddingHorizontal: 13,
+    paddingHorizontal: normalizeSpace(13),
     textAlign: 'center',
     fontFamily: fonts.type.title,
     marginBottom: 2,
   },
   buttonWrapper: {
     width: '100%',
-    paddingHorizontal: 23,
     marginTop: 5,
-    marginBottom: normalize(31),
+    paddingHorizontal: 23,
   },
 });

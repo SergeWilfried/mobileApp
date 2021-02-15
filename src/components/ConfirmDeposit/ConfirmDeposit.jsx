@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
+  Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -27,6 +28,8 @@ function ConfirmDeposit({
   leftIcon,
   handleConfirm,
 }) {
+  const { height } = Dimensions.get('window');
+
   const [isDisabled, setDisabled] = useState(true);
   const [isSubmitting, setSubmitting] = useState(false);
   const [amountMoney, onChangeAmountMoney] = useState('');
@@ -59,6 +62,13 @@ function ConfirmDeposit({
     [onChangeAmountMoney, setDisabled],
   );
 
+  const getDistance = () => {
+    if (Platform.OS === 'android') {
+      return height < 700 ? 0 : 30;
+    }
+    return 30;
+  };
+
   return (
     <>
       {isSubmitting && <FullScreenLoader />}
@@ -66,7 +76,7 @@ function ConfirmDeposit({
         <KeyboardAvoidingView
           behavior={Platform.OS === 'android' ? 'height' : 'padding'}
           style={styles.container}
-          keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 30}
+          keyboardVerticalOffset={getDistance}
         >
           <MainHeader title={title} subTitle={subTitle} />
           <View style={styles.contentWrapper}>

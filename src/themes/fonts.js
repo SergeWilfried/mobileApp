@@ -1,4 +1,4 @@
-import { normalize } from 'helpers/utils.helper';
+import { normalizeFontSize } from 'helpers/utils.helper';
 
 const type = {
   base: 'Roboto',
@@ -12,24 +12,24 @@ const letterSpacing = {
 };
 
 const size = {
-  extraExtraSmall: normalize(10),
-  extraSmall: normalize(12),
-  small: normalize(14),
-  regular: normalize(16),
-  medium: normalize(18),
-  large: normalize(20),
-  extraLarge: normalize(24),
-  extraExtraLarge: normalize(36),
-  extraExtraExtraLarge: normalize(62),
+  extraExtraSmall: normalizeFontSize(10),
+  extraSmall: normalizeFontSize(12),
+  small: normalizeFontSize(14),
+  regular: normalizeFontSize(16),
+  medium: normalizeFontSize(18),
+  large: normalizeFontSize(20),
+  extraLarge: normalizeFontSize(24),
+  extraExtraLarge: normalizeFontSize(36),
+  extraExtraExtraLarge: normalizeFontSize(62),
 };
 
 const lineHeight = {
-  extraSmall: normalize(14),
-  small: normalize(16),
-  regular: normalize(21),
-  medium: normalize(24),
-  large: 30,
-  extraLarge: 42,
+  extraSmall: normalizeFontSize(14),
+  small: normalizeFontSize(16),
+  regular: normalizeFontSize(21),
+  medium: normalizeFontSize(24),
+  large: normalizeFontSize(30),
+  extraLarge: normalizeFontSize(42),
 };
 
 const weight = {

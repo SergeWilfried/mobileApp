@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 
@@ -10,7 +12,7 @@ export default StyleSheet.create({
     alignContent: 'center',
     borderRadius: 100,
     backgroundColor: colors.theme,
-    height: 58,
+    height: normalizeSpace(58),
   },
   disabled: {
     opacity: 0.5,

@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import { normalize } from 'helpers/utils.helper';
+import { normalizeSpace } from 'helpers/utils.helper';
 
 import fonts from 'themes/fonts';
 import colors from 'themes/colors';
@@ -13,8 +13,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   cardsContainer: {
-    marginTop: 30,
-    height: 211,
+    marginTop: normalizeSpace(30),
+    height: normalizeSpace(211),
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -22,20 +22,17 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: fonts.size.small,
-    marginTop: 50,
-    marginBottom: 30,
+    marginTop: height > 600 ? 50 : 20,
+    marginBottom: normalizeSpace(30),
     color: colors.gray,
     textAlign: 'center',
   },
   input: {
-    marginHorizontal: 16,
+    marginHorizontal: normalizeSpace(16),
   },
   button: {
     marginTop: 'auto',
-    marginBottom: normalize(30),
+    marginBottom: normalizeSpace(30),
     marginHorizontal: 23,
-  },
-  buttonConfirm: {
-    height: height > 700 ? 58 : 50,
   },
 });

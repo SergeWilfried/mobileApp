@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { normalize } from 'helpers/utils.helper';
+import { normalizeSpace } from 'helpers/utils.helper';
 
 import colors from 'themes/colors';
 
@@ -29,6 +29,6 @@ export default StyleSheet.create({
   continueButtonWrapper: {
     marginTop: 'auto',
     width: '100%',
-    marginBottom: normalize(33),
+    marginBottom: normalizeSpace(33),
   },
 });

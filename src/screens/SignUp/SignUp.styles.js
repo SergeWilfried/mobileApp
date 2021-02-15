@@ -1,25 +1,15 @@
 import { StyleSheet } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils.helper';
 
 export default StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.authScreenBackground,
-  },
   screenContent: {
     ...styles.authScreenStyle,
     alignItems: 'center',
-  },
-  title: {
-    color: colors.titleFont,
-    fontSize: fonts.size.title,
-    fontWeight: fonts.weight.bold,
-    marginTop: 21,
-    marginBottom: 11,
   },
   link: {
     color: colors.linkFont,
@@ -31,17 +21,14 @@ export default StyleSheet.create({
   footer: {
     marginTop: 'auto',
     width: '100%',
-    marginBottom: normalize(33),
+    marginBottom: normalizeSpace(33),
   },
   phoneContainer: {
-    marginTop: 50,
-  },
-  topSection: {
-    alignItems: 'center',
+    marginTop: normalizeSpace(50),
   },
   footerText: {
     letterSpacing: fonts.letterSpacing.regular,
-    marginBottom: 15,
+    marginBottom: normalizeSpace(15),
     textAlign: 'center',
   },
 });

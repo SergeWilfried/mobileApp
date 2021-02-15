@@ -1,15 +1,46 @@
-import { Dimensions, Platform, PixelRatio } from 'react-native';
+import { Dimensions } from 'react-native';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
-const scale = SCREEN_WIDTH / 420;
+const breakpoints = {
+  smallPhoneWidth: 320,
+  smallPhoneHeight: 600,
+  mediumPhoneWidth: 414,
+  bigPhoneWidth: 480,
+};
 
-export const normalize = (size) => {
-  const newSize = size * scale;
-  if (Platform.OS === 'ios') {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+const isSmallScreen =
+  width <= breakpoints.smallPhoneWidth ||
+  height <= breakpoints.smallPhoneHeight;
+const isNormalScreen =
+  width > breakpoints.smallPhoneWidth && width < breakpoints.mediumPhoneWidth;
+const isBigScreen = width >= breakpoints.mediumPhoneWidth;
+
+export const normalizeSpace = (basicSpace) => {
+  if (isSmallScreen) {
+    return basicSpace - 6;
   }
-  return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+  if (isNormalScreen) {
+    return basicSpace;
+  }
+  if (isBigScreen) {
+    return basicSpace + 1;
+  }
+  return basicSpace;
+};
+
+export const normalizeFontSize = (basicFontSize) => {
+  if (isSmallScreen) {
+    return basicFontSize - 2;
+  }
+  if (isNormalScreen) {
+    return basicFontSize;
+  }
+  if (isBigScreen) {
+    return basicFontSize + 1;
+  }
+
+  return basicFontSize;
 };
 
 export const delay = (ms) => {

@@ -1,10 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { normalizeSpace } from 'helpers/utils.helper';
 
 import colors from 'themes/colors';
+import fonts from 'themes/fonts';
 import styles from 'themes/commonStyles';
-import { normalize } from 'helpers/utils.helper';
-
-const { height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -15,20 +15,20 @@ export default StyleSheet.create({
     ...styles.authScreenStyle,
   },
   wrapperInput: {
-    marginTop: height < 600 ? 0 : normalize(40),
+    marginTop: normalizeSpace(40),
   },
   inputOutOfFocused: {
     borderColor: colors.inputStandardBorder,
   },
   wrapperButton: {
     marginTop: 'auto',
-    marginBottom: normalize(33),
+    marginBottom: normalizeSpace(33),
   },
   forgotWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: normalize(11),
+    marginTop: normalizeSpace(11),
   },
   forgotText: {
     color: colors.inputPlaceholder,
@@ -37,10 +37,11 @@ export default StyleSheet.create({
     color: colors.theme,
   },
   passwordInput: {
-    marginTop: 11,
+    marginTop: normalizeSpace(11),
   },
   textError: {
-    paddingTop: 12,
+    fontSize: fonts.size.small,
+    paddingTop: normalizeSpace(12),
     color: colors.inputErrorText,
   },
 });

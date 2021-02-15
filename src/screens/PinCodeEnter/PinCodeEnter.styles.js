@@ -1,4 +1,7 @@
 import { StyleSheet } from 'react-native';
+
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import colors from 'themes/colors';
 
 export default StyleSheet.create({
@@ -7,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: colors.authScreenBackground,
   },
   pinCodeWrapper: {
-    marginTop: 60,
+    marginTop: normalizeSpace(60),
   },
   link: {
     color: colors.theme,
@@ -16,7 +19,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    marginTop: 60,
+    marginTop: normalizeSpace(60),
   },
   forgotText: {
     marginRight: 5,

@@ -24,11 +24,10 @@ export default StyleSheet.create({
     letterSpacing: fonts.letterSpacing.large,
   },
   error: {
-    position: 'absolute',
     color: colors.inputErrorText,
     fontSize: fonts.size.small,
     left: 0,
-    bottom: -20,
+    paddingTop: 8,
   },
   inputContainer: {
     borderRadius: 10,

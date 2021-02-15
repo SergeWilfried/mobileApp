@@ -1,16 +1,18 @@
 import { StyleSheet } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import fonts from 'themes/fonts';
 import colors from 'themes/colors';
 
 export default StyleSheet.create({
   iconContainer: {
-    width: 94,
-    height: 94,
+    width: normalizeSpace(94),
+    height: normalizeSpace(94),
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    marginHorizontal: 13,
+    marginHorizontal: normalizeSpace(15),
     backgroundColor: colors.white,
   },
   choosedIconContainer: {

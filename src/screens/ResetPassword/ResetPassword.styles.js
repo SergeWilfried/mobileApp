@@ -1,5 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+import { normalizeSpace } from 'helpers/utils.helper';
+
 import fonts from 'themes/fonts';
 import styles from 'themes/commonStyles';
 
@@ -10,8 +12,8 @@ export default StyleSheet.create({
     ...styles.authScreenStyle,
   },
   passwordRulesWrapper: {
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: normalizeSpace(10),
+    marginBottom: normalizeSpace(20),
   },
   passwordRule: {
     fontSize: fonts.size.extraSmall,
@@ -19,10 +21,10 @@ export default StyleSheet.create({
   },
   wrapperInput: {
     flex: 1,
-    marginTop: height < 600 ? 0 : 40,
+    marginTop: height > 600 ? 40 : 10,
   },
   wrapperButton: {
     marginTop: 'auto',
-    marginBottom: 35,
+    marginBottom: normalizeSpace(33),
   },
 });
