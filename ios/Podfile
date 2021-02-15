@@ -12,6 +12,9 @@ target 'duniapay' do
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
 
+  pod 'VGSCollectSDK'
+  pod 'VGSShowSDK'
+
   target 'duniapayTests' do
     inherit! :complete
     # Pods for testing

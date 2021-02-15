@@ -1,6 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { VGSShowLabelView, VGSShowView } from 'helpers/vgs';
+import { getCardBrandIcon } from 'helpers/cardBrand.helper';
 
 import Text from 'components/Text';
 import ConfirmDeposit from 'components/ConfirmDeposit';
@@ -9,12 +12,9 @@ import { deposit } from 'resources/transaction/transaction.api';
 import styles from './ConfirmCardDeposit.styles';
 
 function ConfirmCardDeposit({ navigation, route }) {
-  const {
-    CardPayment,
-    cardName,
-    cardExpirationDate,
-    cardNumber,
-  } = route.params;
+  const { cardData } = route.params;
+
+  const [nodeHandle, setNodeHandle] = useState();
 
   const handlePressConfirm = useCallback(
     async (amount, formattedValue) => {
@@ -36,21 +36,27 @@ function ConfirmCardDeposit({ navigation, route }) {
     [navigation],
   );
 
+  const CardBrandIcon = useMemo(() => {
+    return getCardBrandIcon(cardData.cardBrand);
+  }, [cardData.cardBrand]);
+
   return (
     <ConfirmDeposit
       title="Debit Card Deposit"
       subTitle="Enter amount"
       navigation={navigation}
-      leftIcon={<CardPayment />}
+      leftIcon={<CardBrandIcon />}
       handleConfirm={handlePressConfirm}
     >
       <View style={styles.cardContent}>
-        <Text style={styles.cardTitle}>{cardNumber}</Text>
+        <VGSShowView cardId={cardData._id} onHandle={setNodeHandle} />
+        <VGSShowLabelView
+          nodeHandle={nodeHandle}
+          contentPath="cardNumber"
+          style={styles.cardTitle}
+        />
         <View style={styles.cardInfo}>
-          <Text style={styles.cardSubTitle}>{cardName}</Text>
-          <Text style={[styles.cardSubTitle, styles.cardSubTitleRightPart]}>
-            {cardExpirationDate}
-          </Text>
+          <Text style={styles.cardSubTitle}>{cardData.cardHolder}</Text>
         </View>
       </View>
     </ConfirmDeposit>
@@ -63,10 +69,11 @@ ConfirmCardDeposit.propTypes = {
   }).isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
-      CardPayment: PropTypes.elementType.isRequired,
-      cardName: PropTypes.string.isRequired,
-      cardExpirationDate: PropTypes.string.isRequired,
-      cardNumber: PropTypes.string.isRequired,
+      cardData: PropTypes.shape({
+        _id: PropTypes.string,
+        cardBrand: PropTypes.string,
+        cardHolder: PropTypes.string,
+      }),
     }),
   }).isRequired,
 };

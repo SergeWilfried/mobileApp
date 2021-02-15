@@ -12,19 +12,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   cardTitle: {
-    color: colors.black,
-    fontWeight: fonts.weight.medium,
-    fontSize: fonts.size.medium,
-    lineHeight: fonts.lineHeight.regular,
+    height: 20,
   },
   cardSubTitle: {
     marginTop: 9,
     color: colors.gray,
     fontSize: fonts.size.extraSmall,
     lineHeight: fonts.lineHeight.small,
-  },
-  cardSubTitleRightPart: {
-    marginLeft: 46,
   },
   successScreen: {
     backgroundColor: colors.mainScreenBackground,

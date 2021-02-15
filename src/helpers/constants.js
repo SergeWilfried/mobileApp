@@ -81,3 +81,8 @@ export const COUNTRIES = [
   { name: 'Sierra Leone', icon: SierraLeone },
   { name: 'Togo', icon: Togo },
 ];
+
+export const CARD_BRANDS = {
+  VISA: 'Visa',
+  MASTERCARD: 'Mastercard',
+};

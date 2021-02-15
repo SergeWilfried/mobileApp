@@ -5,6 +5,8 @@ import { SafeAreaView } from 'react-native';
 
 import * as constants from 'helpers/constants';
 
+import AddCard from 'screens/AddCard';
+
 import Homepage from 'screens/Homepage';
 import Wallet from 'screens/Wallet';
 import DepositMoneyMethods from 'screens/DepositMoneyMethods';
@@ -67,6 +69,14 @@ function DepositMoneyScreens() {
         options={{
           title: 'Debit Card Deposit',
           subTitle: 'Choose a debit card',
+        }}
+      />
+      <DepositStack.Screen
+        name="AddCard"
+        component={AddCard}
+        options={{
+          title: 'Add New Card',
+          subTitle: 'Insert your card details',
         }}
       />
       <DepositStack.Screen

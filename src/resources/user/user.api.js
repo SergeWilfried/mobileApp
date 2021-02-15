@@ -55,3 +55,8 @@ export const getDailyTotal = async (start, end) => {
 
   return totalAmount;
 };
+
+export const getDebitCards = () => apiClient.get('users/current/debitCards');
+
+export const removeDebitCard = (cardId) =>
+  apiClient.delete(`users/current/debitCards/${cardId}`);

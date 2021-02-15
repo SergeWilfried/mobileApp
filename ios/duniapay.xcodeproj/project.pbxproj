@@ -24,6 +24,12 @@
 		776D37E225801A9700A30EBD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D225801A7C00A30EBD /* Roboto-Light.ttf */; };
 		776D37E825801A9900A30EBD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37D325801A8500A30EBD /* Roboto-Medium.ttf */; };
 		776D37E925801A9900A30EBD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 776D37E725801A9900A30EBD /* Roboto-Regular.ttf */; };
+		77AAA5B525CC727F001E6310 /* RNVGSCollectUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA5B225CC727E001E6310 /* RNVGSCollectUI.swift */; };
+		77AAA5B625CC727F001E6310 /* RNVGSCollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA5B325CC727E001E6310 /* RNVGSCollect.swift */; };
+		77AAA5B725CC727F001E6310 /* RNVGSCollectBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA5B425CC727E001E6310 /* RNVGSCollectBridge.m */; };
+		77AAA5BF25D175A3001E6310 /* RNVGSShowBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA5BD25D175A2001E6310 /* RNVGSShowBridge.m */; };
+		77AAA60C25D195B8001E6310 /* RNVGSShowViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA60B25D195B8001E6310 /* RNVGSShowViewManager.swift */; };
+		77AAA6ED25D5497E001E6310 /* RNVGSShowLabelViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAA6EC25D5497D001E6310 /* RNVGSShowLabelViewManager.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		84F4AB8E30D47C53654F9B4D /* libPods-duniapay-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D462976EB02AA280F5A4B61 /* libPods-duniapay-tvOS.a */; };
 		8D70BFCA259A0CF40019E544 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70BFC9259A0CF40019E544 /* File.swift */; };
@@ -79,6 +85,12 @@
 		776D37D325801A8500A30EBD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		776D37D825801A8F00A30EBD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		776D37E725801A9900A30EBD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		77AAA5B225CC727E001E6310 /* RNVGSCollectUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNVGSCollectUI.swift; sourceTree = "<group>"; };
+		77AAA5B325CC727E001E6310 /* RNVGSCollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNVGSCollect.swift; sourceTree = "<group>"; };
+		77AAA5B425CC727E001E6310 /* RNVGSCollectBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNVGSCollectBridge.m; sourceTree = "<group>"; };
+		77AAA5BD25D175A2001E6310 /* RNVGSShowBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNVGSShowBridge.m; sourceTree = "<group>"; };
+		77AAA60B25D195B8001E6310 /* RNVGSShowViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNVGSShowViewManager.swift; sourceTree = "<group>"; };
+		77AAA6EC25D5497D001E6310 /* RNVGSShowLabelViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNVGSShowLabelViewManager.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = duniapay/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D70BFC8259A0CF30019E544 /* duniapay-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "duniapay-Bridging-Header.h"; sourceTree = "<group>"; };
 		8D70BFC9259A0CF40019E544 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -152,6 +164,8 @@
 		13B07FAE1A68108700A75B9A /* duniapay */ = {
 			isa = PBXGroup;
 			children = (
+				77AAA5BC25D175A2001E6310 /* RNVGSShow */,
+				77AAA5B125CC727E001E6310 /* RNVGSCollect */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -189,6 +203,26 @@
 				776D37E725801A9900A30EBD /* Roboto-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		77AAA5B125CC727E001E6310 /* RNVGSCollect */ = {
+			isa = PBXGroup;
+			children = (
+				77AAA5B225CC727E001E6310 /* RNVGSCollectUI.swift */,
+				77AAA5B325CC727E001E6310 /* RNVGSCollect.swift */,
+				77AAA5B425CC727E001E6310 /* RNVGSCollectBridge.m */,
+			);
+			path = RNVGSCollect;
+			sourceTree = "<group>";
+		};
+		77AAA5BC25D175A2001E6310 /* RNVGSShow */ = {
+			isa = PBXGroup;
+			children = (
+				77AAA60B25D195B8001E6310 /* RNVGSShowViewManager.swift */,
+				77AAA5BD25D175A2001E6310 /* RNVGSShowBridge.m */,
+				77AAA6EC25D5497D001E6310 /* RNVGSShowLabelViewManager.swift */,
+			);
+			path = RNVGSShow;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -558,6 +592,7 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/VGSCollectSDK/CardIcon.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -579,6 +614,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CardIcon.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -648,6 +684,7 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/VGSCollectSDK/CardIcon.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -669,6 +706,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CardIcon.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -690,9 +728,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77AAA5B625CC727F001E6310 /* RNVGSCollect.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				77AAA6ED25D5497E001E6310 /* RNVGSShowLabelViewManager.swift in Sources */,
 				8D70BFCA259A0CF40019E544 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				77AAA5B725CC727F001E6310 /* RNVGSCollectBridge.m in Sources */,
+				77AAA5BF25D175A3001E6310 /* RNVGSShowBridge.m in Sources */,
+				77AAA60C25D195B8001E6310 /* RNVGSShowViewManager.swift in Sources */,
+				77AAA5B525CC727F001E6310 /* RNVGSCollectUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

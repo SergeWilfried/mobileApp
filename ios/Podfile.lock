@@ -372,6 +372,12 @@ PODS:
     - React
   - RNVectorIcons (8.0.0):
     - React-Core
+  - VGSCollectSDK (1.7.3):
+    - VGSCollectSDK/Core (= 1.7.3)
+  - VGSCollectSDK/Core (1.7.3)
+  - VGSShowSDK (1.0.3):
+    - VGSShowSDK/Core (= 1.0.3)
+  - VGSShowSDK/Core (1.0.3)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -402,7 +408,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera/Permission-Camera.podspec`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -443,6 +449,8 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - VGSCollectSDK
+  - VGSShowSDK
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -462,6 +470,8 @@ SPEC REPOS:
     - FlipperKit
     - lottie-ios
     - OpenSSL-Universal
+    - VGSCollectSDK
+    - VGSShowSDK
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -478,7 +488,7 @@ EXTERNAL SOURCES:
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   Permission-Camera:
-    :path: "../node_modules/react-native-permissions/ios/Camera/Permission-Camera.podspec"
+    :path: "../node_modules/react-native-permissions/ios/Camera"
   Permission-PhotoLibrary:
     :path: "../node_modules/react-native-permissions/ios/PhotoLibrary"
   RCTRequired:
@@ -619,9 +629,11 @@ SPEC CHECKSUMS:
   RNScreens: 2ad555d4d9fa10b91bb765ca07fe9b29d59573f0
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: f67a1abce2ec73e62fe4606e8110e95a832bc859
+  VGSCollectSDK: 5bfd5ae35183d24f9696d1af6ebad453cf32a357
+  VGSShowSDK: 518b2cba4746f81b25f3a4f7d181067c92cef331
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 4c6a73cc69070758a75fe14b719b0d4f08fa2029
+PODFILE CHECKSUM: 199e85cf10bc93174e8175ad473801f53fc627d1
 
 COCOAPODS: 1.9.3
