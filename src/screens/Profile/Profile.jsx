@@ -124,6 +124,7 @@ function Profile({ navigation }) {
         id: 6,
         icon: ResetPasswordIcon,
         title: 'Reset Password',
+        onPress: () => navigation.navigate('CreateNewPassword'),
         rightElement: <RightArrow fill={colors.profileArrowIcon} />,
       },
       {

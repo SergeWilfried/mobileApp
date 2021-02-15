@@ -23,6 +23,10 @@ export const resetPassword = (data) => {
   return apiClient.patch('/accounts/reset-password', data);
 };
 
+export const createNewPassword = (data) => {
+  return apiClient.patch('/users/current/reset-password', data);
+};
+
 export const signUpFacebook = (tokens) => {
   return apiClient.post('accounts/signup/facebook', tokens);
 };

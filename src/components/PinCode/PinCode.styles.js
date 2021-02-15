@@ -6,4 +6,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.authScreenBackground,
   },
+  pinResetWrapper: {
+    backgroundColor: colors.mainScreenBackground,
+  },
 });

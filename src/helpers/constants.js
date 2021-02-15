@@ -28,6 +28,7 @@ export const EMAIL = {
 export const AUTH = {
   SIGN_UP: 'signup',
   SIGN_IN: 'signin',
+  RESET: 'reset',
 };
 
 export const STORAGE = {

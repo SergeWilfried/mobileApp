@@ -13,7 +13,9 @@ import ConfirmMobileDeposit from 'screens/ConfirmMobileDeposit';
 import ConfirmCardDeposit from 'screens/ConfirmCardDeposit';
 import SendDuniaMoney from 'screens/SendDuniaMoney';
 import QRCodeScan from 'screens/QRCodeScan';
+import PinCodeReset from 'screens/PinCodeReset';
 import SelectCards from 'screens/SelectCards';
+import CreateNewPassword from 'screens/CreateNewPassword';
 import ChooseProvider from 'screens/ChooseProvider';
 import SendMoneyMethod from 'screens/SendMoneyMethod';
 import ChooseContact from 'screens/ChooseContact';
@@ -226,6 +228,10 @@ function AppScreens() {
         <AppStack.Screen name="Congratulations" component={Congratulations} />
         <AppStack.Screen name="SendMobileMoney" component={SendMobileMoney} />
         <AppStack.Screen
+          name="CreateNewPassword"
+          component={CreateNewPassword}
+        />
+        <AppStack.Screen
           name="PersonalInformation"
           component={PersonalInformation}
         />
@@ -236,6 +242,7 @@ function AppScreens() {
           component={VerifyIdentity}
         />
         <AppStack.Screen name="VerifyDetails" component={VerifyDetails} />
+        <AppStack.Screen name="PinCodeReset" component={PinCodeReset} />
       </AppStack.Navigator>
     </>
   );

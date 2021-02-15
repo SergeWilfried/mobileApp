@@ -13,6 +13,23 @@ export const ResetPasswordSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
+export const CreateNewPasswordSchema = Yup.object().shape({
+  currentPassword: Yup.string()
+    .trim()
+    .required('Password is required!')
+    .min(PASSWORD.length, 'Enter correct password due to rules')
+    .matches(PASSWORD.regExp, 'Enter correct password due to rules'),
+  password: Yup.string()
+    .trim()
+    .required('Password is required!')
+    .min(PASSWORD.length, 'Enter correct password due to rules')
+    .matches(PASSWORD.regExp, 'Enter correct password due to rules'),
+  repeatPassword: Yup.string()
+    .trim()
+    .required('Confirm Password is required')
+    .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+});
+
 export const SignInSchema = Yup.object().shape({
   email: Yup.string()
     .trim()

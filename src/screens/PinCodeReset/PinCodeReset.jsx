@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import PinCode from 'components/PinCodeChoose';
 
-function PinCodeChoose({ navigation, route }) {
+function PinCodeReset({ navigation, route }) {
   return <PinCode navigation={navigation} route={route} />;
 }
 
-PinCodeChoose.propTypes = {
+PinCodeReset.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
@@ -21,4 +21,4 @@ PinCodeChoose.propTypes = {
   }).isRequired,
 };
 
-export default PinCodeChoose;
+export default PinCodeReset;

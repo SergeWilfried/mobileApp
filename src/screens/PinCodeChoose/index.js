@@ -1,1 +1,1 @@
-export { default }  from './PinCodeChoose';
+export { default } from './PinCodeChoose';

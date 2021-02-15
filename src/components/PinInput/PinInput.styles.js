@@ -7,7 +7,7 @@ export default StyleSheet.create({
   cellStyle: {
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: colors.theme,
+    borderColor: colors.inputStandardBorder,
   },
   cellStyleError: {
     borderWidth: 1,
