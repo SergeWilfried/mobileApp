@@ -38,10 +38,25 @@ export const SignUpSchema = Yup.object().shape({
 });
 
 export const PersonalInfoSchema = Yup.object().shape({
-  firstName: Yup.string().trim(),
-  lastName: Yup.string().trim(),
-  email: Yup.string().email('Please, enter a correct email!'),
-  birthDay: Yup.string().trim(),
-  phoneNumber: Yup.string(),
+  firstName: Yup.string().trim().max(255, 'First name too long'),
+  lastName: Yup.string().trim().max(255, 'Last name too long'),
+  email: Yup.string()
+    .email('Please, enter a correct email!')
+    .max(255, 'Email too long'),
+  birthDay: Yup.string(),
+  phoneNumber: Yup.string().max(20, 'Phone number too long').trim(),
   country: Yup.string(),
+});
+
+export const VerifyDetailsSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .trim()
+    .required('First name is required.')
+    .max(255, 'First name too long'),
+  lastName: Yup.string()
+    .trim()
+    .required('Last name is required.')
+    .max(255, 'Last name too long'),
+  birthDate: Yup.string().trim().required('Date of birth is required.'),
+  country: Yup.string().trim().required('Country of residence is required.'),
 });

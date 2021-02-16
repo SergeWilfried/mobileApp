@@ -61,10 +61,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Please, give us access to your camera</string>
 	<key>NSContactsUsageDescription</key>
 	<string>allow to use contacts</string>
-	<key>NSCameraUsageDescription</key>
-    <string>Allow to use scan QRCode</string>
 	<key>NSMicrophoneUsageDescription</key>
     <string>Your message to user when the microsphone is accessed for the first time</string>
     <key>NSPhotoLibraryUsageDescription</key>

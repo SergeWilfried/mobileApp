@@ -17,17 +17,26 @@ const countries = COUNTRIES.map(({ name, icon }) => ({
   icon,
 }));
 
-function SelectCountries({ selectedCountry, onChange, style }) {
+function SelectCountries({
+  selectedCountry,
+  onChange,
+  style,
+  label,
+  placeholder,
+}) {
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.label}>Country</Text>
+      <Text style={styles.label}>{label}</Text>
       <DropDownPicker
+        containerStyle={styles.dropdownContainer}
         items={countries}
         defaultValue={selectedCountry}
         style={styles.input}
         dropDownStyle={styles.dropdown}
+        placeholder={placeholder}
         selectedLabelStyle={styles.selectedLabel}
-        activeLabelStyle={styles.activeItem}
+        activeLabelStyle={styles.activeLabel}
+        placeholderStyle={styles.placeholderStyle}
         arrowColor={colors.black}
         arrowStyle={styles.arrow}
         itemStyle={styles.item}
@@ -41,10 +50,14 @@ SelectCountries.propTypes = {
   selectedCountry: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   style: ViewPropTypes.style,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 SelectCountries.defaultProps = {
   style: null,
+  label: 'Country',
+  placeholder: 'Select a country',
 };
 
 export default SelectCountries;

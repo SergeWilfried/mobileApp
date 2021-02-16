@@ -12,7 +12,6 @@ export default StyleSheet.create({
   container: {
     flexGrow: 1,
   },
-
   content: {
     ...styles.mainScreenStyle,
   },
@@ -21,6 +20,7 @@ export default StyleSheet.create({
   },
   inputWrapper: {
     marginTop: 31,
+    marginBottom: 'auto',
   },
   label: {
     marginBottom: 7,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     fontSize: fonts.size.small,
   },
   button: {
-    marginTop: 'auto',
+    marginTop: 20,
     marginBottom: 30,
   },
 });

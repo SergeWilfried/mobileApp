@@ -117,6 +117,7 @@ function Profile({ navigation }) {
         id: 5,
         icon: VerifyIdentityIcon,
         title: 'Verify my Identity',
+        onPress: () => navigation.navigate('VerifyIdentity'),
         rightElement: <RightArrow fill={colors.profileArrowIcon} />,
       },
       {

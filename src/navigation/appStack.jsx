@@ -27,6 +27,8 @@ import Congratulations from 'components/Congratulations';
 import MainHeader from 'components/MainHeader';
 import TabBarIcon from 'components/TabBarIcon';
 import TabBarLabel from 'components/TabBarLabel';
+import VerifyIdentity from 'screens/VerifyIdentity';
+import VerifyDetails from 'screens/VerifyDetails';
 
 import WalletIcon from 'assets/icons/tabBar/wallet.svg';
 import SavingsIcon from 'assets/icons/tabBar/savings.svg';
@@ -228,6 +230,12 @@ function AppScreens() {
           component={PersonalInformation}
         />
         <AppStack.Screen name="QRCodeScan" component={QRCodeScan} />
+        <AppStack.Screen
+          options={{ header: () => null }}
+          name="VerifyIdentity"
+          component={VerifyIdentity}
+        />
+        <AppStack.Screen name="VerifyDetails" component={VerifyDetails} />
       </AppStack.Navigator>
     </>
   );

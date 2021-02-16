@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { View, TouchableOpacity } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 import Calendar from 'assets/icons/calendar.svg';
 
@@ -21,62 +21,56 @@ function DatePickerInput({
   minDate,
   maxDate,
   initialValue,
+  label,
+  value,
 }) {
-  const [showModal, setShowModal] = useState(false);
-  const [value, setValue] = useState(initialValue);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const formattedDate = useMemo(() => {
+    if (!value) {
+      return placeholder;
+    }
+    const date = new Date(value);
+    return date.toLocaleDateString(locale, timeOptions);
+  }, [value, placeholder]);
 
   const onOpenModal = useCallback(() => {
-    setShowModal(true);
-  }, [setShowModal]);
+    setDatePickerVisibility(true);
+  }, [setDatePickerVisibility]);
+
+  const hideModal = useCallback(() => {
+    setDatePickerVisibility(false);
+  }, [setDatePickerVisibility]);
 
   const onSelectDate = useCallback(
-    (date, selectedDate) => {
-      if (Platform.OS === 'android' && date.type === 'dismissed') {
-        setShowModal(false);
-        return;
-      }
-
-      setValue(selectedDate);
-
-      setShowModal(false);
-
-      const correctDay = selectedDate.toLocaleDateString(locale, timeOptions);
-      onChange(correctDay);
+    (selectedDate) => {
+      setDatePickerVisibility(false);
+      onChange(selectedDate.toISOString());
     },
-    [setShowModal, setValue, onChange],
+    [setDatePickerVisibility, onChange],
   );
 
   return (
     <View>
+      {!!label && <Text style={styles.label}>{label}</Text>}
       <TouchableOpacity
         style={styles.datePicker}
         onPress={onOpenModal}
         activeOpacity={0.6}
       >
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text}>
-          {value ? value.toLocaleDateString(locale, timeOptions) : placeholder}
+          {formattedDate}
         </Text>
         <Calendar />
       </TouchableOpacity>
-      {Platform.OS === 'ios' ? (
-        <DateTimePicker
-          locale="en-US"
-          style={styles.datePickerIOS}
-          value={value}
-          onChange={onSelectDate}
-          minimumDate={minDate}
-          maximumDate={maxDate}
-        />
-      ) : (
-        showModal && (
-          <DateTimePicker
-            value={value}
-            onChange={onSelectDate}
-            minimumDate={minDate}
-            maximumDate={maxDate}
-          />
-        )
-      )}
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onCancel={hideModal}
+        onConfirm={onSelectDate}
+        date={initialValue}
+        minimumDate={minDate}
+        maximumDate={maxDate}
+      />
     </View>
   );
 }
@@ -84,14 +78,20 @@ function DatePickerInput({
 DatePickerInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
-  initialValue: PropTypes.instanceOf(Date).isRequired,
-  minDate: PropTypes.instanceOf(Date).isRequired,
-  maxDate: PropTypes.instanceOf(Date).isRequired,
+  value: PropTypes.string.isRequired,
+  initialValue: PropTypes.instanceOf(Date),
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
+  label: PropTypes.string,
 };
 
 DatePickerInput.defaultProps = {
-  placeholder: '',
+  placeholder: 'Select a date',
   onChange: () => {},
+  label: '',
+  initialValue: new Date(),
+  maxDate: null,
+  minDate: null,
 };
 
 export default DatePickerInput;

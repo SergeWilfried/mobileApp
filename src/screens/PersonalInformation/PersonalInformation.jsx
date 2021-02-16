@@ -27,14 +27,16 @@ const initialValues = {
   firstName: '',
   lastName: '',
   email: '',
-  birthDay: new Date(2000, 1),
+  birthDay: '',
   phoneNumber: '',
-  country: 'Nigeria',
+  country: '',
 };
 
-function PersonalInformation({ navigation }) {
+function PersonalInformation() {
   const [isLoading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState();
+  const phoneNumberInputRef = useRef();
 
   const onSafeSubmit = useCallback(async (data, { setErrors }) => {
     try {
@@ -59,15 +61,14 @@ function PersonalInformation({ navigation }) {
     touched,
     handleSubmit,
     isValid,
+    handleChange,
+    handleBlur,
   } = useFormik({
     onSubmit: onSafeSubmit,
     validationSchema: PersonalInfoSchema,
     initialValues,
     validateOnMount: true,
   });
-
-  const [phoneNumber, setPhoneNumber] = useState();
-  const phoneNumberInputRef = useRef();
 
   const onChangeFormattedPhone = useCallback(
     async (text) => {
@@ -86,23 +87,11 @@ function PersonalInformation({ navigation }) {
     }
   }, [values.phoneNumber, phoneNumber]);
 
-  const handleChange = useCallback(
-    async (fieldName, value) => {
-      await setFieldTouched(fieldName, false);
-      await setFieldValue(fieldName, value.trim());
-    },
-    [setFieldValue, setFieldTouched],
-  );
-
-  const handleBlur = useCallback(
-    (fieldName) => setFieldTouched(fieldName, true),
-    [setFieldTouched],
-  );
-
   return (
     <SafeAreaView style={styles.wrapper}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={30}
         style={styles.wrapper}
       >
         {isLoading && <FullScreenLoader />}
@@ -118,8 +107,8 @@ function PersonalInformation({ navigation }) {
                   label="First Name"
                   name="firstName"
                   value={values.firstName}
-                  onChangeText={(val) => handleChange('firstName', val)}
-                  onBlur={() => handleBlur('firstName')}
+                  onChangeText={handleChange('firstName')}
+                  onBlur={handleBlur('firstName')}
                   errorMessage={touched.firstName ? errors.firstName : ''}
                   inputLabelWrapper={styles.input}
                 />
@@ -127,8 +116,8 @@ function PersonalInformation({ navigation }) {
                   label="Last Name"
                   name="lastName"
                   value={values.lastName}
-                  onChangeText={(val) => handleChange('lastName', val)}
-                  onBlur={() => handleBlur('lastName')}
+                  onChangeText={handleChange('lastName')}
+                  onBlur={handleBlur('lastName')}
                   errorMessage={touched.lastName ? errors.lastName : ''}
                   inputLabelWrapper={styles.input}
                 />
@@ -136,8 +125,8 @@ function PersonalInformation({ navigation }) {
                   name="email"
                   label="Email"
                   value={values.email}
-                  onChangeText={(val) => handleChange('email', val)}
-                  onBlur={() => handleBlur('email')}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
                   errorMessage={touched.email ? errors.email : ''}
                   inputLabelWrapper={styles.input}
                 />
@@ -145,7 +134,7 @@ function PersonalInformation({ navigation }) {
                   name="country"
                   selectedCountry={values.country}
                   style={styles.input}
-                  onChange={(val) => handleChange('country', val)}
+                  onChange={handleChange('country')}
                 />
                 <Text style={styles.label}>Phone Number</Text>
                 <PhoneNumberInput
@@ -156,15 +145,12 @@ function PersonalInformation({ navigation }) {
                   onBlur={onBlurPhone}
                   error={phoneError}
                 />
-                <Text style={styles.label}>Birth Date</Text>
                 <DatePickerInput
-                  initialValue={initialValues.birthDay}
-                  onChange={(val) => {
-                    handleChange('birthDay', val);
-                  }}
-                  maxDate={new Date()}
+                  label="Birth Date"
+                  value={values.birthDay}
+                  onChange={handleChange('birthDay')}
                   minDate={new Date(1930, 1)}
-                  placeholder="Dec 24, 2000"
+                  placeholder="Select a date"
                 />
               </View>
               <Button

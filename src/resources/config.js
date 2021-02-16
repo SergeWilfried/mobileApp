@@ -12,4 +12,5 @@ const getApiUrl = () => {
 
 export default {
   apiUrl: getApiUrl(),
+  passbaseApiKey: Config.PASSBASE_API_KEY,
 };

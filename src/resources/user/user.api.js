@@ -55,3 +55,7 @@ export const getDailyTotal = async (start, end) => {
 
   return totalAmount;
 };
+
+export const startVerification = (data) => {
+  return apiClient.post('/users/current/verify', data);
+};

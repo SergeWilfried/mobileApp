@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import colors from 'themes/colors';
+import fonts from 'themes/fonts';
 
 export default StyleSheet.create({
   datePickersContainer: {
@@ -17,13 +18,19 @@ export default StyleSheet.create({
     borderColor: colors.inputStandardBorder,
     borderRadius: 10,
     backgroundColor: colors.white,
-    marginBottom: 17,
   },
   datePickerIOS: {
     position: 'absolute',
-    top: 0,
-    height: 55,
+    bottom: 0,
+    right: 0,
+    height: '100%',
     opacity: 0.1,
-    width: '100%',
+    width: 30,
+  },
+  label: {
+    marginBottom: 7,
+    color: colors.inputLabel,
+    lineHeight: fonts.lineHeight.medium,
+    fontSize: fonts.size.small,
   },
 });

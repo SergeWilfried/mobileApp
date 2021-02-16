@@ -4,16 +4,13 @@ import colors from 'themes/colors';
 import fonts from 'themes/fonts';
 
 const zIndexContainer = Platform.OS === 'ios' && { zIndex: 10 };
-const zIndexDropDown = Platform.OS === 'ios' ? 0 : 10;
 
 export default StyleSheet.create({
   container: {
     ...zIndexContainer,
   },
-  inputWrapper: {
+  dropdownContainer: {
     height: 45,
-    marginBottom: 17,
-    zIndex: zIndexDropDown,
   },
   input: {
     backgroundColor: colors.white,
@@ -41,8 +38,11 @@ export default StyleSheet.create({
   selectedLabel: {
     color: colors.black,
   },
+  placeholderStyle: {
+    color: colors.black,
+  },
   activeLabel: {
-    backgroundColor: colors.gray,
+    color: colors.gray,
   },
   item: {
     justifyContent: 'flex-start',
