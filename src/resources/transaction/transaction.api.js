@@ -5,3 +5,10 @@ export const deposit = (amount) => {
     amount,
   });
 };
+
+export const transfer = ({ amount, recipient }) => {
+  return apiClient.post('/transactions/transfer', {
+    amount,
+    recipient,
+  });
+};

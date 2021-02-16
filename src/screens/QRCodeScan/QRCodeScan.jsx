@@ -20,6 +20,7 @@ function QRCodeScan({ navigation }) {
 
   const handleContactClick = useCallback(() => {
     navigation.navigate('SendDuniaMoney', {
+      recipientId: userDataFromServer._id,
       phoneContactName: userDataFromServer.username,
       duniapayName: userDataFromServer.phoneNumber,
     });

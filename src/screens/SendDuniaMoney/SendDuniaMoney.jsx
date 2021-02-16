@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { processMoney, getInitials } from 'helpers/utils.helper';
+import { transfer } from 'resources/transaction/transaction.api';
 
 import Text from 'components/Text';
 import ConfirmDeposit from 'components/ConfirmDeposit';
@@ -11,10 +12,12 @@ import LeftIcon from 'components/Contact/LeftIcon';
 import styles from './SendDuniaMoney.styles';
 
 function SendDuniaMoney({ navigation, route }) {
-  const { phoneContactName, duniapayName } = route.params;
+  const { phoneContactName, duniapayName, recipientId } = route.params;
 
   const handlePressConfirm = useCallback(
     async (formattedValue) => {
+      await transfer({ amount: formattedValue, recipient: recipientId });
+
       navigation.navigate('Congratulations', {
         title: 'Congratulations!',
         buttonName: 'Back to Wallet',
@@ -58,6 +61,7 @@ SendDuniaMoney.propTypes = {
     params: PropTypes.shape({
       phoneContactName: PropTypes.string.isRequired,
       duniapayName: PropTypes.string.isRequired,
+      recipientId: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };
