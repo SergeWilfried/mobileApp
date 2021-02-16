@@ -1,6 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { View, ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import {
+  View,
+  KeyboardAvoidingView,
+  SafeAreaView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 
@@ -11,8 +16,6 @@ import Text from 'components/Text';
 import FullScreenLoader from 'components/FullScreenLoader';
 import { CreateNewPasswordSchema } from 'helpers/schemas';
 import { PASSWORD, AUTH } from 'helpers/constants';
-import { ApiError } from 'helpers/api';
-import * as userActions from 'resources/user/user.actions';
 import * as userApi from 'resources/user/user.api';
 
 import styles from './CreateNewPassword.styles';
@@ -42,8 +45,8 @@ function CreateNewPassword({ navigation }) {
         await userApi.createNewPassword({
           currentPassword: data.currentPassword,
           newPassword: data.password,
-        }),
-          setLoading(false);
+        });
+        setLoading(false);
         navigation.navigate('PinCodeReset', {
           withLogo: false,
           showProgressBar: false,
@@ -84,55 +87,73 @@ function CreateNewPassword({ navigation }) {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.screen}>
-        {isLoading && <FullScreenLoader />}
-        <MainHeader
-          title="Reset Password"
-          subTitle="Enter you current password, then create a new one and repeat it"
-        />
-        <View style={styles.wrapperInput}>
-          <Input
-            label="Current Password"
-            value={values.currentPassword}
-            onChangeText={handleChangeCurrentPassword}
-            textContentType="password"
-            errorMessage={touched.currentPassword ? errors.currentPassword : ''}
-            onBlur={handleBlur('currentPassword')}
+    <SafeAreaView style={styles.screen}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.wrapper}
+        keyboardVerticalOffset={30}
+      >
+        <ScrollView
+          style={styles.wrapper}
+          contentContainerStyle={styles.container}
+        >
+          {isLoading && <FullScreenLoader />}
+          <MainHeader
+            title="Reset Password"
+            subTitle="Enter you current password, then create a new one and repeat it"
           />
-          <Input
-            label="New password"
-            value={values.password}
-            onChangeText={handleChangePassword}
-            textContentType="password"
-            errorMessage={touched.password ? errors.password : ''}
-            onBlur={handleBlur('password')}
-          />
-          <View style={styles.passwordRulesWrapper}>
-            <Text style={styles.passwordRule}>
-              1. At least {PASSWORD.length} characters long
-            </Text>
-            <Text style={styles.passwordRule}>
-              2. Include at least one special characters (@ $ & %)
-            </Text>
-            <Text style={styles.passwordRule}>
-              3. Include at least one uppercase letter
-            </Text>
+          <View style={styles.wrapperInput}>
+            <Input
+              label="Current Password"
+              value={values.currentPassword}
+              onChangeText={handleChangeCurrentPassword}
+              textContentType="password"
+              errorMessage={
+                touched.currentPassword ? errors.currentPassword : ''
+              }
+              onBlur={handleBlur('currentPassword')}
+            />
+            <Input
+              label="New password"
+              labelStyle={styles.passwordInput}
+              value={values.password}
+              onChangeText={handleChangePassword}
+              textContentType="password"
+              errorMessage={touched.password ? errors.password : ''}
+              onBlur={handleBlur('password')}
+            />
+            <View style={styles.passwordRulesWrapper}>
+              <Text style={styles.passwordRule}>
+                1. At least {PASSWORD.length} characters long
+              </Text>
+              <Text style={styles.passwordRule}>
+                2. Include at least one special characters (@ $ & %)
+              </Text>
+              <Text style={styles.passwordRule}>
+                3. Include at least one uppercase letter
+              </Text>
+            </View>
+            <Input
+              labelStyle={styles.passwordInput}
+              label="Repeat new password"
+              value={values.repeatPassword}
+              onChangeText={handleChangeRepeatPassword}
+              textContentType="password"
+              onBlur={handleBlur('repeatPassword')}
+              errorMessage={touched.repeatPassword ? errors.repeatPassword : ''}
+            />
           </View>
-          <Input
-            label="Repeat new password"
-            value={values.repeatPassword}
-            onChangeText={handleChangeRepeatPassword}
-            textContentType="password"
-            onBlur={handleBlur('repeatPassword')}
-            errorMessage={touched.repeatPassword ? errors.repeatPassword : ''}
-          />
-        </View>
-        <View style={styles.wrapperButton}>
-          <Button disabled={!isValid} title="Next" onPress={handleSubmit} />
-        </View>
-      </View>
-    </ScrollView>
+          <View style={styles.wrapperButton}>
+            <Button
+              disabled={!isValid}
+              title="Next"
+              style={styles.button}
+              onPress={handleSubmit}
+            />
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
