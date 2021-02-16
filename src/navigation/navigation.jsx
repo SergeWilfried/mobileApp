@@ -15,19 +15,23 @@ function AppNavigation({ token }) {
   const userAuthenticated = useSelector(userSelectors.getUserAuthenticated);
 
   const activeStack = useMemo(() => {
-    // if (userAuthenticated) {
-    return <AppScreens />;
-    // }
+    if (userAuthenticated) {
+      return <AppScreens />;
+    }
 
-    // if (!isOnboardingHidden) {
-    //   return <OnBoardingScreens />;
-    // }
+    if (!isOnboardingHidden) {
+      return <OnBoardingScreens />;
+    }
 
-    // return <AuthScreens token={token} />;
+    return <AuthScreens token={token} />;
   }, [userAuthenticated, isOnboardingHidden]);
 
   return <NavigationContainer>{activeStack}</NavigationContainer>;
 }
+
+AppNavigation.propTypes = {
+  token: PropTypes.string,
+};
 
 AppNavigation.defaultProps = {
   token: null,
