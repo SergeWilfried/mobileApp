@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  useMemo,
+} from 'react';
 import {
   View,
   TextInput,
@@ -62,12 +68,12 @@ function ConfirmDeposit({
     [onChangeAmountMoney, setDisabled],
   );
 
-  const getDistance = () => {
+  const keyboardVerticalOffset = useMemo(() => {
     if (Platform.OS === 'android') {
       return height < 700 ? 0 : 30;
     }
     return 30;
-  };
+  }, [height]);
 
   return (
     <>
@@ -76,7 +82,7 @@ function ConfirmDeposit({
         <KeyboardAvoidingView
           behavior={Platform.OS === 'android' ? 'height' : 'padding'}
           style={styles.container}
-          keyboardVerticalOffset={getDistance}
+          keyboardVerticalOffset={keyboardVerticalOffset}
         >
           <MainHeader title={title} subTitle={subTitle} />
           <View style={styles.contentWrapper}>

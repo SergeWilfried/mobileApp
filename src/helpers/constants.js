@@ -54,12 +54,9 @@ export const HOMEPAGE_HEADER = {
 };
 
 export const PHONE_OPERATORS = {
-  MTN: 'Mtn',
-  AIRTEL: 'Airtel',
-  ETISALAT: 'Etisalat',
   ORANGE: 'Orange',
-  SAFARICOM: 'Safaricom',
-  VODACOM: 'Vodacom',
+  MOOV: 'Moov',
+  TELECEL: 'Telecel',
 };
 
 export const MOBILE_MONEY_FLOW = {

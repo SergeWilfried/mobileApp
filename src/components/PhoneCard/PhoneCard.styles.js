@@ -12,7 +12,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    marginHorizontal: normalizeSpace(15),
     backgroundColor: colors.white,
   },
   choosedIconContainer: {

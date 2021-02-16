@@ -10,41 +10,18 @@ import Text from 'components/Text';
 import MainHeader from 'components/MainHeader';
 import DismissKeyboard from 'components/DismissKeyboard';
 
-import { MOBILE_MONEY_FLOW, SEND_FLOW } from 'helpers/constants';
+import {
+  MOBILE_MONEY_FLOW,
+  SEND_FLOW,
+  PHONE_OPERATORS,
+} from 'helpers/constants';
+import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
 import { addPhoneNumber } from 'resources/wallet/wallet.actions';
 import usePhoneNumber from 'hooks/usePhoneNumber';
-import { getPhoneOperatorIcon } from 'helpers/phoneOperator.helper';
 
 import styles from './ChooseProvider.styles';
 
 const keyboardVerticalOffset = Platform.OS === 'ios' ? 30 : 0;
-
-const operators = [
-  {
-    icon: 'Mtn',
-    title: 'Mtn',
-  },
-  {
-    icon: 'Airtel',
-    title: 'Airtel',
-  },
-  {
-    icon: 'Etisalat',
-    title: 'Etisalat',
-  },
-  {
-    icon: 'Orange',
-    title: 'Orange',
-  },
-  {
-    icon: 'Safaricom',
-    title: 'Safaricom',
-  },
-  {
-    icon: 'Vodacom',
-    title: 'Vodacom',
-  },
-];
 
 function ChooseProvider({ navigation, route }) {
   const [phoneOperator, setPhoneOperator] = useState({
@@ -87,21 +64,24 @@ function ChooseProvider({ navigation, route }) {
   return (
     <DismissKeyboard keyboardAvoidingViewProps={{ keyboardVerticalOffset }}>
       <MainHeader
-        title="Mobile Money Deposit"
+        title="Add New Number"
         subTitle="Choose your provider"
       />
       <SafeAreaView style={styles.screen}>
         <View>
           <View style={styles.cardsContainer}>
-            {operators.map(({ title, icon }) => (
+            {Object.keys(PHONE_OPERATORS).map((key) => (
               <PhoneCard
-                providerName={title}
-                providerLogo={getPhoneOperatorIcon(icon)}
-                key={title}
-                isChoosed={phoneOperator.title === title}
+                providerName={PHONE_OPERATORS[key]}
+                providerLogo={getPhoneOperatorIcon(PHONE_OPERATORS[key])}
+                key={PHONE_OPERATORS[key]}
+                isChoosed={phoneOperator.title === PHONE_OPERATORS[key]}
                 setPhoneOperator={setPhoneOperator}
                 chooseMobileOperator={() => {
-                  setPhoneOperator({ icon, title });
+                  setPhoneOperator({
+                    icon: PHONE_OPERATORS[key],
+                    title: PHONE_OPERATORS[key],
+                  });
                 }}
               />
             ))}
